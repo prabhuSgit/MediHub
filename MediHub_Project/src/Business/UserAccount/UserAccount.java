@@ -19,6 +19,8 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private String status;
+    
 
     public UserAccount() {
         workQueue = new WorkQueue();
