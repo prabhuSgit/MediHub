@@ -21,7 +21,8 @@ public abstract class Role {
         Doctor("Doctor"),
         LabAssistant("Lab Assistant"),
         HealthCareProvider("Health Care Provider"),
-        MedicalSchool("Medical School");
+        MedicalSchool("Medical School"),
+        Customer("Customer");
         
         private String value;
         private RoleType(String value){
