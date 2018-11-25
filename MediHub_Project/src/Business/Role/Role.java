@@ -47,5 +47,4 @@ public abstract class Role {
         return this.getClass().getName();
     }
     
-    
 }

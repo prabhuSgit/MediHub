@@ -75,7 +75,7 @@ public abstract class Organization {
 
     @Override
     public String toString() {
-        return name;
+        return this.getName();
     }
     
     
