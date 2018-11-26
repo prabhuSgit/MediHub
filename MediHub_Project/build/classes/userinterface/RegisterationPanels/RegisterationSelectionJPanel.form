@@ -55,13 +55,7 @@
     <Component class="javax.swing.JComboBox" name="registerationSelectionComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="&lt;Select any one&gt;"/>
-            <StringItem index="1" value="Health Care Provider"/>
-            <StringItem index="2" value="Medical School"/>
-            <StringItem index="3" value="Doctor/Physician"/>
-            <StringItem index="4" value="Consumer"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
