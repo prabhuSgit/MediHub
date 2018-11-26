@@ -5,6 +5,9 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+
 /**
  *
  * @author prabh
@@ -16,8 +19,18 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     public RegisterationSelectionJPanel() {
         initComponents();
+        populateComboBox();
     }
-
+    private void populateComboBox() {
+        registerationSelectionComboBox.removeAllItems();
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            registerationSelectionComboBox.addItem(type);
+        }
+        for (Organization.Type type : Organization.Type.values()) {
+            registerationSelectionComboBox.addItem(type);
+        }
+        
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +47,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Kindly select the registeration for:");
 
-        registerationSelectionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Select any one>", "Health Care Provider", "Medical School", "Doctor/Physician", "Consumer" }));
         registerationSelectionComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerationSelectionComboBoxActionPerformed(evt);
@@ -83,7 +95,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        
+         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
+         //Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
+         
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

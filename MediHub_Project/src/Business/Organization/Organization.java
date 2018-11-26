@@ -21,25 +21,25 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
-    private static int counter=0;
-    
-    public enum Type{
-        Admin("Admin Organization"), 
-        Doctor("Doctor Organization"), 
-        Lab("Lab Organization"),
-        HealthCareProvider("Health Care Provider"),
-        MedicalSchool("Medical School");
-        
+    private static int counter = 0;
+
+    public enum Type {
+        Admin("Admin Organization"),
+        Doctor("Doctor"),
+        Lab("Lab Assistant");
         private String value;
+
         private Type(String value) {
             this.value = value;
         }
+
         public String getValue() {
             return value;
         }
     }
 
     public Organization(String name) {
+        
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
@@ -49,7 +49,7 @@ public abstract class Organization {
     }
 
     public abstract ArrayList<Role> getSupportedRole();
-    
+
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
@@ -61,7 +61,7 @@ public abstract class Organization {
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -82,6 +82,5 @@ public abstract class Organization {
     public String toString() {
         return this.getName();
     }
-    
-    
+
 }
