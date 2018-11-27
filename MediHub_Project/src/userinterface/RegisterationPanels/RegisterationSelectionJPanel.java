@@ -10,6 +10,10 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+//import static Business.Organization.Organization.Type.Doctor;
+//import static Business.Organization.Organization.Type.Lab;
+import Business.Role.Role;
+import static Business.Role.Role.RoleType.*;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 
@@ -35,12 +39,12 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void populateComboBox() {
 
         registerationSelectionComboBox.removeAllItems();
-        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+        for (Role.RoleType type : Role.RoleType.values()) {
             registerationSelectionComboBox.addItem(type);
         }
-        for (Organization.Type type : Organization.Type.values()) {
-            registerationSelectionComboBox.addItem(type);
-        }
+//        for (Organization.Type type : Organization.Type.values()) {
+//            registerationSelectionComboBox.addItem(type);
+//        }
 
     }
 
@@ -111,6 +115,18 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
             ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else if (registerationSelectionComboBox.getSelectedItem().equals(LabAssistant)){
+        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system);
+            userProcessContainer.add("ProviderRegistrationJPanel", assist);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else if (registerationSelectionComboBox.getSelectedItem().equals(Doctor)){
+        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system);
+            userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

@@ -5,6 +5,11 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.EcoSystem;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hp
@@ -14,8 +19,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     /**
      * Creates new form RegisterLabAssistants
      */
-    public RegisterLabAssistants() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+
+    public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
@@ -27,19 +37,122 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        registerationSelectionComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txtFiledFname = new javax.swing.JTextField();
+        textFieldLname = new javax.swing.JTextField();
+        textFieldept = new javax.swing.JTextField();
+        txtFieldSSN = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
+        setLayout(null);
+
+        add(registerationSelectionComboBox);
+        registerationSelectionComboBox.setBounds(155, 167, 150, 30);
+
+        jLabel2.setText("*First Name:");
+        add(jLabel2);
+        jLabel2.setBounds(20, 60, 90, 20);
+
+        txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiledFnameActionPerformed(evt);
+            }
+        });
+        add(txtFiledFname);
+        txtFiledFname.setBounds(101, 53, 200, 30);
+        add(textFieldLname);
+        textFieldLname.setBounds(380, 50, 200, 30);
+
+        textFieldept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldeptActionPerformed(evt);
+            }
+        });
+        add(textFieldept);
+        textFieldept.setBounds(101, 91, 200, 30);
+        add(txtFieldSSN);
+        txtFieldSSN.setBounds(101, 129, 200, 30);
+
+        jLabel6.setText("*Select Enterprice:");
+        add(jLabel6);
+        jLabel6.setBounds(20, 170, 90, 20);
+
+        jLabel5.setText("*SSN:");
+        add(jLabel5);
+        jLabel5.setBounds(19, 132, 90, 20);
+
+        jLabel4.setText("*Department: ");
+        add(jLabel4);
+        jLabel4.setBounds(19, 94, 90, 20);
+
+        jButton1.setText("Register");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(280, 240, 73, 23);
+
+        jLabel3.setText("*Last Name:");
+        add(jLabel3);
+        jLabel3.setBounds(310, 60, 90, 20);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel1.setText("Lab Assistant Registration");
+        add(jLabel1);
+        jLabel1.setBounds(10, 0, 244, 36);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiledFnameActionPerformed
+
+    private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldeptActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String fname = txtFiledFname.getText();
+        String lname = textFieldLname.getText();
+        String dept = textFieldept.getText();
+        String ssn = txtFieldSSN.getText();
+
+        if(txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Request successfully sent");
+        RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+            userProcessContainer.add("Original Panel", origin);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JComboBox<String> registerationSelectionComboBox;
+    private javax.swing.JTextField textFieldLname;
+    private javax.swing.JTextField textFieldept;
+    private javax.swing.JTextField txtFieldSSN;
+    private javax.swing.JTextField txtFiledFname;
     // End of variables declaration//GEN-END:variables
 }

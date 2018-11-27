@@ -22,11 +22,56 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter = 0;
+    private String Fname;
+    private String Lname;
+    private String Department;
+    private String SSN;
+    OrganizationDirectory directory;
+
+    public OrganizationDirectory getDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(OrganizationDirectory directory) {
+        this.directory = directory;
+    }
+
+    public String getFname() {
+        return Fname;
+    }
+
+    public void setFname(String Fname) {
+        this.Fname = Fname;
+    }
+
+    public String getLname() {
+        return Lname;
+    }
+
+    public void setLname(String Lname) {
+        this.Lname = Lname;
+    }
+
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String Department) {
+        this.Department = Department;
+    }
+
+    public String getSSN() {
+        return SSN;
+    }
+
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
+    }
 
     public enum Type {
         Admin("Admin Organization"),
         Doctor("Doctor"),
-        Lab("Lab Assistant");
+        Lab("Lab");
         private String value;
 
         private Type(String value) {
