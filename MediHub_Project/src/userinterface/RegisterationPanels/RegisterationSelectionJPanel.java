@@ -22,6 +22,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         populateComboBox();
     }
     private void populateComboBox() {
+       
         registerationSelectionComboBox.removeAllItems();
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
             registerationSelectionComboBox.addItem(type);
@@ -29,6 +30,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Organization.Type type : Organization.Type.values()) {
             registerationSelectionComboBox.addItem(type);
         }
+        
         
  }
     /**

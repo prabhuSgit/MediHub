@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+import userinterface.RegisterationPanels.ProviderAdminRegistrationWorkAreaJPanel;
 
 /**
  *
@@ -22,5 +23,10 @@ public class HCProviderRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+    }
+
+    @Override
+    public JPanel createRegistrationWorkArea(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem business) {
+        return new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, enterprise);
     }
 }
