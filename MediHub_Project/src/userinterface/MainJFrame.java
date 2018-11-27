@@ -233,7 +233,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel();
+        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system);
         container.add("RegisterationSelectionJPanel", regPanl);
         CardLayout layout = (CardLayout)container.getLayout();
         layout.next(container);

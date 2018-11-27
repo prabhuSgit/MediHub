@@ -7,6 +7,11 @@ package userinterface.RegisterationPanels;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
@@ -17,11 +22,18 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RegisterationSelection
      */
-    public RegisterationSelectionJPanel() {
+    JPanel userProcessContainer;
+    private EcoSystem system;
+
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
         populateComboBox();
     }
+
     private void populateComboBox() {
+
         registerationSelectionComboBox.removeAllItems();
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
             registerationSelectionComboBox.addItem(type);
@@ -29,8 +41,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Organization.Type type : Organization.Type.values()) {
             registerationSelectionComboBox.addItem(type);
         }
-        
- }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,15 +102,19 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
         // TODO add your handling code here:
         //Place your methods of calling the JPanels based on the slection from the Combo Box :)
-        
-        
+
+
     }//GEN-LAST:event_registerationSelectionComboBoxActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
-         //Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
-         
+        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
+            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
+            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

@@ -5,18 +5,23 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.EcoSystem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hp
  */
 public class RegisterDoctor extends javax.swing.JPanel {
 
+
     /**
      * Creates new form RegisterMedicalSchool
      */
     public RegisterDoctor() {
         initComponents();
-    }
+           }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,6 +120,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Request successfully sent to provider");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

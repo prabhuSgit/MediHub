@@ -44,6 +44,7 @@ public abstract class Role {
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem business);
+ 
 
     @Override
     public String toString() {

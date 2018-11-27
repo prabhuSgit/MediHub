@@ -22,6 +22,7 @@ public class AdminRole extends Role{
         return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
     }
 
+
     
     
 }
