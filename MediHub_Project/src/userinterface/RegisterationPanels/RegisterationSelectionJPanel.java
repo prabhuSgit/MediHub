@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 /**
@@ -31,15 +32,16 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     }
 
     private void populateComboBox() {
-
         registerationSelectionComboBox.removeAllItems();
-        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+        for(Role.RoleType type : Role.RoleType.values()){
             registerationSelectionComboBox.addItem(type);
         }
-        for (Organization.Type type : Organization.Type.values()) {
-            registerationSelectionComboBox.addItem(type);
-        }
-
+//        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+//            registerationSelectionComboBox.addItem(type);
+//        }
+//        for (Organization.Type type : Organization.Type.values()) {
+//            registerationSelectionComboBox.addItem(type);
+//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,12 +91,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
-        // TODO add your handling code here:
-        //Place your methods of calling the JPanels based on the slection from the Combo Box :)
-
-
-    }//GEN-LAST:event_registerationSelectionComboBoxActionPerformed
 
 //    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
 //        // TODO add your handling code here:
@@ -108,9 +104,10 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
+        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
+//        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
 //        Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
-        RegisterHospitalJPanel registerHC = new RegisterHospitalJPanel(userProcessContainer, enterpriseType);
+        RegisterHospitalJPanel registerHC = new RegisterHospitalJPanel(userProcessContainer, roleType);
         userProcessContainer.add("RegisterHospitalJPanel", registerHC);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

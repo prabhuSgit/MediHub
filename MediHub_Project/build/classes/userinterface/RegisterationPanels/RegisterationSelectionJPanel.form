@@ -58,6 +58,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="RegisterationSelectionJPanel_registerationSelectionComboBox"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="nextBtn">
       <Properties>
