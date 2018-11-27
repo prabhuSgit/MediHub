@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-
 /**
  *
  * @author prabh
@@ -23,8 +22,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      * Creates new form RegisterationSelection
      */
     JPanel userProcessContainer;
-    private EcoSystem system;
-
+    EcoSystem system;
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -43,7 +41,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         }
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,12 +56,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Kindly select the registeration for:");
-
-        registerationSelectionComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerationSelectionComboBoxActionPerformed(evt);
-            }
-        });
 
         nextBtn.setText("Next >");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +89,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
         // TODO add your handling code here:
         //Place your methods of calling the JPanels based on the slection from the Combo Box :)
@@ -106,14 +96,24 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_registerationSelectionComboBoxActionPerformed
 
+//    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
+//        // TODO add your handling code here:
+//        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
+//            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
+//            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//        }
+//    }
+
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
-            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
-            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
+        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
+//        Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
+        RegisterHospitalJPanel registerHC = new RegisterHospitalJPanel(userProcessContainer, enterpriseType);
+        userProcessContainer.add("RegisterHospitalJPanel", registerHC);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
