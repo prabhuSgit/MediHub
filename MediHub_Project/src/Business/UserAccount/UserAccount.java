@@ -20,7 +20,6 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private String status;
-    
 
     public UserAccount() {
         workQueue = new WorkQueue();
@@ -62,6 +61,14 @@ public class UserAccount {
         return workQueue;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     @Override
     public String toString() {
         return username;
