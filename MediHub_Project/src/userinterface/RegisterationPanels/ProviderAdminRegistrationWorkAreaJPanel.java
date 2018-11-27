@@ -5,6 +5,7 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import javax.swing.JPanel;
 
@@ -18,11 +19,11 @@ public class ProviderAdminRegistrationWorkAreaJPanel extends javax.swing.JPanel 
      * Creates new form ProviderAdminRegistrationWorkAreaJPanel
      */
     JPanel userProcessContainer;
-    Enterprise enterprise;
-    public ProviderAdminRegistrationWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    EcoSystem system;
+    public ProviderAdminRegistrationWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
+        this.system = system;
     }
 
     
