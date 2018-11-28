@@ -6,6 +6,10 @@
 package userinterface.RegisterationPanels;
 
 import Business.EcoSystem;
+import Business.Enterprise.*;
+import Business.Enterprise.Enterprise.EnterpriseType.*;
+
+import Business.Role.Role;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,8 +30,16 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        populateComboBoxProvider();
     }
+    private void populateComboBoxProvider() {
 
+          registerationSelectionComboBox.removeAllItems();
+        for (Enterprise.EnterpriseType enterprise : Enterprise.EnterpriseType.values()) {
+            registerationSelectionComboBox.addItem(enterprise.toString());
+        }
+        
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,11 +67,11 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         setLayout(null);
 
         add(registerationSelectionComboBox);
-        registerationSelectionComboBox.setBounds(155, 167, 150, 30);
+        registerationSelectionComboBox.setBounds(250, 270, 150, 30);
 
         jLabel2.setText("*First Name:");
         add(jLabel2);
-        jLabel2.setBounds(20, 60, 90, 20);
+        jLabel2.setBounds(120, 120, 90, 20);
 
         txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,9 +79,9 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(txtFiledFname);
-        txtFiledFname.setBounds(101, 53, 200, 30);
+        txtFiledFname.setBounds(200, 120, 200, 30);
         add(textFieldLname);
-        textFieldLname.setBounds(380, 50, 200, 30);
+        textFieldLname.setBounds(510, 120, 200, 30);
 
         textFieldept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,21 +89,21 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(textFieldept);
-        textFieldept.setBounds(101, 91, 200, 30);
+        textFieldept.setBounds(200, 170, 200, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(101, 129, 200, 30);
+        txtFieldSSN.setBounds(200, 220, 200, 30);
 
         jLabel6.setText("*Select Enterprice:");
         add(jLabel6);
-        jLabel6.setBounds(20, 170, 90, 20);
+        jLabel6.setBounds(130, 270, 110, 20);
 
         jLabel5.setText("*SSN:");
         add(jLabel5);
-        jLabel5.setBounds(19, 132, 90, 20);
+        jLabel5.setBounds(130, 220, 90, 20);
 
         jLabel4.setText("*Department: ");
         add(jLabel4);
-        jLabel4.setBounds(19, 94, 90, 20);
+        jLabel4.setBounds(120, 170, 90, 20);
 
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,17 +112,17 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(280, 240, 73, 23);
+        jButton1.setBounds(370, 340, 100, 23);
 
         jLabel3.setText("*Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(310, 60, 90, 20);
+        jLabel3.setBounds(430, 120, 90, 20);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Lab Assistant Registration");
         add(jLabel1);
-        jLabel1.setBounds(10, 0, 244, 36);
+        jLabel1.setBounds(300, 40, 244, 36);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
