@@ -5,6 +5,7 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import java.awt.CardLayout;
@@ -25,11 +26,12 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
+    DB4OUtil dB4OUtil;
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.dB4OUtil=dB4OUtil;
         populateComboBox();
     }
 
@@ -104,7 +106,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
 
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system, dB4OUtil);
             userProcessContainer.add("RegisterHospitalJPanel", regisCust);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

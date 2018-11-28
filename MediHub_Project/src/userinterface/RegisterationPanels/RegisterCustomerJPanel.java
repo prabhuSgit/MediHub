@@ -33,13 +33,14 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Role.RoleType roleType;
     EcoSystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    DB4OUtil dB4OUtil;
 
-    public RegisterCustomerJPanel(JPanel userProcessContainer, Role.RoleType roleType, EcoSystem system) {
+    public RegisterCustomerJPanel(JPanel userProcessContainer, Role.RoleType roleType, EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.roleType = roleType;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.dB4OUtil=dB4OUtil;
         welcomeTxt.setText(roleType.getValue());
     }
 
@@ -99,7 +100,7 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Ph. No :");
 
-        submitBtn.setText("Submit Request");
+        submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
@@ -140,22 +141,22 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dobTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(phNoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameTxt)))
+                                    .addComponent(nameTxt)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(phNoTxt)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(377, 377, 377)
                                 .addComponent(backBtn)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
+                                .addGap(166, 166, 166)
                                 .addComponent(submitBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(testBtn))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
+                                .addGap(44, 44, 44)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addGroup(layout.createSequentialGroup()
@@ -172,7 +173,7 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

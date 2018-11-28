@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/prabh/Documents/NetBeansProjects/MediHub_Project/src/Business/Enterprise/Enterprise.java</file>
-            <file>file:/C:/Users/prabh/Documents/NetBeansProjects/MediHub_Project/src/Business/Enterprise/EnterpriseDirectory.java</file>
-            <file>file:/C:/Users/prabh/Documents/NetBeansProjects/MediHub_Project/src/Business/Enterprise/HospitalEnterprise.java</file>
-            <file>file:/C:/Users/prabh/Documents/NetBeansProjects/MediHub_Project/src/Business/Role/Role.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/MainJFrame.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/SuccessCustomerJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterationSelectionJPanel.java</file>
         </group>
     </open-files>
 </project-private>
