@@ -29,7 +29,7 @@ public class EcoSystem extends Organization{
         return business;
     }
     
-    public Customer createCustomer(String name, Date dob, String address, Integer phoneNbr){
+    public Customer createCustomer(String name, String dob, String address, Integer phoneNbr){
         Customer customer = new Customer();
         customer.setName(name);
         customer.setDob(dob);
@@ -53,6 +53,7 @@ public class EcoSystem extends Organization{
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
+        customerList=new ArrayList<Customer>();
     }
 
     public ArrayList<Network> getNetworkList() {

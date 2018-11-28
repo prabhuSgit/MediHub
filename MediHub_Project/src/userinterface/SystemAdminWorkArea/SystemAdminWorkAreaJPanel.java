@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Customer.Customer;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -36,21 +37,31 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     public void populateTree(){
         DefaultTreeModel model=(DefaultTreeModel)EcoSystem.getModel();
         ArrayList<Network> networkList=ecosystem.getNetworkList();
+        ArrayList<Customer> customerList=ecosystem.getCustomerList();
         ArrayList<Enterprise> enterpriseList;
         ArrayList<Organization> organizationList;
         
         Network network;
+        Customer customer;
         Enterprise enterprise;
         Organization organization;
         
         DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode customers=new DefaultMutableTreeNode("Customers");
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         root.insert(networks, 0);
         
         DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode customerNode;
         DefaultMutableTreeNode enterpriseNode;
         DefaultMutableTreeNode organizationNode;
+        
+        for(int i=0;i<customerList.size();i++){
+            customer=customerList.get(i);
+            customerNode=new DefaultMutableTreeNode(customer.getName());
+            customers.insert(customerNode, i);
+        }
         
         for(int i=0;i<networkList.size();i++){
             network=networkList.get(i);

@@ -38,12 +38,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Role.RoleType type : Role.RoleType.values()) {
             registerationSelectionComboBox.addItem(type);
         }
-//        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-//            registerationSelectionComboBox.addItem(type);
-//        }
-//        for (Organization.Type type : Organization.Type.values()) {
-//            registerationSelectionComboBox.addItem(type);
-//        }
     }
 
     /**
@@ -108,8 +102,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
         Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
-//        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
-//        Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
+
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
             RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
             userProcessContainer.add("RegisterHospitalJPanel", regisCust);

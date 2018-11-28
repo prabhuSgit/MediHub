@@ -12,8 +12,9 @@ import java.util.Date;
  * @author prabh
  */
 public class Customer {
+    
     private String name;
-    private Date dob;
+    private String dob;
     private String address;
     private Integer phoneNbr;
     private static int custId;
@@ -23,9 +24,7 @@ public class Customer {
         id = custId;
         custId++;
     }
-    
-    
-
+   
     public String getName() {
         return name;
     }
@@ -34,11 +33,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -72,6 +71,11 @@ public class Customer {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
     
 }
