@@ -264,7 +264,7 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
             Customer customer = system.createCustomer(nameTxt.getText(), dobTxt.getText(), addressTxt.getText(), Integer.valueOf(phNoTxt.getText()));
             UserAccount ua = system.getUserAccountDirectory().createCustomerAccount(userNameTxt.getText(), passwordTxt.getText(), customer, new CustomerRole());
             System.out.println(customer.getName() + " " + ua.getCustomer().getName());
-            dB4OUtil.storeSystem(system);
+//            dB4OUtil.storeSystem(system);
 
             SuccessCustomerJPanel success = new SuccessCustomerJPanel();
             userProcessContainer.add("RegisterHospitalJPanel", success);
