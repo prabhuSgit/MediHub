@@ -24,7 +24,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     private EcoSystem system;
-
+    
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
