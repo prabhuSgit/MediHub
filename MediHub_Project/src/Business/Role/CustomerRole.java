@@ -18,7 +18,7 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
  *
  * @author prabh
  */
-public class HCProviderRole extends Role{
+public class CustomerRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new AdminWorkAreaJPanel(userProcessContainer, enterprise);

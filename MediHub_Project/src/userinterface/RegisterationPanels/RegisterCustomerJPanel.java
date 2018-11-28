@@ -5,38 +5,37 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Role.Role;
+import Business.Customer.Customer;
+import Business.Role.CustomerRole;
+import Business.Role.SystemAdminRole;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.sql.Date;
 import javax.swing.JPanel;
 
 /**
  *
  * @author prabh
  */
-public class RegisterHospitalJPanel extends javax.swing.JPanel {
+public class RegisterCustomerJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RegisterHospitalJPanel
      */
     JPanel userProcessContainer;
-//    Enterprise.EnterpriseType enterpriseType;
-      Role.RoleType roleType;
-//    Organization.Type orgtype;
-    
-    public RegisterHospitalJPanel(JPanel userProcessContainer, Role.RoleType roleType) {
+    Role.RoleType roleType;
+    EcoSystem system;
+    public RegisterCustomerJPanel(JPanel userProcessContainer, Role.RoleType roleType, EcoSystem system) {
         initComponents();
-        this.roleType=roleType;
-        this.userProcessContainer=userProcessContainer;
+        this.roleType = roleType;
+        this.userProcessContainer = userProcessContainer;
+        this.system=system;
         welcomeTxt.setText(roleType.getValue());
-//        this.orgtype=orgtype;
-        if(roleType.getValue()==null){
-           welcomeTxt.setText(roleType.getValue());
-        }else{
-//           welcomeTxt.setText(orgtype.getValue());
-        }
-        
     }
 
     /**
@@ -51,16 +50,28 @@ public class RegisterHospitalJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         welcomeTxt = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        nameTxt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jTextField2 = new javax.swing.JTextField();
+        addressTxt = new javax.swing.JTextPane();
+        dobTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        phNoTxt = new javax.swing.JTextField();
+        submitBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        userNameTxt = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 204), 5, true));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Hi, Welcome to do registration for");
+        jLabel1.setText("Hi, Welcome for registering");
 
         welcomeTxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         welcomeTxt.setForeground(new java.awt.Color(0, 204, 102));
@@ -72,47 +83,83 @@ public class RegisterHospitalJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText("jTextField1");
+        jScrollPane1.setViewportView(addressTxt);
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jLabel2.setText("Name :");
 
-        jTextField2.setText("jTextField2");
+        jLabel3.setText("Date of Birth :");
 
-        jLabel2.setText("Text1");
+        jLabel4.setText("Address :");
 
-        jLabel3.setText("Test2");
+        jLabel5.setText("Ph. No :");
 
-        jLabel4.setText("TextPane");
+        submitBtn.setText("Submit Request");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("User Name :");
+
+        jLabel7.setText("Password :");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setText("Create you User Name :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(259, 259, 259)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(backBtn))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(198, 198, 198)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(145, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(backBtn)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                        .addComponent(phNoTxt)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(submitBtn)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(userNameTxt)
+                                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,24 +168,48 @@ public class RegisterHospitalJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addComponent(backBtn)
-                        .addGap(76, 76, 76))
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7))
+                            .addComponent(passwordTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(84, 84, 84))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(phNoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5))))))))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(submitBtn))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,17 +220,33 @@ public class RegisterHospitalJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+//        Employee employee = system.getEmployeeDirectory().createEmployee(nameTxt.getText());
+        Customer customer = system.createCustomer(nameTxt.getText(), Date.valueOf(dobTxt.getText()), addressTxt.getText(), Integer.valueOf(phNoTxt.getText()));
+        UserAccount ua = system.getUserAccountDirectory().createCustomerAccount(userNameTxt.getText(), passwordTxt.getText(), customer, new CustomerRole());
+    }//GEN-LAST:event_submitBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane addressTxt;
     private javax.swing.JButton backBtn;
+    private javax.swing.JTextField dobTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JTextField phNoTxt;
+    private javax.swing.JButton submitBtn;
+    private javax.swing.JTextField userNameTxt;
     private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
 }

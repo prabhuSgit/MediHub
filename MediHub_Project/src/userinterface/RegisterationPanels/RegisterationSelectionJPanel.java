@@ -13,6 +13,7 @@ import Business.EcoSystem;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+
 /**
  *
  * @author prabh
@@ -24,6 +25,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
+
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -33,7 +35,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void populateComboBox() {
         registerationSelectionComboBox.removeAllItems();
-        for(Role.RoleType type : Role.RoleType.values()){
+        for (Role.RoleType type : Role.RoleType.values()) {
             registerationSelectionComboBox.addItem(type);
         }
 //        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
@@ -43,6 +45,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 //            registerationSelectionComboBox.addItem(type);
 //        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,10 +110,13 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
 //        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) registerationSelectionComboBox.getSelectedItem();
 //        Organization.Type orgtype = (Organization.Type) registerationSelectionComboBox.getSelectedItem();
-        RegisterHospitalJPanel registerHC = new RegisterHospitalJPanel(userProcessContainer, roleType);
-        userProcessContainer.add("RegisterHospitalJPanel", registerHC);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
+            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+            userProcessContainer.add("RegisterHospitalJPanel", regisCust);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
