@@ -25,13 +25,14 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      * Creates new form RegisterationSelection
      */
     JPanel userProcessContainer;
-    EcoSystem system;
-//    DB4OUtil dB4OUtil;
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
+    private EcoSystem system;
+    private Role role;
+    
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system,Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-//        this.dB4OUtil=dB4OUtil;
+        this.role = role;
         populateComboBox();
     }
 
@@ -104,10 +105,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
         Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
-
-        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
-            userProcessContainer.add("RegisterHospitalJPanel", regisCust);
+        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
+            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

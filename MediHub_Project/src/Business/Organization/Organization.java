@@ -24,7 +24,7 @@ public abstract class Organization {
     private static int counter = 0;
 
     public enum Type {
-        Admin("Admin Organization"),
+        Admin("Admin"),
         Doctor("Doctor"),
         Lab("Lab Assistant");
         private String value;
