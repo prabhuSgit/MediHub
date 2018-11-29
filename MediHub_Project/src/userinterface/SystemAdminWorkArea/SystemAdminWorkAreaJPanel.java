@@ -51,6 +51,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         root.insert(networks, 0);
+        root.insert(customers, 1);
         
         DefaultMutableTreeNode networkNode;
         DefaultMutableTreeNode customerNode;

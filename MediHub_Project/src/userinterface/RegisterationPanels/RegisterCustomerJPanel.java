@@ -75,7 +75,7 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
         testBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 204), 5, true));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 255), 5, true));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Hi, Welcome for registering");
