@@ -7,6 +7,7 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -102,6 +103,5 @@ public abstract class Enterprise extends Organization {
     public void setEnterpriseZipCode(String enterpriseZipCode) {
         this.enterpriseZipCode = enterpriseZipCode;
     }
-    
     
 }
