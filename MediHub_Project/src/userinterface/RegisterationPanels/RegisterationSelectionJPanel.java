@@ -26,12 +26,12 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    DB4OUtil dB4OUtil;
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, DB4OUtil dB4OUtil) {
+//    DB4OUtil dB4OUtil;
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.dB4OUtil=dB4OUtil;
+//        this.dB4OUtil=dB4OUtil;
         populateComboBox();
     }
 
@@ -106,7 +106,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
 
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system, dB4OUtil);
+            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
             userProcessContainer.add("RegisterHospitalJPanel", regisCust);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

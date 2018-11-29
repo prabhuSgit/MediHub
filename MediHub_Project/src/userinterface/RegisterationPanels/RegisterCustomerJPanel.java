@@ -33,14 +33,14 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Role.RoleType roleType;
     EcoSystem system;
-    DB4OUtil dB4OUtil;
+//    DB4OUtil dB4OUtil;
 
-    public RegisterCustomerJPanel(JPanel userProcessContainer, Role.RoleType roleType, EcoSystem system, DB4OUtil dB4OUtil) {
+    public RegisterCustomerJPanel(JPanel userProcessContainer, Role.RoleType roleType, EcoSystem system) {
         initComponents();
         this.roleType = roleType;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.dB4OUtil=dB4OUtil;
+//        this.dB4OUtil=dB4OUtil;
         welcomeTxt.setText(roleType.getValue());
     }
 
@@ -264,7 +264,6 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
             Customer customer = system.createCustomer(nameTxt.getText(), dobTxt.getText(), addressTxt.getText(), Integer.valueOf(phNoTxt.getText()));
             UserAccount ua = system.getUserAccountDirectory().createCustomerAccount(userNameTxt.getText(), passwordTxt.getText(), customer, new CustomerRole());
             System.out.println(customer.getName() + " " + ua.getCustomer().getName());
-//            dB4OUtil.storeSystem(system);
 
             SuccessCustomerJPanel success = new SuccessCustomerJPanel();
             userProcessContainer.add("RegisterHospitalJPanel", success);
