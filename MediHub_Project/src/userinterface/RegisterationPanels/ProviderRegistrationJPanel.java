@@ -5,12 +5,15 @@
  */
 package userinterface.RegisterationPanels;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.AdminRole;
+import Business.Role.CustomerRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
@@ -37,17 +40,22 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     private Role role;
+
     public ProviderRegistrationJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.role = role;
         StateComboBox.removeAllItems();
-        for (Network n: system.getNetworkList()){
+        OrgTypCombobox.removeAllItems();
+        for (Network n : system.getNetworkList()) {
             StateComboBox.addItem(n);
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                OrgTypCombobox.addItem(e);
+            }
         }
-    }
 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +134,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Re-type password:");
 
-        jLabel10.setText("Organization Type:");
+        jLabel10.setText("Enterprise Type:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,13 +180,12 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(usernameTxt)
-                                .addComponent(OrgTypCombobox, 0, 198, Short.MAX_VALUE)
-                                .addComponent(pwdTxt))
-                            .addComponent(rtypPwdTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernameTxt)
+                            .addComponent(OrgTypCombobox, 0, 198, Short.MAX_VALUE)
+                            .addComponent(pwdTxt)
+                            .addComponent(rtypPwdTxt))))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,33 +243,37 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                                 .addComponent(OrgTypCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel10))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterJBtnActionPerformed
         // TODO add your handling code here:
-        
-          UserAccount userAccount = new UserAccount();
-          userAccount.setEnterpriseName(ProviderNameJTxtField.getText());
-          userAccount.setEnterpriseAddress(ProviderAddrJTxtArea.getText());
-          userAccount.setEnterpriseCity(ProviderCityJTxtField.getText());
-          userAccount.setEnterpriseState(StateComboBox.getSelectedItem().toString());
-          userAccount.setRegStatus("Pending Approval");
-          Role rl = role;
-          Employee employee = new Employee();
-          employee.setName(ProviderNameJTxtField.getText());
-          String userName = usernameTxt.getText();
-          String password = pwdTxt.getText();
-          userAccount.setUsername(userName);
-          userAccount.setPassword(password);
-          userAccount.setRole(rl);
-          userAccount.setEmployee(employee);
-          
-          UserAccountDirectory usd = new UserAccountDirectory();
-          usd.getUserAccountList().add(userAccount);
-          SystemAdminWorkAreaJPanel sysadmin = new SystemAdminWorkAreaJPanel(userProcessContainer, system, usd);
-          
+        Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
+        String name = ProviderNameJTxtField.getText();
+        Employee employee = ent.getEmployeeDirectory().createEmployee(name);
+//        system.get(nameTxt.getText(), dobTxt.getText(), addressTxt.getText(), Integer.valueOf(phNoTxt.getText()));
+        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
+
+//        UserAccount userAccount = new UserAccount();
+//        userAccount.setEnterpriseName(ProviderNameJTxtField.getText());
+//        userAccount.setEnterpriseAddress(ProviderAddrJTxtArea.getText());
+//        userAccount.setEnterpriseCity(ProviderCityJTxtField.getText());
+//        userAccount.setEnterpriseState(StateComboBox.getSelectedItem().toString());
+//        userAccount.setRegStatus("Pending Approval");
+//        Role rl = role;
+//        employee.setName(ProviderNameJTxtField.getText());
+//        String userName = usernameTxt.getText();
+//        String password = pwdTxt.getText();
+//        userAccount.setUsername(userName);
+//        userAccount.setPassword(password);
+//        userAccount.setRole(rl);
+//        userAccount.setEmployee(employee);
+//
+//        UserAccountDirectory usd = new UserAccountDirectory();
+//        usd.getUserAccountList().add(userAccount);
+//        SystemAdminWorkAreaJPanel sysadmin = new SystemAdminWorkAreaJPanel(userProcessContainer, system, usd);
+
         JOptionPane.showMessageDialog(null, "Registered Successfully");
         ProviderNameJTxtField.setText("");
         ProviderAddrJTxtArea.setText("");

@@ -66,17 +66,15 @@
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="usernameTxt" max="32767" attributes="0"/>
-                              <Component id="OrgTypCombobox" alignment="0" pref="198" max="32767" attributes="0"/>
-                              <Component id="pwdTxt" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="rtypPwdTxt" alignment="0" pref="198" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="usernameTxt" max="32767" attributes="0"/>
+                          <Component id="OrgTypCombobox" alignment="0" pref="198" max="32767" attributes="0"/>
+                          <Component id="pwdTxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rtypPwdTxt" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="105" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -153,7 +151,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -274,7 +272,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Organization Type:"/>
+        <Property name="text" type="java.lang.String" value="Enterprise Type:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="pwdTxt">
