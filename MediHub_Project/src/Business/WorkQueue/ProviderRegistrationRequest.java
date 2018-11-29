@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprise;
+package Business.WorkQueue;
 
 /**
  *
  * @author pravinash
  */
-public class EnterpriseRegistration {
+public class ProviderRegistrationRequest extends WorkRequest {
     
     private String enterpriseName;
     private String enterpriseAddress;
     private String enterpriseCity;
     private String enterpriseState;
-    private String enterpriseZipCode;
-    private String status;
+    private String type;
+    
 
     public String getEnterpriseName() {
         return enterpriseName;
@@ -50,20 +50,12 @@ public class EnterpriseRegistration {
         this.enterpriseState = enterpriseState;
     }
 
-    public String getEnterpriseZipCode() {
-        return enterpriseZipCode;
+    public String getType() {
+        return type;
     }
 
-    public void setEnterpriseZipCode(String enterpriseZipCode) {
-        this.enterpriseZipCode = enterpriseZipCode;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setType(String type) {
+        this.type = type;
     }
     
     

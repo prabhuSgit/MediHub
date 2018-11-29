@@ -7,6 +7,7 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -16,7 +17,6 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
-    private EnterpriseRegistration enterpriseRegistration;
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
@@ -52,17 +52,7 @@ public abstract class Enterprise extends Organization{
         super(name);
         this.enterpriseType=type;
         organizationDirectory=new OrganizationDirectory();
-        enterpriseRegistration = new EnterpriseRegistration();
     }
-
-    public EnterpriseRegistration getEnterpriseRegistration() {
-        return enterpriseRegistration;
-    }
-
-    public void setEnterpriseRegistration(EnterpriseRegistration enterpriseRegistration) {
-        this.enterpriseRegistration = enterpriseRegistration;
-    }
-    
     
     
 }

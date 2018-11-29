@@ -19,11 +19,19 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
-    private String status;
+    private int registrationID;
+    private String regStatus;
+    private static int count =1;
+    private String enterpriseName;
+    private String enterpriseAddress;
+    private String enterpriseCity;
+    private String enterpriseState;
     
 
     public UserAccount() {
         workQueue = new WorkQueue();
+        registrationID = count;
+        count++;
     }
     
     public String getUsername() {
@@ -61,6 +69,56 @@ public class UserAccount {
     public WorkQueue getWorkQueue() {
         return workQueue;
     }
+
+    public int getRegistrationID() {
+        return registrationID;
+    }
+
+    public void setRegistrationID(int registrationID) {
+        this.registrationID = registrationID;
+    }
+
+    public String getRegStatus() {
+        return regStatus;
+    }
+
+    public void setRegStatus(String regStatus) {
+        this.regStatus = regStatus;
+    }
+
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
+
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
+    }
+
+    public String getEnterpriseAddress() {
+        return enterpriseAddress;
+    }
+
+    public void setEnterpriseAddress(String enterpriseAddress) {
+        this.enterpriseAddress = enterpriseAddress;
+    }
+
+    public String getEnterpriseCity() {
+        return enterpriseCity;
+    }
+
+    public void setEnterpriseCity(String enterpriseCity) {
+        this.enterpriseCity = enterpriseCity;
+    }
+
+    public String getEnterpriseState() {
+        return enterpriseState;
+    }
+
+    public void setEnterpriseState(String enterpriseState) {
+        this.enterpriseState = enterpriseState;
+    }
+    
+    
 
     @Override
     public String toString() {

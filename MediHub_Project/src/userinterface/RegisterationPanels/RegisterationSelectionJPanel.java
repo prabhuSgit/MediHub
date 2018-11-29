@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 
@@ -24,11 +25,13 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     private EcoSystem system;
+    private Role role;
     
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system,Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.role = role;
         populateComboBox();
     }
 
@@ -109,7 +112,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
-            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
+            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
