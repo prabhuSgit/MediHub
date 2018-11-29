@@ -17,6 +17,11 @@ public abstract class Enterprise extends Organization {
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
     private static Enterprise enterprise;
+    private String enterpriseName;
+    private String enterpriseAddress;
+    private String enterpriseCity;
+    private String enterpriseState;
+    private String enterpriseZipCode;
 
     public Enterprise(String name, EnterpriseType type) {
         super(name);
@@ -27,6 +32,7 @@ public abstract class Enterprise extends Organization {
     public enum EnterpriseType {
 
         Hospital("Hospital"),
+        HealthCareProvider("Health Care Provider"),
         MedicalSchool("Medical School");
 
         private String value;
@@ -56,5 +62,46 @@ public abstract class Enterprise extends Organization {
     public void setEnterpriseType(EnterpriseType enterpriseType) {
         this.enterpriseType = enterpriseType;
     }
+    
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
 
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
+    }
+
+    public String getEnterpriseAddress() {
+        return enterpriseAddress;
+    }
+
+    public void setEnterpriseAddress(String enterpriseAddress) {
+        this.enterpriseAddress = enterpriseAddress;
+    }
+
+    public String getEnterpriseCity() {
+        return enterpriseCity;
+    }
+
+    public void setEnterpriseCity(String enterpriseCity) {
+        this.enterpriseCity = enterpriseCity;
+    }
+
+    public String getEnterpriseState() {
+        return enterpriseState;
+    }
+
+    public void setEnterpriseState(String enterpriseState) {
+        this.enterpriseState = enterpriseState;
+    }
+
+    public String getEnterpriseZipCode() {
+        return enterpriseZipCode;
+    }
+
+    public void setEnterpriseZipCode(String enterpriseZipCode) {
+        this.enterpriseZipCode = enterpriseZipCode;
+    }
+    
+    
 }

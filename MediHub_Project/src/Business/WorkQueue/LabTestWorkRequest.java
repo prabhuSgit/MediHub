@@ -20,5 +20,4 @@ public class LabTestWorkRequest extends WorkRequest{
         this.testResult = testResult;
     }
     
-    
 }

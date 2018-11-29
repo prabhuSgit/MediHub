@@ -13,7 +13,7 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userinterface.RegisterationPanels.RegisterationSelectionJPanel;
+//import userinterface.RegisterationPanels.RegisterationSelectionJPanel;
 
 /**
  *
@@ -57,6 +57,10 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255), 5));
+        jPanel1.setForeground(new java.awt.Color(240, 240, 240));
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +140,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(registerBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginJLabel)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -182,6 +186,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     } else {
                         inEnterprise = enterprise;
                         break;
+
                     }
                     if (inOrganization != null) {
                         break;
@@ -231,10 +236,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container);
-        container.add("RegisterationSelectionJPanel", regPanl);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
+//        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system);
+//        container.add("RegisterationSelectionJPanel", regPanl);
+//        CardLayout layout = (CardLayout) container.getLayout();
+//        layout.next(container);
 
 
     }//GEN-LAST:event_registerBtnActionPerformed
