@@ -21,7 +21,7 @@ public class UserAccount {
     private Customer customer;
     private Role role;
     private WorkQueue workQueue;
-    private String status;
+    private String status = "Pending";
     
     
 

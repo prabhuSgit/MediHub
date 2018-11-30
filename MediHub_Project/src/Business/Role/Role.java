@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public abstract class Role {
     
     public enum RoleType{
-//        Admin("Admin"),
+        SysAdmin("SysAdmin"),
         Doctor("Doctor"),
         LabAssistant("Lab Assistant"),
         HealthCareProvider("Health Care Provider"),

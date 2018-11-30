@@ -20,7 +20,6 @@ public class Employee {
     private int registrationID;
     private String regStatus;
     private static int countP =1;
-    private String enterpriseName;
     private String enterpriseAddress;
     private String enterpriseCity;
     private String enterpriseState;
@@ -46,14 +45,6 @@ public class Employee {
 
     public void setRegStatus(String regStatus) {
         this.regStatus = regStatus;
-    }
-
-    public String getEnterpriseName() {
-        return enterpriseName;
-    }
-
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
     }
 
     public String getEnterpriseAddress() {

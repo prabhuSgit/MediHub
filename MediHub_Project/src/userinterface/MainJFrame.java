@@ -174,7 +174,9 @@ public class MainJFrame extends javax.swing.JFrame {
         Enterprise inEnterprise = null;
         Organization inOrganization = null;
 
-        if (userAccount == null) {
+        if (userAccount == null 
+//                || userAccount.getStatus().equals("Active")
+                ) {
             //Step 2: Go inside each network and check each enterprise
             for (Network network : system.getNetworkList()) {
                 //Step 2.a: check against each enterprise

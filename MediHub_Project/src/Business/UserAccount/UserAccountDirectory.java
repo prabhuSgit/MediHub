@@ -39,6 +39,7 @@ public class UserAccountDirectory {
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
+        userAccount.setStatus("Pending");
         userAccountList.add(userAccount);
         return userAccount;
     }

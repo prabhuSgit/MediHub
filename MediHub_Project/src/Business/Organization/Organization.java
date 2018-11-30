@@ -24,6 +24,7 @@ public abstract class Organization {
     private static int counter = 0;
 
     public enum Type {
+        SysAdmin("SysAdmin"),
         Admin("Admin"),
         Doctor("Doctor"),
         Lab("Lab Assistant");

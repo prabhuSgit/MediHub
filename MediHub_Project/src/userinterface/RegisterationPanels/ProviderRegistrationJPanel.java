@@ -11,12 +11,16 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
+import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
+import Business.Organization.SysAdmin;
 import Business.Role.AdminRole;
 import Business.Role.CustomerRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.AccessApprovalRequest;
+import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.ProviderRegistrationRequest;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
@@ -156,19 +160,23 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel2)))
                             .addComponent(jLabel6))
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ProviderNameJTxtField)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ProviderCityJTxtField)
-                                .addComponent(FilePathTxtField)
-                                .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(RegisterJBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnBack))
-                            .addComponent(BtnBrowse))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ProviderNameJTxtField)
+                                        .addComponent(ProviderCityJTxtField)
+                                        .addComponent(FilePathTxtField)
+                                        .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(RegisterJBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BtnBack))
+                                    .addComponent(BtnBrowse)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(32, 32, 32)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,8 +211,8 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,10 +259,22 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
         String name = ProviderNameJTxtField.getText();
-        Employee employee = ent.getEmployeeDirectory().createEmployee(name);
-//        system.get(nameTxt.getText(), dobTxt.getText(), addressTxt.getText(), Integer.valueOf(phNoTxt.getText()));
+        String address = ProviderAddrJTxtArea.getText();
+        String city = ProviderCityJTxtField.getText();
+        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city);
         UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 
+        AccessApprovalRequest request = new AccessApprovalRequest();
+        request.setRole(role);
+        request.setSender(ua);
+        request.setStatus("Pending");
+
+        for(UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
+            if(u.getUsername().equals("sysadmin")){
+                u.getWorkQueue().getWorkRequestList().add(request);
+            }
+        }
+            
 //        UserAccount userAccount = new UserAccount();
 //        userAccount.setEnterpriseName(ProviderNameJTxtField.getText());
 //        userAccount.setEnterpriseAddress(ProviderAddrJTxtArea.getText());
@@ -273,11 +293,14 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 //        UserAccountDirectory usd = new UserAccountDirectory();
 //        usd.getUserAccountList().add(userAccount);
 //        SystemAdminWorkAreaJPanel sysadmin = new SystemAdminWorkAreaJPanel(userProcessContainer, system, usd);
-
-        JOptionPane.showMessageDialog(null, "Registered Successfully");
         ProviderNameJTxtField.setText("");
         ProviderAddrJTxtArea.setText("");
         ProviderCityJTxtField.setText("");
+        usernameTxt.setText("");
+        pwdTxt.setText("");
+        rtypPwdTxt.setText("");
+        JOptionPane.showMessageDialog(null, "Registered Successfully");
+
         //ArrayList<WorkRequest> request = wk.getWorkRequestList();
 //        SystemAdminWorkAreaJPanel sysadmin = new SystemAdminWorkAreaJPanel(userProcessContainer, system,wk);
 //        sysadmin.populateRequestTable();
