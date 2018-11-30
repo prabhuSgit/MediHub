@@ -21,10 +21,11 @@ public class UserAccount {
     private Customer customer;
     private Role role;
     private WorkQueue workQueue;
-    private String status;
+    private String status = "Pending";
 
     public UserAccount() {
         workQueue = new WorkQueue();
+        
     }
 
     public Customer getCustomer() {

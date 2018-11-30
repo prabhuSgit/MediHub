@@ -9,11 +9,15 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.RegisterationPanels.RegisterationSelectionJPanel;
+//import userinterface.RegisterationPanels.RegisterationSelectionJPanel;
 
 /**
  *
@@ -25,12 +29,16 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
+    private Role role;
+    private UserAccountDirectory directory;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+        this.role = role;
+        this.directory = directory;
     }
 
     /**
@@ -166,7 +174,9 @@ public class MainJFrame extends javax.swing.JFrame {
         Enterprise inEnterprise = null;
         Organization inOrganization = null;
 
-        if (userAccount == null) {
+        if (userAccount == null 
+//                || userAccount.getStatus().equals("Active")
+                ) {
             //Step 2: Go inside each network and check each enterprise
             for (Network network : system.getNetworkList()) {
                 //Step 2.a: check against each enterprise
@@ -200,9 +210,10 @@ public class MainJFrame extends javax.swing.JFrame {
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
-        } else {
-            CardLayout layout = (CardLayout) container.getLayout();
-            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+        }
+        else{
+            CardLayout layout=(CardLayout)container.getLayout();
+            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, directory));
             layout.next(container);
         }
 
@@ -235,7 +246,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system);
+        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system, role);
         container.add("RegisterationSelectionJPanel", regPanl);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);

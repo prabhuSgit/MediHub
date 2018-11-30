@@ -5,7 +5,6 @@
  */
 package userinterface.RegisterationPanels;
 
-import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import java.awt.CardLayout;
@@ -30,14 +29,15 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     private JPanel container;
     private Enterprise enterprise;
-
     JPanel userProcessContainer;
     EcoSystem system;
+    private Role role;
 
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.role = role;
         populateComboBox();
     }
 
@@ -84,8 +84,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nextBtn)
-                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,22 +104,28 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 //        // TODO add your handling code here:
 //    }
 
+    
+    private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
+        // TODO add your handling code here:
+        //Place your methods of calling the JPanels based on the slection from the Combo Box :)
+
+
+    }//GEN-LAST:event_registerationSelectionComboBoxActionPerformed
+
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
-
-        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
-            userProcessContainer.add("RegisterHospitalJPanel", regisCust);
+        if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
+            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
 
         if (roleJComboBox.getSelectedItem().toString().equals("Provider")) {
-//            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
-//            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.next(userProcessContainer);
+            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         }
 
     }//GEN-LAST:event_nextBtnActionPerformed

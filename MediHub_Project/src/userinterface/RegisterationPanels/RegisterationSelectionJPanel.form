@@ -22,9 +22,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="nextBtn" min="-2" max="-2" attributes="0"/>
-                  <Component id="roleJComboBox" min="-2" pref="191" max="-2" attributes="0"/>
+                  <Component id="roleJComboBox" min="-2" pref="170" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="314" max="32767" attributes="0"/>
+              <EmptySpace pref="335" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
