@@ -114,6 +114,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
+        
+        Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
+        
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
             ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
