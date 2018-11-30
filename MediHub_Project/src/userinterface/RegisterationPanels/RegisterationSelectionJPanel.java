@@ -14,6 +14,10 @@ import Business.EcoSystem;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,22 +28,29 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RegisterationSelection
      */
+    private JPanel container;
+    private Enterprise enterprise;
+
     JPanel userProcessContainer;
     EcoSystem system;
-//    DB4OUtil dB4OUtil;
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-//        this.dB4OUtil=dB4OUtil;
         populateComboBox();
     }
 
     private void populateComboBox() {
-        registerationSelectionComboBox.removeAllItems();
-        for (Role.RoleType type : Role.RoleType.values()) {
-            registerationSelectionComboBox.addItem(type);
+//        registerationSelectionComboBox.removeAllItems();
+//        for (Role.RoleType type : Role.RoleType.values()) {
+//            registerationSelectionComboBox.addItem(type);
         }
+    
+    public RegisterationSelectionJPanel(JPanel container) {
+        initComponents();
+        this.enterprise = enterprise;
+        this.container = container;
+        populateRoleComboBox(enterprise);
     }
 
     /**
@@ -52,11 +63,15 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        registerationSelectionComboBox = new javax.swing.JComboBox();
+        roleJComboBox = new javax.swing.JComboBox();
         nextBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+<<<<<<< HEAD
         jLabel1.setText("Kindly select the registeration for:");
+=======
+        jLabel1.setText("Kindly select Registeration Role :");
+>>>>>>> Minor changes done
 
         nextBtn.setText("Next >");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,8 +90,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nextBtn)
-                    .addComponent(registerationSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(299, Short.MAX_VALUE))
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +99,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addGap(169, 169, 169)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(registerationSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(nextBtn)
                 .addContainerGap(282, Short.MAX_VALUE))
@@ -103,22 +118,32 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
-
-        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
-            userProcessContainer.add("RegisterHospitalJPanel", regisCust);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
-
+//        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
+//
+//        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Customer")) {
+//            RegisterCustomerJPanel regisCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+//            userProcessContainer.add("RegisterHospitalJPanel", regisCust);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//        }
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
+    private void populateRoleComboBox(Enterprise enterprise) {
+        roleJComboBox.removeAllItems();
+       
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (Role role : organization.getSupportedRole()) {
+                roleJComboBox.addItem(role);
+            }
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton nextBtn;
-    private javax.swing.JComboBox registerationSelectionComboBox;
+    private javax.swing.JComboBox roleJComboBox;
     // End of variables declaration//GEN-END:variables
+
 }

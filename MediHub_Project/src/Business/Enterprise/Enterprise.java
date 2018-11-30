@@ -12,8 +12,8 @@ import Business.Organization.OrganizationDirectory;
  *
  * @author MyPC1
  */
-public abstract class Enterprise extends Organization{
-    
+public abstract class Enterprise extends Organization {
+
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
     private String enterpriseName;
@@ -21,27 +21,36 @@ public abstract class Enterprise extends Organization{
     private String enterpriseCity;
     private String enterpriseState;
     private String enterpriseZipCode;
+    private static Enterprise enterprise;
 
-    public OrganizationDirectory getOrganizationDirectory() {
-        return organizationDirectory;
+    public Enterprise(String name, EnterpriseType type) {
+        super(name);
+        this.enterpriseType = type;
+        organizationDirectory = new OrganizationDirectory();
     }
-    
+
     public enum EnterpriseType{
         HealthCareProvider("Health Care Provider"),
         MedicalSchool("Medical School");
-        
+
         private String value;
-        
-        private EnterpriseType(String value){
-            this.value=value;
+
+        private EnterpriseType(String value) {
+            this.value = value;
         }
+
         public String getValue() {
             return value;
         }
+
         @Override
-        public String toString(){
-        return value;
+        public String toString() {
+            return value;
+        }
     }
+    
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
     }
 
     public EnterpriseType getEnterpriseType() {
@@ -51,13 +60,8 @@ public abstract class Enterprise extends Organization{
     public void setEnterpriseType(EnterpriseType enterpriseType) {
         this.enterpriseType = enterpriseType;
     }
-    
-    public Enterprise(String name,EnterpriseType type){
-        super(name);
-        this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
-    }
 
+    
     public String getEnterpriseName() {
         return enterpriseName;
     }
@@ -97,6 +101,4 @@ public abstract class Enterprise extends Organization{
     public void setEnterpriseZipCode(String enterpriseZipCode) {
         this.enterpriseZipCode = enterpriseZipCode;
     }
-    
-    
 }

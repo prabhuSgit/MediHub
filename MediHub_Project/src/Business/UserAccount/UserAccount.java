@@ -22,7 +22,7 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private String status;
-    
+
     public UserAccount() {
         workQueue = new WorkQueue();
     }

@@ -22,9 +22,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="nextBtn" min="-2" max="-2" attributes="0"/>
-                  <Component id="registerationSelectionComboBox" min="-2" pref="206" max="-2" attributes="0"/>
+                  <Component id="roleJComboBox" min="-2" pref="206" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="299" max="32767" attributes="0"/>
+              <EmptySpace pref="310" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,7 +34,7 @@
               <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="registerationSelectionComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="roleJComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="nextBtn" min="-2" max="-2" attributes="0"/>
@@ -49,15 +49,16 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Kindly select the registeration for:"/>
+        <Property name="text" type="java.lang.String" value="Kindly select Registeration Role :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="registerationSelectionComboBox">
+    <Component class="javax.swing.JComboBox" name="roleJComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
       </Properties>
+<<<<<<< HEAD
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="RegisterationSelectionJPanel_registerationSelectionComboBox"/>
       </AuxValues>
