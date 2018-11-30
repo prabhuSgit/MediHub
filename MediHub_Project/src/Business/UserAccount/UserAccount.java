@@ -21,7 +21,7 @@ public class UserAccount {
     private Customer customer;
     private Role role;
     private WorkQueue workQueue;
-    private String status = "Pending";
+    private String status;
 
     public UserAccount() {
         workQueue = new WorkQueue();

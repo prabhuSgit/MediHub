@@ -62,6 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         registerBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         msgLable = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,6 +102,14 @@ public class MainJFrame extends javax.swing.JFrame {
         msgLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         msgLable.setText("New User? Kindly register");
 
+        cancelBtn.setText("Cancel");
+        cancelBtn.setEnabled(false);
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,7 +128,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userNameJTextField)
-                    .addComponent(passwordField))
+                    .addComponent(passwordField)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -147,8 +157,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(registerBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginJLabel)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -246,6 +258,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
+        loginJButton.setEnabled(false);
+        logoutJButton.setEnabled(false);
+        registerBtn.setEnabled(false);
+        userNameJTextField.setEnabled(false);
+        passwordField.setEnabled(false);
+        cancelBtn.setEnabled(true);
+        
         RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system, role);
         container.add("RegisterationSelectionJPanel", regPanl);
         CardLayout layout = (CardLayout) container.getLayout();
@@ -253,6 +272,22 @@ public class MainJFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_registerBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        loginJButton.setEnabled(true);
+        logoutJButton.setEnabled(true);
+        registerBtn.setEnabled(true);
+        userNameJTextField.setEnabled(true);
+        passwordField.setEnabled(true);
+        cancelBtn.setEnabled(false);
+        
+        container.removeAll();
+        JPanel blankJP = new JPanel();
+        container.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,6 +324,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

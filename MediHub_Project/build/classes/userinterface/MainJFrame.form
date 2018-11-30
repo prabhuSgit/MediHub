@@ -73,6 +73,7 @@
                           <Component id="loginJButton" alignment="2" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="userNameJTextField" alignment="2" max="32767" attributes="0"/>
                           <Component id="passwordField" alignment="2" max="32767" attributes="0"/>
+                          <Component id="cancelBtn" alignment="2" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -104,8 +105,10 @@
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="registerBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="loginJLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                      <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -165,6 +168,15 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="New User? Kindly register"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="cancelBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancel"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
