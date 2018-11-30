@@ -124,9 +124,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         }
 
-        if (roleJComboBox.getSelectedItem().toString().equals("Provider")) {
-            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
-            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
+            RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+            userProcessContainer.add("RegisterCustomerJPanel", regCust);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

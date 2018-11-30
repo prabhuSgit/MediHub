@@ -1,4 +1,5 @@
 /MediHub_Project/dist/
 *.class
-*.db4o*.class
+*.db4o
+*.class
 *.db4o
