@@ -37,13 +37,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private Enterprise enterprise;
     private Organization organization;
     private UserAccount userAccount;
-    private Role.RoleType roleType;
+    private Role role;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role.RoleType roleType) {
+    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.roleType = roleType;
+        this.role = role;
         populateNetworkComboBox();
         //populateEnterpriseComboBox();
     }
@@ -206,13 +206,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
             Organization.Type type = Organization.Type.Doctor;
             Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null);
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
-            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

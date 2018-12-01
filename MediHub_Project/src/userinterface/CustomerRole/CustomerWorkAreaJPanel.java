@@ -3,30 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.RegisterationPanels;
+package userinterface.CustomerRole;
 
-import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
  *
- * @author pravinash
+ * @author prabh
  */
-public class ProviderAdminRegistrationWorkAreaJPanel extends javax.swing.JPanel {
+public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ProviderAdminRegistrationWorkAreaJPanel
+     * Creates new form CustomerWorkAreaJPanel
      */
     JPanel userProcessContainer;
-    EcoSystem system;
-    public ProviderAdminRegistrationWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
+    UserAccount account;
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.system = system;
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        welcomeTxt.setText(account.getUsername());
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,29 +37,37 @@ public class ProviderAdminRegistrationWorkAreaJPanel extends javax.swing.JPanel 
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        welcomeTxt = new javax.swing.JLabel();
 
-        jLabel1.setText("Provider Registration ");
+        jLabel1.setText("Welcome Customer :");
+
+        welcomeTxt.setForeground(new java.awt.Color(0, 204, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(250, 250, 250)
                 .addComponent(jLabel1)
-                .addGap(304, 304, 304))
+                .addGap(41, 41, 41)
+                .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,8 +18,8 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-        Employee employee = system.getEmployeeDirectory().createEmployee("System Admin");
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
+        Employee employee = system.getEmployeeDirectory().createEmployee("System Admin",null,null);
+        UserAccount ua = system.getUserAccountDirectory().createEmployeeAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         return system;
     }

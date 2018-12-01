@@ -9,7 +9,6 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.*;
 import Business.Enterprise.Enterprise.EnterpriseType.*;
-import static Business.Enterprise.Enterprise.EnterpriseType.Provider;
 import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
@@ -39,11 +38,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     EcoSystem system;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    private Role role;
 
-    public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system) {
+    public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.role=role;
         populateComboBoxProvider();
         populateComboBoxNetwork();
     }
@@ -225,13 +226,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             Organization.Type type = Organization.Type.Lab;
             Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null);
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
-            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
