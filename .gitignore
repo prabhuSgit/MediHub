@@ -1,3 +1,5 @@
 /MediHub_Project/dist/
 *.class
 *.db4o*.class
+MediHub_Project/Databank.db4o
+
