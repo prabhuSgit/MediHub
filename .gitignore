@@ -1,5 +1,11 @@
 /MediHub_Project/dist/
 *.class
+<<<<<<< HEAD
 *.db4o*.class
 MediHub_Project/Databank.db4o
 
+=======
+*.db4o
+*.class
+*.db4o
+>>>>>>> 69de8e99bfba4b7a84d8861a02068ce7c69c95b5

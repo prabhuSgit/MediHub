@@ -23,7 +23,7 @@ public abstract class Enterprise extends Organization {
     private String enterpriseCity;
     private String enterpriseState;
     private String enterpriseZipCode;
-
+    
     public Enterprise(String name, EnterpriseType type) {
         super(name);
         this.enterpriseType = type;
@@ -31,8 +31,6 @@ public abstract class Enterprise extends Organization {
     }
 
     public enum EnterpriseType {
-
-        Hospital("Hospital"),
         HealthCareProvider("Health Care Provider"),
         MedicalSchool("Medical School");
 
@@ -103,5 +101,4 @@ public abstract class Enterprise extends Organization {
     public void setEnterpriseZipCode(String enterpriseZipCode) {
         this.enterpriseZipCode = enterpriseZipCode;
     }
-    
 }
