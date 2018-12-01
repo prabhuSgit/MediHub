@@ -14,6 +14,7 @@ import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.AdminRole;
+import Business.Role.DoctorRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.DoctorRegistrationRequest;
@@ -42,7 +43,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.roleType=roleType;
+        this.roleType = roleType;
         populateNetworkComboBox();
         //populateEnterpriseComboBox();
     }
@@ -195,51 +196,21 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        
+
         if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
             System.out.println("Doctor Registration: hi");
-            Enterprise ent = (Enterprise)enterpriseTypeJComboBox.getSelectedItem();
-            for(Organization org : ent.getOrganizationDirectory().getOrganizationList()){
-                for (Organization.Type type : Organization.Type.values()){
-                    if(type.equals("Doctor")){
-                        OrganizationDirectory directory = ent.getOrganizationDirectory();
-                        directory.createOrganization(type);
-                        Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
-                        org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new AdminRole());
-        
-                    }
-                }
+            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            Organization.Type type = Organization.Type.Doctor;
+            Organization org = directory.createOrganization(type);
 
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            System.out.println("Employee created");
+            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            System.out.println("User created");
 
-            }
-            
-//                System.out.println("in network  " + network);
-//                for (Enterprise enter : network.getEnterpriseDirectory().getEnterpriseList()) {
-//                    System.out.println("in enterprise");
-//                    System.out.println("enterprise =  " + enter);
-                    //if (enter.getEnterpriseType().Provider)
-                    
-//                    Employee empDoctor 
-
-//                }
-//            }
-        
-        DoctorRegistrationRequest doctreq = new DoctorRegistrationRequest();
-        doctreq.setFname(txtFiledFname.getText());
-        doctreq.setLname(textFieldLname.getText());
-        doctreq.setDepartment(textFieldept.getText());
-        doctreq.setEmployeeId(txtFieldSSN.getText());
-        doctreq.setType("Doctor");
-
-        
-
-//                    
-//                        for (Organization organization : enter.getOrganizationDirectory().getOrganizationList()) {
-//                            System.out.println("organization");
-//                        }
-            //for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
             userProcessContainer.add("Original Panel", origin);
