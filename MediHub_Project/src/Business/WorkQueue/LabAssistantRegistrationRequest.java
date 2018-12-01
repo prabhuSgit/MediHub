@@ -9,7 +9,7 @@ package Business.WorkQueue;
  *
  * @author hp
  */
-public class LabAssistanttRegistrationRequest extends WorkRequest{
+public class LabAssistantRegistrationRequest extends WorkRequest{
     private String Fname;
     private String Lname;
     private String Department;

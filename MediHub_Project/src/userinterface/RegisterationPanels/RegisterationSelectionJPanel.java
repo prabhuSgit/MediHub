@@ -10,15 +10,10 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
-<<<<<<< HEAD
 import Business.Role.Role;
-=======
 import Business.Network.Network;
-//import static Business.Organization.Organization.Type.Doctor;
-//import static Business.Organization.Organization.Type.Lab;
 import Business.Role.Role;
 import static Business.Role.Role.RoleType.*;
->>>>>>> origin/Urja_Prabhu
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.Enterprise.Enterprise;
@@ -38,13 +33,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private JPanel container;
     private Enterprise enterprise;
     JPanel userProcessContainer;
-<<<<<<< HEAD
-    EcoSystem system;
     private Role role;
-=======
     private EcoSystem system;
    
->>>>>>> origin/Urja_Prabhu
 
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
@@ -55,21 +46,10 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     }
 
     private void populateComboBox() {
-<<<<<<< HEAD
         roleJComboBox.removeAllItems();
         for (Role.RoleType type : Role.RoleType.values()) {
             roleJComboBox.addItem(type);
-=======
-
-        registerationSelectionComboBox.removeAllItems();
-        for (Role.RoleType type : Role.RoleType.values()) {
-            registerationSelectionComboBox.addItem(type);
->>>>>>> origin/Urja_Prabhu
         }
-//        for (Organization.Type type : Organization.Type.values()) {
-//            registerationSelectionComboBox.addItem(type);
-//        }
-
     }
 
     /**
@@ -137,29 +117,22 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
         
         Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
         
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
             ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
-=======
-        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
-        
-        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
-            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
->>>>>>> origin/Urja_Prabhu
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-        else if (registerationSelectionComboBox.getSelectedItem().equals(LabAssistant)){
-        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system);
+        else if (roleJComboBox.getSelectedItem().equals(LabAssistant)){
+        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", assist);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-        else if (registerationSelectionComboBox.getSelectedItem().equals(Doctor)){
+        else if (roleJComboBox.getSelectedItem().equals(Doctor)){
         RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, roleType);
             userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();

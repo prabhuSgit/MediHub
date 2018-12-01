@@ -22,8 +22,6 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private String status;
-<<<<<<< HEAD
-=======
 
     public String getStatus() {
         return status;
@@ -32,8 +30,6 @@ public class UserAccount {
     public void setStatus(String status) {
         this.status = status;
     }
-    
->>>>>>> origin/Urja_Prabhu
 
     public UserAccount() {
         workQueue = new WorkQueue();
@@ -48,14 +44,6 @@ public class UserAccount {
         this.customer = customer;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
     public String getUsername() {
         return username;
     }

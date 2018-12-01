@@ -9,11 +9,7 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.*;
 import Business.Enterprise.Enterprise.EnterpriseType.*;
-<<<<<<< HEAD
-=======
-import static Business.Enterprise.Enterprise.EnterpriseType.Provider;
 import Business.Network.Network;
->>>>>>> origin/Urja_Prabhu
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
@@ -22,7 +18,7 @@ import Business.Role.DoctorRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.DoctorRegistrationRequest;
-import Business.WorkQueue.LabAssistanttRegistrationRequest;
+import Business.WorkQueue.LabAssistantRegistrationRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
@@ -42,11 +38,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     EcoSystem system;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    Role role;
 
-    public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system) {
+    public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.role=role;
         populateComboBoxProvider();
         populateComboBoxNetwork();
     }
@@ -79,11 +77,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-        registerationSelectionComboBox = new javax.swing.JComboBox<String>();
-=======
-        jComboBox1 = new javax.swing.JComboBox<>();
->>>>>>> origin/Urja_Prabhu
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         textFieldLname = new javax.swing.JTextField();
@@ -101,10 +95,10 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        networkJComboBox = new javax.swing.JComboBox();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -188,18 +182,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         add(jLabel7);
         jLabel7.setBounds(20, 280, 90, 20);
 
-        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                networkJComboBoxActionPerformed(evt);
-            }
-        });
-        add(networkJComboBox);
-        networkJComboBox.setBounds(150, 240, 150, 30);
-
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox);
         enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
+
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(networkJComboBox);
+        networkJComboBox.setBounds(150, 240, 150, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
@@ -210,10 +199,6 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldeptActionPerformed
 
-<<<<<<< HEAD
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-=======
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -226,13 +211,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             Organization.Type type = Organization.Type.Lab;
             Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(),null,null);
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
-            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -244,20 +229,10 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameTxtActionPerformed
 
-    private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
-        // TODO add your handling code here:
-//        Network network = (Network) networkJComboBox.getSelectedItem();
-//        if (network != null) {
-//            populateComboBoxProvider(network);
-//        }
-    }//GEN-LAST:event_networkJComboBoxActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox enterpriseTypeJComboBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
->>>>>>> origin/Urja_Prabhu
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

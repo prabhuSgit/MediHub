@@ -201,28 +201,24 @@ public class RegisterDoctor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
             System.out.println("Doctor Registration: hi");
-<<<<<<< HEAD
             Enterprise ent = (Enterprise)enterpriseTypeJComboBox.getSelectedItem();
-            for(Organization org : ent.getOrganizationDirectory().getOrganizationList()){
-                for (Organization.Type type : Organization.Type.values()){
-                    if(type.equals("Doctor")){
-                        OrganizationDirectory directory = ent.getOrganizationDirectory();
-                        directory.createOrganization(type);
-//                        Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
-//                        org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new AdminRole());
-        
-                    }
-                }
-=======
-            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+//            for(Organization org : ent.getOrganizationDirectory().getOrganizationList()){
+//                for (Organization.Type type : Organization.Type.values()){
+//                    if(type.equals("Doctor")){
+//                        OrganizationDirectory directory = ent.getOrganizationDirectory();
+//                        directory.createOrganization(type);
+////                        Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+////                        org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new AdminRole());
+//        
+//                    }
+//                }
+//            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             OrganizationDirectory directory = ent.getOrganizationDirectory();
             Organization.Type type = Organization.Type.Doctor;
             Organization org = directory.createOrganization(type);
->>>>>>> origin/Urja_Prabhu
-
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(),null,null);
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
