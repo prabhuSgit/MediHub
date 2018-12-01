@@ -77,7 +77,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         textFieldLname = new javax.swing.JTextField();
@@ -98,8 +98,9 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        backBtn = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -107,7 +108,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
         jLabel2.setText("*First Name:");
         add(jLabel2);
-        jLabel2.setBounds(20, 100, 90, 20);
+        jLabel2.setBounds(130, 170, 90, 20);
 
         txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,9 +116,9 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(txtFiledFname);
-        txtFiledFname.setBounds(100, 100, 200, 30);
+        txtFiledFname.setBounds(210, 170, 200, 30);
         add(textFieldLname);
-        textFieldLname.setBounds(410, 100, 200, 30);
+        textFieldLname.setBounds(520, 170, 200, 30);
 
         textFieldept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,17 +126,17 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(textFieldept);
-        textFieldept.setBounds(100, 150, 200, 30);
+        textFieldept.setBounds(210, 220, 200, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(100, 200, 200, 30);
+        txtFieldSSN.setBounds(210, 270, 200, 30);
 
         jLabel5.setText("*SSN:");
         add(jLabel5);
-        jLabel5.setBounds(20, 200, 90, 20);
+        jLabel5.setBounds(130, 270, 90, 20);
 
         jLabel4.setText("*Department: ");
         add(jLabel4);
-        jLabel4.setBounds(20, 150, 90, 20);
+        jLabel4.setBounds(130, 220, 90, 20);
 
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,27 +145,27 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(270, 320, 100, 23);
+        jButton1.setBounds(470, 410, 100, 29);
 
         jLabel3.setText("*Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(330, 100, 90, 20);
+        jLabel3.setBounds(440, 170, 90, 20);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Lab Assistant Registration");
         add(jLabel1);
-        jLabel1.setBounds(200, 20, 244, 36);
+        jLabel1.setBounds(310, 90, 244, 36);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         add(jSeparator1);
-        jSeparator1.setBounds(340, 160, 10, 150);
+        jSeparator1.setBounds(450, 230, 10, 150);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 51));
         jLabel8.setText("Create:");
         add(jLabel8);
-        jLabel8.setBounds(370, 150, 150, 40);
+        jLabel8.setBounds(480, 220, 150, 40);
 
         userNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,25 +173,25 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(userNameTxt);
-        userNameTxt.setBounds(460, 190, 140, 30);
+        userNameTxt.setBounds(570, 260, 140, 30);
         add(pwsTxt);
-        pwsTxt.setBounds(460, 240, 140, 30);
+        pwsTxt.setBounds(570, 310, 140, 30);
 
         jLabel9.setText("Password:");
         add(jLabel9);
-        jLabel9.setBounds(370, 250, 80, 30);
+        jLabel9.setBounds(480, 320, 80, 30);
 
         jLabel10.setText("User Name:");
         add(jLabel10);
-        jLabel10.setBounds(370, 190, 80, 30);
+        jLabel10.setBounds(480, 260, 80, 30);
 
         jLabel6.setText("Region:");
         add(jLabel6);
-        jLabel6.setBounds(20, 240, 90, 20);
+        jLabel6.setBounds(130, 310, 90, 20);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
-        jLabel7.setBounds(20, 280, 90, 20);
+        jLabel7.setBounds(130, 350, 90, 20);
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -199,11 +200,20 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(networkJComboBox);
-        networkJComboBox.setBounds(150, 240, 150, 30);
+        networkJComboBox.setBounds(260, 310, 150, 30);
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox);
-        enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
+        enterpriseTypeJComboBox.setBounds(260, 350, 150, 30);
+
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn);
+        backBtn.setBounds(350, 410, 93, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
@@ -252,8 +262,16 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;

@@ -65,7 +65,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -86,8 +86,9 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        backBtn = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -99,27 +100,27 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Doctor Registration");
         add(jLabel1);
-        jLabel1.setBounds(200, 30, 244, 36);
+        jLabel1.setBounds(320, 90, 244, 36);
         add(txtFiledFname);
-        txtFiledFname.setBounds(100, 110, 200, 30);
+        txtFiledFname.setBounds(220, 170, 200, 30);
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(20, 110, 90, 20);
+        jLabel2.setBounds(140, 170, 90, 20);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(340, 110, 70, 20);
+        jLabel3.setBounds(460, 170, 70, 20);
 
         jLabel4.setText("Department: ");
         add(jLabel4);
-        jLabel4.setBounds(20, 150, 90, 20);
+        jLabel4.setBounds(140, 210, 90, 20);
 
         jLabel5.setText("Employee Id");
         add(jLabel5);
-        jLabel5.setBounds(20, 190, 90, 20);
+        jLabel5.setBounds(140, 250, 90, 20);
         add(textFieldLname);
-        textFieldLname.setBounds(410, 110, 200, 30);
+        textFieldLname.setBounds(530, 170, 200, 30);
 
         textFieldept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,13 +128,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(textFieldept);
-        textFieldept.setBounds(100, 150, 200, 30);
+        textFieldept.setBounds(220, 210, 200, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(100, 190, 200, 30);
+        txtFieldSSN.setBounds(220, 250, 200, 30);
 
         jLabel6.setText("Region:");
         add(jLabel6);
-        jLabel6.setBounds(20, 240, 90, 20);
+        jLabel6.setBounds(140, 300, 90, 20);
 
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,21 +143,21 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(registerBtn);
-        registerBtn.setBounds(380, 380, 140, 23);
+        registerBtn.setBounds(490, 440, 110, 29);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
-        jLabel7.setBounds(20, 280, 90, 20);
+        jLabel7.setBounds(140, 340, 90, 20);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         add(jSeparator1);
-        jSeparator1.setBounds(340, 160, 10, 150);
+        jSeparator1.setBounds(460, 220, 10, 150);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 51));
         jLabel8.setText("Create:");
         add(jLabel8);
-        jLabel8.setBounds(370, 150, 150, 40);
+        jLabel8.setBounds(490, 210, 150, 40);
 
         userNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,17 +165,17 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(userNameTxt);
-        userNameTxt.setBounds(460, 190, 140, 30);
+        userNameTxt.setBounds(580, 250, 140, 30);
         add(pwsTxt);
-        pwsTxt.setBounds(460, 240, 140, 30);
+        pwsTxt.setBounds(580, 300, 140, 30);
 
         jLabel9.setText("Password:");
         add(jLabel9);
-        jLabel9.setBounds(370, 250, 80, 30);
+        jLabel9.setBounds(490, 310, 80, 30);
 
         jLabel10.setText("User Name:");
         add(jLabel10);
-        jLabel10.setBounds(370, 190, 80, 30);
+        jLabel10.setBounds(490, 250, 80, 30);
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -183,11 +184,20 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(networkJComboBox);
-        networkJComboBox.setBounds(150, 240, 150, 30);
+        networkJComboBox.setBounds(270, 300, 150, 30);
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox);
-        enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
+        enterpriseTypeJComboBox.setBounds(270, 340, 150, 30);
+
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn);
+        backBtn.setBounds(340, 440, 93, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
@@ -233,6 +243,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
     private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
         for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -242,6 +259,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
