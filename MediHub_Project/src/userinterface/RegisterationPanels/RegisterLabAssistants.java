@@ -8,8 +8,16 @@ package userinterface.RegisterationPanels;
 import Business.EcoSystem;
 import Business.Enterprise.*;
 import Business.Enterprise.Enterprise.EnterpriseType.*;
+import static Business.Enterprise.Enterprise.EnterpriseType.Provider;
+import Business.Organization.DoctorOrganization;
+import Business.Organization.Organization;
 
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DoctorRegistrationRequest;
+import Business.WorkQueue.LabAssistanttRegistrationRequest;
+import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,6 +33,8 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
 
     public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -67,11 +77,11 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         setLayout(null);
 
         add(registerationSelectionComboBox);
-        registerationSelectionComboBox.setBounds(250, 270, 150, 30);
+        registerationSelectionComboBox.setBounds(150, 250, 150, 30);
 
         jLabel2.setText("*First Name:");
         add(jLabel2);
-        jLabel2.setBounds(120, 120, 90, 20);
+        jLabel2.setBounds(20, 100, 90, 20);
 
         txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,9 +89,9 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(txtFiledFname);
-        txtFiledFname.setBounds(200, 120, 200, 30);
+        txtFiledFname.setBounds(100, 100, 200, 30);
         add(textFieldLname);
-        textFieldLname.setBounds(510, 120, 200, 30);
+        textFieldLname.setBounds(410, 100, 200, 30);
 
         textFieldept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,21 +99,21 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(textFieldept);
-        textFieldept.setBounds(200, 170, 200, 30);
+        textFieldept.setBounds(100, 150, 200, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(200, 220, 200, 30);
+        txtFieldSSN.setBounds(100, 200, 200, 30);
 
         jLabel6.setText("*Select Enterprice:");
         add(jLabel6);
-        jLabel6.setBounds(130, 270, 110, 20);
+        jLabel6.setBounds(20, 250, 110, 20);
 
         jLabel5.setText("*SSN:");
         add(jLabel5);
-        jLabel5.setBounds(130, 220, 90, 20);
+        jLabel5.setBounds(20, 200, 90, 20);
 
         jLabel4.setText("*Department: ");
         add(jLabel4);
-        jLabel4.setBounds(120, 170, 90, 20);
+        jLabel4.setBounds(20, 150, 90, 20);
 
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,17 +122,17 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(370, 340, 100, 23);
+        jButton1.setBounds(270, 320, 100, 23);
 
         jLabel3.setText("*Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(430, 120, 90, 20);
+        jLabel3.setBounds(330, 100, 90, 20);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Lab Assistant Registration");
         add(jLabel1);
-        jLabel1.setBounds(300, 40, 244, 36);
+        jLabel1.setBounds(200, 20, 244, 36);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
@@ -135,15 +145,27 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String fname = txtFiledFname.getText();
-        String lname = textFieldLname.getText();
-        String dept = textFieldept.getText();
-        String ssn = txtFieldSSN.getText();
-
+        LabAssistanttRegistrationRequest Labreq = new LabAssistanttRegistrationRequest();
+        System.out.println("Lab Employee Registration");
+        Labreq.setFname(txtFiledFname.getText());
+        System.out.println(Labreq.getFname());
+        Labreq.setLname(textFieldLname.getText());
+        System.out.println(Labreq.getLname());
+        Labreq.setDepartment(textFieldept.getText());
+        System.out.println(Labreq.getDepartment());
+        Labreq.setEmployeeId(txtFieldSSN.getText());
+        System.out.println(Labreq.getEmployeeId());
+        Labreq.setType("LabAssistant");
+        System.out.println(Labreq.getType());
+        WorkQueue wk = new WorkQueue();
+        wk.getWorkRequestList().add(Labreq);
+            
+        
         if(txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         }
         else{
+        
         JOptionPane.showMessageDialog(null, "Request successfully sent");
         RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
             userProcessContainer.add("Original Panel", origin);

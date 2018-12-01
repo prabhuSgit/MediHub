@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Network.Network;
 //import static Business.Organization.Organization.Type.Doctor;
 //import static Business.Organization.Organization.Type.Lab;
 import Business.Role.Role;
@@ -28,6 +29,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     private EcoSystem system;
+   
 
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -112,6 +114,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
+        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
+        
         if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
             ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
@@ -125,7 +129,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         }
         else if (registerationSelectionComboBox.getSelectedItem().equals(Doctor)){
-        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system);
+        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, roleType);
             userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

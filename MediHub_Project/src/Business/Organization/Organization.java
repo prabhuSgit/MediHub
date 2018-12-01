@@ -16,16 +16,14 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
+    private Type type;   
     private String name;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter = 0;
-    private String Fname;
-    private String Lname;
-    private String Department;
-    private String SSN;
+
     OrganizationDirectory directory;
 
     public OrganizationDirectory getDirectory() {
@@ -34,38 +32,6 @@ public abstract class Organization {
 
     public void setDirectory(OrganizationDirectory directory) {
         this.directory = directory;
-    }
-
-    public String getFname() {
-        return Fname;
-    }
-
-    public void setFname(String Fname) {
-        this.Fname = Fname;
-    }
-
-    public String getLname() {
-        return Lname;
-    }
-
-    public void setLname(String Lname) {
-        this.Lname = Lname;
-    }
-
-    public String getDepartment() {
-        return Department;
-    }
-
-    public void setDepartment(String Department) {
-        this.Department = Department;
-    }
-
-    public String getSSN() {
-        return SSN;
-    }
-
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
     }
 
     public enum Type {
@@ -84,7 +50,7 @@ public abstract class Organization {
     }
 
     public Organization(String name) {
-        
+
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
@@ -121,6 +87,13 @@ public abstract class Organization {
 
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
+    }
+     public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override

@@ -6,10 +6,18 @@
 package userinterface.RegisterationPanels;
 
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
+import Business.Employee.Employee;
+import Business.Enterprise.*;
 import Business.Network.Network;
+import Business.Organization.DoctorOrganization;
+import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Role.AdminRole;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DoctorRegistrationRequest;
+import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,38 +28,31 @@ import javax.swing.JPanel;
  */
 public class RegisterDoctor extends javax.swing.JPanel {
 
-
     /**
      * Creates new form RegisterMedicalSchool
      */
     JPanel userProcessContainer;
     EcoSystem system;
+    private Enterprise enterprise;
+    private Organization organization;
+    private UserAccount userAccount;
+    private Role.RoleType roleType;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system) {
+    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role.RoleType roleType) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        populateComboBoxProvider();
-        populateComboBoxNetwork();
+        this.roleType=roleType;
+        populateNetworkComboBox();
+        //populateEnterpriseComboBox();
     }
 
-    private void populateComboBoxProvider() {
+    private void populateNetworkComboBox() {
+        networkJComboBox.removeAllItems();
 
-        registerationSelectionComboBox.removeAllItems();
-        for (Enterprise.EnterpriseType protype : Enterprise.EnterpriseType.values()) {
-            registerationSelectionComboBox.addItem(protype.toString());
-            jComboBox2.removeAllItems();
-         
-        
+        for (Network network : system.getNetworkList()) {
+            networkJComboBox.addItem(network);
         }
-        
-
-    }
-    private void populateComboBoxNetwork(){
-    for (Network network : system.getNetworkList()) {
-            jComboBox2.addItem(network.toString());
-        }
-        
     }
 
     /**
@@ -71,13 +72,19 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         textFieldLname = new javax.swing.JTextField();
-        registerationSelectionComboBox = new javax.swing.JComboBox<>();
         textFieldept = new javax.swing.JTextField();
         txtFieldSSN = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        registerBtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        userNameTxt = new javax.swing.JTextField();
+        pwsTxt = new javax.swing.JPasswordField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        networkJComboBox = new javax.swing.JComboBox();
+        enterpriseTypeJComboBox = new javax.swing.JComboBox();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -91,36 +98,27 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Doctor Registration");
         add(jLabel1);
-        jLabel1.setBounds(300, 40, 244, 36);
-
-        txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFiledFnameActionPerformed(evt);
-            }
-        });
+        jLabel1.setBounds(200, 30, 244, 36);
         add(txtFiledFname);
-        txtFiledFname.setBounds(200, 120, 200, 30);
+        txtFiledFname.setBounds(100, 110, 200, 30);
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(120, 120, 90, 20);
+        jLabel2.setBounds(20, 110, 90, 20);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(410, 120, 70, 20);
+        jLabel3.setBounds(340, 110, 70, 20);
 
         jLabel4.setText("Department: ");
         add(jLabel4);
-        jLabel4.setBounds(120, 160, 90, 20);
+        jLabel4.setBounds(20, 150, 90, 20);
 
-        jLabel5.setText("SSN:");
+        jLabel5.setText("Employee Id");
         add(jLabel5);
-        jLabel5.setBounds(120, 200, 90, 20);
+        jLabel5.setBounds(20, 190, 90, 20);
         add(textFieldLname);
-        textFieldLname.setBounds(480, 120, 200, 30);
-
-        add(registerationSelectionComboBox);
-        registerationSelectionComboBox.setBounds(250, 240, 150, 30);
+        textFieldLname.setBounds(410, 110, 200, 30);
 
         textFieldept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,75 +126,171 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(textFieldept);
-        textFieldept.setBounds(200, 160, 200, 30);
+        textFieldept.setBounds(100, 150, 200, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(200, 200, 200, 30);
+        txtFieldSSN.setBounds(100, 190, 200, 30);
 
         jLabel6.setText("Region:");
         add(jLabel6);
-        jLabel6.setBounds(120, 300, 90, 20);
+        jLabel6.setBounds(20, 240, 90, 20);
 
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        registerBtn.setText("Register");
+        registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                registerBtnActionPerformed(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(380, 380, 140, 23);
-
-        add(jComboBox2);
-        jComboBox2.setBounds(250, 290, 150, 30);
+        add(registerBtn);
+        registerBtn.setBounds(380, 380, 140, 23);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
-        jLabel7.setBounds(120, 240, 90, 20);
-    }// </editor-fold>//GEN-END:initComponents
+        jLabel7.setBounds(20, 280, 90, 20);
 
-    private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFiledFnameActionPerformed
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        add(jSeparator1);
+        jSeparator1.setBounds(340, 160, 10, 150);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel8.setText("Create:");
+        add(jLabel8);
+        jLabel8.setBounds(370, 150, 150, 40);
+
+        userNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userNameTxtActionPerformed(evt);
+            }
+        });
+        add(userNameTxt);
+        userNameTxt.setBounds(460, 190, 140, 30);
+        add(pwsTxt);
+        pwsTxt.setBounds(460, 240, 140, 30);
+
+        jLabel9.setText("Password:");
+        add(jLabel9);
+        jLabel9.setBounds(370, 250, 80, 30);
+
+        jLabel10.setText("User Name:");
+        add(jLabel10);
+        jLabel10.setBounds(370, 190, 80, 30);
+
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                networkJComboBoxActionPerformed(evt);
+            }
+        });
+        add(networkJComboBox);
+        networkJComboBox.setBounds(150, 240, 150, 30);
+
+        enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseTypeJComboBox);
+        enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldeptActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        String fname = txtFiledFname.getText();
-        String lname = textFieldLname.getText();
-        String dept = textFieldept.getText();
-        String ssn = txtFieldSSN.getText();
-      
-        if(txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
-        }
-        else{
         
-        JOptionPane.showMessageDialog(null, "Request successfully sent to provider");
-        RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
+        } else {
+            System.out.println("Doctor Registration: hi");
+            Enterprise ent = (Enterprise)enterpriseTypeJComboBox.getSelectedItem();
+            for(Organization org : ent.getOrganizationDirectory().getOrganizationList()){
+                for (Organization.Type type : Organization.Type.values()){
+                    if(type.equals("Doctor")){
+                        OrganizationDirectory directory = ent.getOrganizationDirectory();
+                        directory.createOrganization(type);
+                        Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+                        org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new AdminRole());
+        
+                    }
+                }
+
+
+            }
+            
+//                System.out.println("in network  " + network);
+//                for (Enterprise enter : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                    System.out.println("in enterprise");
+//                    System.out.println("enterprise =  " + enter);
+                    //if (enter.getEnterpriseType().Provider)
+                    
+//                    Employee empDoctor 
+
+//                }
+//            }
+        
+        DoctorRegistrationRequest doctreq = new DoctorRegistrationRequest();
+        doctreq.setFname(txtFiledFname.getText());
+        doctreq.setLname(textFieldLname.getText());
+        doctreq.setDepartment(textFieldept.getText());
+        doctreq.setEmployeeId(txtFieldSSN.getText());
+        doctreq.setType("Doctor");
+
+        
+
+//                    
+//                        for (Organization organization : enter.getOrganizationDirectory().getOrganizationList()) {
+//                            System.out.println("organization");
+//                        }
+            //for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+            JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
+        }
+    }//GEN-LAST:event_registerBtnActionPerformed
+
+    private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameTxtActionPerformed
+
+    private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
+        // TODO add your handling code here:
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        if (network != null) {
+            populateEnterpriseComboBox(network);
+        }
+
+    }//GEN-LAST:event_networkJComboBoxActionPerformed
+
+    private void populateEnterpriseComboBox(Network n) {
+        enterpriseTypeJComboBox.removeAllItems();
+        for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
+            enterpriseTypeJComboBox.addItem(enterprise);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JComboBox<String> registerationSelectionComboBox;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox networkJComboBox;
+    private javax.swing.JPasswordField pwsTxt;
+    private javax.swing.JButton registerBtn;
     private javax.swing.JTextField textFieldLname;
     private javax.swing.JTextField textFieldept;
     private javax.swing.JTextField txtFieldSSN;
     private javax.swing.JTextField txtFiledFname;
+    private javax.swing.JTextField userNameTxt;
     // End of variables declaration//GEN-END:variables
 }

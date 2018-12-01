@@ -8,19 +8,19 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
+//import userinterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author raunak
  */
-public class LabAssistantRole extends Role {
+//public class LabAssistantRole extends Role {
 
-    @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
-    }
+//    @Override
+//    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+//        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
+//    }
 
     
-}
+
