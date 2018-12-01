@@ -9,9 +9,14 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+<<<<<<< HEAD
 import Business.UserAccount.UserAccountDirectory;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+=======
+//import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+>>>>>>> origin/Urja_Prabhu
 import javax.swing.JPanel;
+import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 
 /**
  *

@@ -29,8 +29,8 @@ public class UserAccountDirectory {
         for (UserAccount ua : userAccountList) {
             if (ua.getUsername().equals(username)
                     && ua.getPassword().equals(password)
-//                    && ua.getStatus().equals("Active")) {
-                    ) {
+                    && ua.getStatus().equals("Active")) {
+                    
                 return ua;
             }
         }
@@ -39,16 +39,7 @@ public class UserAccountDirectory {
 
     public UserAccount createEmployeeAccount(String username, String password, Employee employee, Role role) {
 
-//        if (username.equals("sysadmin")) {
-//            UserAccount userAccount = new UserAccount();
-//            userAccount.setUsername(username);
-//            userAccount.setPassword(password);
-//            userAccount.setEmployee(employee);
-//            userAccount.setRole(role);
-//            userAccount.setStatus("Active");
-//            userAccountList.add(userAccount);
-//            return userAccount;
-//        } else {
+        if (username.equals("sysadmin")) {
             UserAccount userAccount = new UserAccount();
             userAccount.setUsername(username);
             userAccount.setPassword(password);
@@ -57,7 +48,16 @@ public class UserAccountDirectory {
             userAccount.setStatus("Active");
             userAccountList.add(userAccount);
             return userAccount;
-//        }
+        } else {
+            UserAccount userAccount = new UserAccount();
+            userAccount.setUsername(username);
+            userAccount.setPassword(password);
+            userAccount.setEmployee(employee);
+            userAccount.setRole(role);
+            userAccount.setStatus("Pending");
+            userAccountList.add(userAccount);
+            return userAccount;
+        }
 
     }
 

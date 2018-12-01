@@ -13,8 +13,12 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import javax.swing.JPanel;
 import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
+<<<<<<< HEAD:MediHub_Project/src/Business/Role/CustomerRole.java
 import userinterface.CustomerRole.CustomerWorkAreaJPanel;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+=======
+//import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+>>>>>>> origin/Urja_Prabhu:MediHub_Project/src/Business/Role/HCProviderRole.java
 
 /**
  *
