@@ -179,62 +179,64 @@ public class MainJFrame extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
+        if (userNameJTextField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kindly enter UserName and Password");
+        } else {
 
-        //Step1: Check in the system admin user account directory if you have the user
-        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+            //Step1: Check in the system admin user account directory if you have the user
+            UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
 
-        Enterprise inEnterprise = null;
-        Organization inOrganization = null;
+            Enterprise inEnterprise = null;
+            Organization inOrganization = null;
 
-        if (userAccount == null 
-//                || userAccount.getStatus().equals("Active")
-                ) {
-            //Step 2: Go inside each network and check each enterprise
-            for (Network network : system.getNetworkList()) {
-                //Step 2.a: check against each enterprise
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if (userAccount == null) {
-                        //Step 3:check against each organization for each enterprise
-                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if (userAccount != null) {
-                                inEnterprise = enterprise;
-                                inOrganization = organization;
-                                break;
+            if (userAccount == null) {
+                //Step 2: Go inside each network and check each enterprise
+                for (Network network : system.getNetworkList()) {
+                    //Step 2.a: check against each enterprise
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                        if (userAccount == null) {
+                            //Step 3:check against each organization for each enterprise
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                                if (userAccount != null) {
+                                    inEnterprise = enterprise;
+                                    inOrganization = organization;
+                                    break;
+                                }
                             }
-                        }
 
-                    } else {
-                        inEnterprise = enterprise;
+                        } else {
+                            inEnterprise = enterprise;
+                            break;
+                        }
+                        if (inOrganization != null) {
+                            break;
+                        }
+                    }
+                    if (inEnterprise != null) {
                         break;
                     }
-                    if (inOrganization != null) {
-                        break;
-                    }
-                }
-                if (inEnterprise != null) {
-                    break;
                 }
             }
+
+            if (userAccount == null) {
+                JOptionPane.showMessageDialog(null, "Invalid credentials \nYour account is Pending for approval OR does not exist");
+                return;
+            } else {
+                CardLayout layout = (CardLayout) container.getLayout();
+                container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, directory));
+                layout.next(container);
+            }
+
+            loginJButton.setEnabled(false);
+            logoutJButton.setEnabled(true);
+            registerBtn.setEnabled(false);
+            userNameJTextField.setEnabled(false);
+            passwordField.setEnabled(false);
+            msgLable.setText(null);
         }
 
-        if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid credentials \nYour account is Pending for approval OR does not exist");
-            return;
-        }
-        else{
-            CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, directory));
-            layout.next(container);
-        }
-
-        loginJButton.setEnabled(false);
-        logoutJButton.setEnabled(true);
-        registerBtn.setEnabled(false);
-        userNameJTextField.setEnabled(false);
-        passwordField.setEnabled(false);
-        msgLable.setText(null);
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
@@ -264,8 +266,8 @@ public class MainJFrame extends javax.swing.JFrame {
         userNameJTextField.setEnabled(false);
         passwordField.setEnabled(false);
         cancelBtn.setEnabled(true);
-        
-        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container,system, role);
+
+        RegisterationSelectionJPanel regPanl = new RegisterationSelectionJPanel(container, system, role);
         container.add("RegisterationSelectionJPanel", regPanl);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
@@ -281,7 +283,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userNameJTextField.setEnabled(true);
         passwordField.setEnabled(true);
         cancelBtn.setEnabled(false);
-        
+
         container.removeAll();
         JPanel blankJP = new JPanel();
         container.add("blank", blankJP);

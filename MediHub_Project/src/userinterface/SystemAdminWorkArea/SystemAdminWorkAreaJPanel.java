@@ -10,15 +10,9 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Customer.Customer;
-import Business.Employee.Employee;
 import Business.Organization.SysAdmin;
 
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
-import Business.WorkQueue.AccessApprovalRequest;
-import Business.WorkQueue.LabTestWorkRequest;
-import Business.WorkQueue.ProviderRegistrationRequest;
-import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -26,6 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -49,6 +48,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.sysAdmin=(SysAdmin)organization;
         populateTree();
         populateAccessRequestTbl();
+//        pieChart();
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        pieDataset.setValue("Enterprises", new Integer(10));
+        pieDataset.setValue("Organisation", new Integer(20));
+        pieDataset.setValue("Customer", ecosystem.getCustomerList().size());
+        
+        JFreeChart chart = ChartFactory.createPieChart("Pie Diagram", pieDataset);
+        
+        PiePlot p = (PiePlot)chart.getPlot();
+        ChartFrame frame = new ChartFrame("Pie Frame", chart);
+        frame.setVisible(true);
+        frame.setSize(450, 500);
+          
     }
     
     public void populateAccessRequestTbl(){
@@ -66,6 +78,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    
     
     public void populateTree(){
         DefaultTreeModel model=(DefaultTreeModel)EcoSystem.getModel();
@@ -127,6 +140,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PieChartFrame = new javax.swing.JFrame();
         jSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -144,6 +158,17 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         accessRequestTbl = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout PieChartFrameLayout = new javax.swing.GroupLayout(PieChartFrame.getContentPane());
+        PieChartFrame.getContentPane().setLayout(PieChartFrameLayout);
+        PieChartFrameLayout.setHorizontalGroup(
+            PieChartFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        PieChartFrameLayout.setVerticalGroup(
+            PieChartFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setLayout(new java.awt.BorderLayout());
 
@@ -375,6 +400,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree EcoSystem;
+    private javax.swing.JFrame PieChartFrame;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageEnterprise;
