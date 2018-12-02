@@ -220,7 +220,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            JOptionPane.showMessageDialog(null, "Invalid credentials \nYour account is Pending for approval OR does not exist");
             return;
         }
         else{

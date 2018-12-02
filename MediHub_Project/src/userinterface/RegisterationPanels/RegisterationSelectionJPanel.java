@@ -11,6 +11,10 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.Role.Role;
+import Business.Network.Network;
+import Business.Role.Role;
+import static Business.Role.Role.RoleType.*;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.Enterprise.Enterprise;
@@ -30,7 +34,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private JPanel container;
     private Enterprise enterprise;
     JPanel userProcessContainer;
-    EcoSystem system;
+    private EcoSystem system;
+   
     private Role role;
 
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
@@ -46,7 +51,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Role.RoleType type : Role.RoleType.values()) {
             roleJComboBox.addItem(type);
         }
-
     }
 
     /**
@@ -114,12 +118,23 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        
         Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
         
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
             ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else if (roleJComboBox.getSelectedItem().equals(LabAssistant)){
+        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", assist);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else if (roleJComboBox.getSelectedItem().equals(Doctor)){
+        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
