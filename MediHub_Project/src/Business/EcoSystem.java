@@ -11,6 +11,7 @@ import Business.Role.Role;
 import Business.Customer.Customer;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -21,21 +22,21 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private ArrayList<Customer> customerList;
-
-    public ArrayList<Customer> getCustomerList() {
-        return customerList;
-    }
-
-    public void setCustomerList(ArrayList<Customer> customerList) {
-        this.customerList = customerList;
-    }
-    
-    
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
         }
         return business;
+    }
+    
+    public Customer createCustomer(String name, String dob, String address, Integer phoneNbr){
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setDob(dob);
+        customer.setAddress(address);
+        customer.setPhoneNbr(phoneNbr);
+        customerList.add(customer);
+        return customer;
     }
     
     public Network createAndAddNetwork(){
@@ -52,6 +53,7 @@ public class EcoSystem extends Organization{
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
+        customerList=new ArrayList<Customer>();
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -60,6 +62,14 @@ public class EcoSystem extends Organization{
 
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
+    }
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(ArrayList<Customer> customerList) {
+        this.customerList = customerList;
     }
     
     public boolean checkIfUserIsUnique(String userName){

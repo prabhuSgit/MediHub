@@ -21,6 +21,10 @@ public abstract class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private Role role;
+    
+    public WorkRequest(){
+        requestDate = new Date();
+    }
 
     public Role getRole() {
         return role;
@@ -28,12 +32,6 @@ public abstract class WorkRequest {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-    
-    
-    
-    public WorkRequest(){
-        requestDate = new Date();
     }
 
     public String getMessage() {

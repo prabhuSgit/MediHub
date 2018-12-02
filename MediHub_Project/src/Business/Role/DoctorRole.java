@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 import javax.swing.JPanel;
 
@@ -19,9 +20,9 @@ import javax.swing.JPanel;
 public class DoctorRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
         return new DoctorWorkAreaJPanel(userProcessContainer, account, (DoctorOrganization)organization, enterprise);
     }
-    
+
     
 }
