@@ -24,5 +24,8 @@ public class LabOrganization extends Organization{
         roles.add(new LabAssistantRole());
         return roles;
     }
+     
+   
+    
     
 }
