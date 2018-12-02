@@ -212,7 +212,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
             Organization.Type type = Organization.Type.Doctor;
             Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null);
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
             System.out.println("Employee created");
             org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");

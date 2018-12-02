@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.Customer.Customer;
 import Business.Employee.Employee;
 import Business.Organization.SysAdmin;
+import Business.Role.Role;
 
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
@@ -22,6 +23,7 @@ import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -56,10 +58,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
+            Object[] row = new Object[2];
             row[0] = request.getSender();
-            row[1] = request.getRole();
-            row[2] = request.getStatus();
+            row[1] = request.getStatus();
 //            String result = ((AccessApprovalRequest) request).getTestResult();
 //            row[3] = result == null ? "Waiting" : result;
             
@@ -138,12 +139,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageEnterprise = new javax.swing.JButton();
         btnManageAdmin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         accessRequestTbl = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        BtnReview = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -229,39 +228,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Sender Name", "Role", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-        }
-
         accessRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Sender Name", "Role", "Status"
+                "Sender Name", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -272,25 +248,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (accessRequestTbl.getColumnModel().getColumnCount() > 0) {
             accessRequestTbl.getColumnModel().getColumn(0).setResizable(false);
             accessRequestTbl.getColumnModel().getColumn(1).setResizable(false);
-            accessRequestTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel2.setText("Pending request for Access :");
 
-        jLabel3.setText("Approved Access :");
+        BtnReview.setText("Review");
+        BtnReview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReviewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -311,6 +283,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jSeparator1)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BtnReview)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 285, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,12 +310,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnReview)
+                .addGap(61, 61, 61))
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -372,8 +350,24 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_EcoSystemValueChanged
 
+    private void BtnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReviewActionPerformed
+        // TODO add your handling code here:
+        int row = accessRequestTbl.getSelectedRow();
+        if(row<0) {
+             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
+        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer,ecosystem,us);
+        userProcessContainer.add("ViewFlightsPanel", reviewRegistrationJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_BtnReviewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnReview;
     private javax.swing.JTree EcoSystem;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JButton btnManageAdmin;
@@ -381,15 +375,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSelectedNode;
     // End of variables declaration//GEN-END:variables
 }
