@@ -10,9 +10,8 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Role.Role;
 import Business.Network.Network;
-//import static Business.Organization.Organization.Type.Doctor;
-//import static Business.Organization.Organization.Type.Lab;
 import Business.Role.Role;
 import static Business.Role.Role.RoleType.*;
 import Business.Role.Role;
@@ -48,7 +47,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     }
 
     private void populateComboBox() {
-
         roleJComboBox.removeAllItems();
         for (Role.RoleType type : Role.RoleType.values()) {
             roleJComboBox.addItem(type);

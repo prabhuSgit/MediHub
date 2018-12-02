@@ -12,7 +12,6 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 import javax.swing.JPanel;
-import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 
 /**
  *
