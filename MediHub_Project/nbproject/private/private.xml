@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/Network/Network.java</file>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterationSelectionJPanel.java</file>
-            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/ProviderAdminRegistrationWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterDoctor.java</file>
+            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/DoctorRole/RequestLabTestJPanel.java</file>
+            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/SuccessCustomerJPanel.java</file>
+            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/SuccessCustomerJPanel.form~HEAD</file>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/Organization/Organization.java</file>
-            <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterLabAssistants.java</file>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/EcoSystem.java</file>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/Enterprise/Enterprise.java</file>
         </group>

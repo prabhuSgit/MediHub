@@ -37,13 +37,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private Enterprise enterprise;
     private Organization organization;
     private UserAccount userAccount;
-    private Role.RoleType roleType;
+    private Role role;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role.RoleType roleType) {
+    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.roleType = roleType;
+        this.role= role;
         populateNetworkComboBox();
         //populateEnterpriseComboBox();
     }
@@ -65,7 +65,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -86,8 +86,9 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        backBtn = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -142,7 +143,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(registerBtn);
-        registerBtn.setBounds(380, 380, 140, 23);
+        registerBtn.setBounds(380, 380, 140, 29);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
@@ -188,8 +189,12 @@ public class RegisterDoctor extends javax.swing.JPanel {
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox);
         enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
-    }// </editor-fold>//GEN-END:initComponents
 
+        backBtn.setText("<< Back");
+        add(backBtn);
+        backBtn.setBounds(270, 380, 93, 29);
+    }// </editor-fold>//GEN-END:initComponents
+    
     private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldeptActionPerformed
@@ -197,6 +202,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
 
+        
         if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
@@ -206,13 +212,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
             Organization.Type type = Organization.Type.Doctor;
             Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString());
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createUserAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
-            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system);
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -226,12 +232,18 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         // TODO add your handling code here:
-        Network network = (Network) networkJComboBox.getSelectedItem();
+       Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null) {
             populateEnterpriseComboBox(network);
         }
-
     }//GEN-LAST:event_networkJComboBoxActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
@@ -242,6 +254,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

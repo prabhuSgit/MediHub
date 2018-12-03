@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -19,9 +20,18 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private Role role;
     
     public WorkRequest(){
         requestDate = new Date();
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getMessage() {

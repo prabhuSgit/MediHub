@@ -10,13 +10,17 @@ import Business.Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Role.Role;
 import Business.Network.Network;
-//import static Business.Organization.Organization.Type.Doctor;
-//import static Business.Organization.Organization.Type.Lab;
 import Business.Role.Role;
 import static Business.Role.Role.RoleType.*;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import javax.swing.JPanel;
 
 /**
  *
@@ -27,27 +31,27 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RegisterationSelection
      */
+    private JPanel container;
+    private Enterprise enterprise;
     JPanel userProcessContainer;
-    private EcoSystem system;
-   
 
-    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system) {
+    private EcoSystem system;
+
+    private Role role;
+
+    public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.role = role;
         populateComboBox();
     }
 
     private void populateComboBox() {
-
-        registerationSelectionComboBox.removeAllItems();
+        roleJComboBox.removeAllItems();
         for (Role.RoleType type : Role.RoleType.values()) {
-            registerationSelectionComboBox.addItem(type);
+            roleJComboBox.addItem(type);
         }
-//        for (Organization.Type type : Organization.Type.values()) {
-//            registerationSelectionComboBox.addItem(type);
-//        }
-
     }
 
     /**
@@ -60,17 +64,11 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        registerationSelectionComboBox = new javax.swing.JComboBox();
         nextBtn = new javax.swing.JButton();
+        roleJComboBox = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Kindly select the registeration for:");
-
-        registerationSelectionComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerationSelectionComboBoxActionPerformed(evt);
-            }
-        });
 
         nextBtn.setText("Next >");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +76,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 nextBtnActionPerformed(evt);
             }
         });
+
+        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,8 +89,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nextBtn)
-                    .addComponent(registerationSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(299, Short.MAX_VALUE))
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,13 +98,18 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 .addGap(169, 169, 169)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(registerationSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(nextBtn)
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+//    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
+//        // TODO add your handling code here:
+//    }
+
+    
     private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
         // TODO add your handling code here:
         //Place your methods of calling the JPanels based on the slection from the Combo Box :)
@@ -114,23 +119,38 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        Role.RoleType roleType = (Role.RoleType) registerationSelectionComboBox.getSelectedItem();
+
+        Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
         
-        if (registerationSelectionComboBox.getSelectedItem().toString().equals("Provider")) {
-            ProviderAdminRegistrationWorkAreaJPanel provRegPnl = new ProviderAdminRegistrationWorkAreaJPanel(userProcessContainer, system);
+        if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
+            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-        else if (registerationSelectionComboBox.getSelectedItem().equals(LabAssistant)){
-        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system);
+        else if (roleJComboBox.getSelectedItem().equals(LabAssistant)){
+        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", assist);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-        else if (registerationSelectionComboBox.getSelectedItem().equals(Doctor)){
-        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, roleType);
+        else if (roleJComboBox.getSelectedItem().equals(Doctor)){
+        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", doctor);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
+            RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+            userProcessContainer.add("RegisterCustomerJPanel", regCust);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
+            RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
+            userProcessContainer.add("RegisterCustomerJPanel", regCust);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
@@ -141,6 +161,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton nextBtn;
-    private javax.swing.JComboBox registerationSelectionComboBox;
+    private javax.swing.JComboBox roleJComboBox;
     // End of variables declaration//GEN-END:variables
+
 }
