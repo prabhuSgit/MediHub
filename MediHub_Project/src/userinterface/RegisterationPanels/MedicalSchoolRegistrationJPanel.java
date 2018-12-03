@@ -36,7 +36,7 @@ import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  *
  * @author pravinash
  */
-public class ProviderRegistrationJPanel extends javax.swing.JPanel {
+public class MedicalSchoolRegistrationJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProviderAdminRegistrationWorkAreaJPanel
@@ -45,7 +45,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
     EcoSystem system;
     private Role role;
 
-    public ProviderRegistrationJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
+    public MedicalSchoolRegistrationJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -96,7 +96,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         rtypPwdTxt = new javax.swing.JPasswordField();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Provider Registration ");
+        jLabel1.setText("Medical School Registration ");
 
         jLabel2.setText("Name:");
 
@@ -262,7 +262,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         String address = ProviderAddrJTxtArea.getText();
         String city = ProviderCityJTxtField.getText();
         String state = StateComboBox.getSelectedItem().toString();
-        String type = "Health Care Provider";
+        String type = "Medical School";
         Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
         UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 

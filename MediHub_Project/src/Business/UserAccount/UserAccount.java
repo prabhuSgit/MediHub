@@ -23,14 +23,6 @@ public class UserAccount {
     private WorkQueue workQueue;
     private String status;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public UserAccount() {
         workQueue = new WorkQueue();
         
@@ -79,6 +71,15 @@ public class UserAccount {
     public WorkQueue getWorkQueue() {
         return workQueue;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 
     @Override
     public String toString() {

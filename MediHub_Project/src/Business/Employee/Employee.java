@@ -23,6 +23,7 @@ public class Employee {
     private String enterpriseAddress;
     private String enterpriseCity;
     private String enterpriseState;
+    private String type;
     
     public Employee() {
         id = count;
@@ -112,6 +113,14 @@ public class Employee {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
     
