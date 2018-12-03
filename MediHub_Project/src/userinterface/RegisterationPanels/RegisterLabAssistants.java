@@ -77,7 +77,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         textFieldLname = new javax.swing.JTextField();
@@ -97,8 +97,9 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        btnregister = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -188,7 +189,16 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox);
-        enterpriseTypeJComboBox.setBounds(150, 280, 150, 26);
+        enterpriseTypeJComboBox.setBounds(150, 280, 150, 20);
+
+        btnregister.setText("register");
+        btnregister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregisterActionPerformed(evt);
+            }
+        });
+        add(btnregister);
+        btnregister.setBounds(460, 340, 69, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
@@ -202,28 +212,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
-        } else {
-            System.out.println("Lab Assistant Registration: hi");
-            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            
-            OrganizationDirectory directory = ent.getOrganizationDirectory();   
-            Organization.Type type = Organization.Type.Lab;
-            Organization org = directory.createOrganization(type);
-
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
-            System.out.println("Employee created");
-            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-            System.out.println("User created");
-
-            JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
-            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
-            userProcessContainer.add("Original Panel", origin);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
@@ -245,8 +234,37 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
+        // TODO add your handling code here:
+        
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
+        } else {
+            System.out.println("lab Registration: hi");
+            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            if (directory == null) {
+                Organization.Type type = Organization.Type.Lab;
+                Organization org = directory.createOrganization(type);
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null, null, role.toString());
+                System.out.println("Employee created");
+                org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+                System.out.println("User created");
+
+            }
+
+            JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("Original Panel", origin);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        }
+    }//GEN-LAST:event_btnregisterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnregister;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

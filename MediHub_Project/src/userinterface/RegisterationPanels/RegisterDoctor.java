@@ -12,6 +12,7 @@ import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
+import static Business.Organization.Organization.Type.Doctor;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.AdminRole;
 import Business.Role.DoctorRole;
@@ -43,7 +44,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.role= role;
+        this.role = role;
         populateNetworkComboBox();
         //populateEnterpriseComboBox();
     }
@@ -65,7 +66,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -88,7 +89,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -101,6 +102,12 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel1.setText("Doctor Registration");
         add(jLabel1);
         jLabel1.setBounds(200, 30, 244, 36);
+
+        txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiledFnameActionPerformed(evt);
+            }
+        });
         add(txtFiledFname);
         txtFiledFname.setBounds(100, 110, 200, 30);
 
@@ -143,7 +150,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
             }
         });
         add(registerBtn);
-        registerBtn.setBounds(380, 380, 140, 29);
+        registerBtn.setBounds(380, 380, 140, 23);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
@@ -192,38 +199,56 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
         backBtn.setText("<< Back");
         add(backBtn);
-        backBtn.setBounds(270, 380, 93, 29);
+        backBtn.setBounds(270, 380, 73, 23);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldeptActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-
-        
-        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && 
+                textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
             System.out.println("Doctor Registration: hi");
+            
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-//            OrganizationDirectory directory = ent.getOrganizationDirectory();
-            OrganizationDirectory directory = new OrganizationDirectory();
-            Organization.Type type = Organization.Type.Doctor;
-            Organization org = directory.createOrganization(type);
-
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
-            System.out.println("Employee created");
-            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-            System.out.println("User created");
-
+                 System.out.println("entp:  " +ent );
+                 
+            Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
+                System.out.println(directory);
+                
+            Employee empDoctor = directory.getEmployeeDirectory().createEmployee(null, null, null,null,null,txtFiledFname.toString(), textFieldLname.getText(), textFieldept.getText());
+                System.out.println("Employee created");
+                
+                for (Employee emp :directory.getEmployeeDirectory().getEmployeeList()){
+                        System.out.println(emp);
+            }
+                 UserAccount account = directory.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new AdminRole());
+                System.out.println("User created");
+                 for (UserAccount user :system.getUserAccountDirectory().getUserAccountList()){
+                        System.out.println(user);
+            }
+                
+               
+            if (directory == null) {
+                Organization.Type type = Organization.Type.Doctor;
+                //Organization org = directory.createOrganization(type);
+//                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null, null, role.toString());
+//                System.out.println("Employee created");
+                //org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+                System.out.println("User created");
+               
+            }
+            
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-
+         
         }
     }//GEN-LAST:event_registerBtnActionPerformed
 
@@ -233,7 +258,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         // TODO add your handling code here:
-       Network network = (Network) networkJComboBox.getSelectedItem();
+        Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null) {
             populateEnterpriseComboBox(network);
         }
@@ -245,6 +270,10 @@ public class RegisterDoctor extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiledFnameActionPerformed
 
     private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
