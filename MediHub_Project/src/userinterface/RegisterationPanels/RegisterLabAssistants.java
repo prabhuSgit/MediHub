@@ -221,7 +221,8 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         } else {
             System.out.println("Lab Assistant Registration: hi");
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            
+            OrganizationDirectory directory = ent.getOrganizationDirectory();   
             Organization.Type type = Organization.Type.Lab;
             Organization org = directory.createOrganization(type);
 
