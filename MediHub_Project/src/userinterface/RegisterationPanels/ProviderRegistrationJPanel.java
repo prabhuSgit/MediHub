@@ -54,9 +54,12 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         OrgTypCombobox.removeAllItems();
         for (Network n : system.getNetworkList()) {
             StateComboBox.addItem(n);
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                OrgTypCombobox.addItem(e);
-            }
+//            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//                OrgTypCombobox.addItem(e);
+//            }
+        }
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            OrgTypCombobox.addItem(type);
         }
 
     }
@@ -257,27 +260,41 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 
     private void RegisterJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterJBtnActionPerformed
         // TODO add your handling code here:
-        Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
+        Network network = (Network) StateComboBox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) OrgTypCombobox.getSelectedItem();
+
+        if (network == null || type == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            return;
+        }
+
         String name = ProviderNameJTxtField.getText();
+
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+//        Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
         String address = ProviderAddrJTxtArea.getText();
         String city = ProviderCityJTxtField.getText();
         String state = StateComboBox.getSelectedItem().toString();
-        String type = "Health Care Provider";
-        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
-        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
+        UserAccount account = enterprise.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
+
+//        String type = "Health Care Provider";
+//        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
+//        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
+        
         AccessApprovalRequest request = new AccessApprovalRequest();
         request.setRole(role);
-        request.setSender(ua);
+        request.setSender(account);
         request.setStatus("Pending");
 
-        for(UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
-            if(u.getUsername().equals("sysadmin")){
+        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+            if (u.getUsername().equals("sysadmin")) {
                 u.getWorkQueue().getWorkRequestList().add(request);
             }
         }
         employee.setRegStatus(request.getStatus());
-            
+
 //        UserAccount userAccount = new UserAccount();
 //        userAccount.setEnterpriseName(ProviderNameJTxtField.getText());
 //        userAccount.setEnterpriseAddress(ProviderAddrJTxtArea.getText());
