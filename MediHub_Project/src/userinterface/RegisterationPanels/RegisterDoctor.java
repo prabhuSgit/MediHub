@@ -208,7 +208,8 @@ public class RegisterDoctor extends javax.swing.JPanel {
         } else {
             System.out.println("Doctor Registration: hi");
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            OrganizationDirectory directory = ent.getOrganizationDirectory();
+//            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            OrganizationDirectory directory = new OrganizationDirectory();
             Organization.Type type = Organization.Type.Doctor;
             Organization org = directory.createOrganization(type);
 

@@ -13,6 +13,9 @@ import Business.Network.Network;
 public class Employee {
     
     private String name;
+    private String Firstname;
+    private String Lastname;
+    
     private int id;
     private String address;
     private Network network;
