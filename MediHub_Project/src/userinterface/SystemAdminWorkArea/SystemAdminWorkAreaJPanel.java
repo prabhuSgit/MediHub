@@ -10,16 +10,10 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Customer.Customer;
-import Business.Employee.Employee;
 import Business.Organization.SysAdmin;
 import Business.Role.Role;
 
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
-import Business.WorkQueue.AccessApprovalRequest;
-import Business.WorkQueue.LabTestWorkRequest;
-import Business.WorkQueue.ProviderRegistrationRequest;
-import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -28,6 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -51,6 +50,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.sysAdmin=(SysAdmin)organization;
         populateTree();
         populateAccessRequestTbl();
+//        pieChart();
+//        DefaultPieDataset pieDataset = new DefaultPieDataset();
+//        pieDataset.setValue("Enterprises", new Integer(10));
+//        pieDataset.setValue("Organisation", new Integer(20));
+//        pieDataset.setValue("Customer", ecosystem.getCustomerList().size());
+//        
+//        JFreeChart chart = ChartFactory.createPieChart("Pie Diagram", pieDataset);
+//        
+//        PiePlot p = (PiePlot)chart.getPlot();
+//        ChartFrame frame = new ChartFrame("Pie Frame", chart);
+//        frame.setVisible(true);
+//        frame.setSize(450, 500);
+          
     }
     
     public void populateAccessRequestTbl(){
@@ -68,9 +80,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }
     
+    
     public void populateTree(){
         DefaultTreeModel model=(DefaultTreeModel)EcoSystem.getModel();
         ArrayList<Network> networkList=ecosystem.getNetworkList();
+//        ArrayList<Customer> customerList=ecosystem.getCustomerDirectory().getCustomerList();
         ArrayList<Customer> customerList=ecosystem.getCustomerList();
         ArrayList<Enterprise> enterpriseList;
         ArrayList<Organization> organizationList;
@@ -128,6 +142,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PieChartFrame = new javax.swing.JFrame();
         jSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -143,6 +158,17 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         accessRequestTbl = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         BtnReview = new javax.swing.JButton();
+
+        javax.swing.GroupLayout PieChartFrameLayout = new javax.swing.GroupLayout(PieChartFrame.getContentPane());
+        PieChartFrame.getContentPane().setLayout(PieChartFrameLayout);
+        PieChartFrameLayout.setHorizontalGroup(
+            PieChartFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        PieChartFrameLayout.setVerticalGroup(
+            PieChartFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setLayout(new java.awt.BorderLayout());
 
@@ -192,7 +218,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,7 +226,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(328, Short.MAX_VALUE))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -222,6 +248,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnManageAdmin.setText("Manage Admins");
+        btnManageAdmin.setEnabled(false);
         btnManageAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageAdminActionPerformed(evt);
@@ -278,19 +305,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(btnManageAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 416, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator1)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BtnReview)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 285, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BtnReview)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(192, 192, 192))))
+                .addGap(0, 291, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,9 +338,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(BtnReview)
                 .addGap(61, 61, 61))
         );
@@ -369,6 +398,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReview;
     private javax.swing.JTree EcoSystem;
+    private javax.swing.JFrame PieChartFrame;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageEnterprise;

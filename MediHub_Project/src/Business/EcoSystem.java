@@ -9,6 +9,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Customer.Customer;
+import Business.Customer.CustomerDirectory;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,7 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private ArrayList<Customer> customerList;
+//    private CustomerDirectory customerDirectory;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -29,15 +31,15 @@ public class EcoSystem extends Organization{
         return business;
     }
     
-    public Customer createCustomer(String name, String dob, String address, Integer phoneNbr){
-        Customer customer = new Customer();
-        customer.setName(name);
-        customer.setDob(dob);
-        customer.setAddress(address);
-        customer.setPhoneNbr(phoneNbr);
-        customerList.add(customer);
-        return customer;
-    }
+//    public Customer createCustomer(String name, String dob, String address, Integer phoneNbr){
+//        Customer customer = new Customer();
+//        customer.setName(name);
+//        customer.setDob(dob);
+//        customer.setAddress(address);
+//        customer.setPhoneNbr(phoneNbr);
+//        customerList.add(customer);
+//        return customer;
+//    }
     
     public Network createAndAddNetwork(){
         Network network=new Network();
@@ -54,6 +56,17 @@ public class EcoSystem extends Organization{
         super(null);
         networkList=new ArrayList<Network>();
         customerList=new ArrayList<Customer>();
+//        customerDirectory=new CustomerDirectory();
+    }
+    
+    public Customer createCustomer(String name, String dob, String address, Integer phoneNbr){
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setDob(dob);
+        customer.setAddress(address);
+        customer.setPhoneNbr(phoneNbr);
+        customerList.add(customer);
+        return customer;
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -63,6 +76,14 @@ public class EcoSystem extends Organization{
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
+
+//    public CustomerDirectory getCustomerDirectory() {
+//        return customerDirectory;
+//    }
+//
+//    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+//        this.customerDirectory = customerDirectory;
+//    }
 
     public ArrayList<Customer> getCustomerList() {
         return customerList;
