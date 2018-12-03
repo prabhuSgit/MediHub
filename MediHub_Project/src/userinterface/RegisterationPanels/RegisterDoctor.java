@@ -191,6 +191,11 @@ public class RegisterDoctor extends javax.swing.JPanel {
         enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
 
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
         add(backBtn);
         backBtn.setBounds(270, 380, 93, 29);
     }// </editor-fold>//GEN-END:initComponents
