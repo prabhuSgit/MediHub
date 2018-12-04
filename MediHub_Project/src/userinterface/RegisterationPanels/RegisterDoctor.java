@@ -130,12 +130,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel5.setBounds(20, 190, 90, 20);
         add(textFieldLname);
         textFieldLname.setBounds(410, 110, 200, 30);
-
-        textFieldept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldeptActionPerformed(evt);
-            }
-        });
         add(textFieldept);
         textFieldept.setBounds(100, 150, 200, 30);
         add(txtFieldSSN);
@@ -235,10 +229,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
         add(userNameMsg2);
         userNameMsg2.setBounds(460, 220, 90, 20);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldeptActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
