@@ -50,7 +50,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         this.system = system;
         this.role = role;
         populateNetworkComboBox();
-        //populateEnterpriseComboBox();
+        
     }
 
     private void populateNetworkComboBox() {
@@ -60,6 +60,15 @@ public class RegisterDoctor extends javax.swing.JPanel {
             networkJComboBox.addItem(network);
         }
     }
+      private void populateEnterpriseComboBox(Network n) {
+        enterpriseTypeJComboBox.removeAllItems();
+        for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
+            if(enter.equals(enter)) 
+            enterpriseTypeJComboBox.addItem(enter);
+        }
+      }
+        
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,13 +251,13 @@ public class RegisterDoctor extends javax.swing.JPanel {
               System.out.println("entp:  " + ent);
 
             Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
-              System.out.println(directory);
+              System.out.println("Organization created:  " +directory);
 
             Employee empDoctor = directory.getEmployeeDirectory().createEmployee(null, null, null, null, null, txtFiledFname.getText(), textFieldLname.getText(), textFieldept.getText());
 
             for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
                 System.out.println(emp.getLastname());
-                System.out.println("Employee created");
+                System.out.println("Employee created  " +emp);
             }
             UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
               System.out.println("User created  " + account);
@@ -363,13 +372,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         checkForButtonVisibility();
     }
 
-    private void populateEnterpriseComboBox(Network n) {
-        enterpriseTypeJComboBox.removeAllItems();
-        for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
-            enterpriseTypeJComboBox.addItem(enterprise);
-        }
-
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;

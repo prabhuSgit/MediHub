@@ -16,7 +16,24 @@ public class Employee {
     private String Firstname;
     private String Lastname;
     private String Department;
+    private int id;
+    private String address;
+    private Network network;
+    private static int count = 1000;
+    private int registrationID;
+    private String regStatus;
+    private static int countP =1;
+    private String enterpriseAddress;
+    private String enterpriseCity;
+    private String enterpriseState;
+    private String type;
 
+     public Employee() {
+        id = count;
+        count++;
+        registrationID = countP;
+        countP++;
+    }
     public String getDepartment() {
         return Department;
     }
@@ -39,26 +56,9 @@ public class Employee {
 
     public void setLastname(String Lastname) {
         this.Lastname = Lastname;
-    }
+    }   
     
-    private int id;
-    private String address;
-    private Network network;
-    private static int count = 1000;
-    private int registrationID;
-    private String regStatus;
-    private static int countP =1;
-    private String enterpriseAddress;
-    private String enterpriseCity;
-    private String enterpriseState;
-    private String type;
-    
-    public Employee() {
-        id = count;
-        count++;
-        registrationID = countP;
-        countP++;
-    }
+   
 
     public int getRegistrationID() {
         return registrationID;
