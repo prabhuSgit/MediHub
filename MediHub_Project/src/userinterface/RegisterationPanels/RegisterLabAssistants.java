@@ -12,11 +12,14 @@ import Business.Enterprise.Enterprise.EnterpriseType.*;
 import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
+import static Business.Organization.Organization.Type.Doctor;
+import static Business.Organization.Organization.Type.Lab;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.DoctorRole;
 
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccessApprovalRequest;
 import Business.WorkQueue.DoctorRegistrationRequest;
 import Business.WorkQueue.LabAssistantRegistrationRequest;
 import Business.WorkQueue.LabTestWorkRequest;
@@ -236,23 +239,46 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
     private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
         // TODO add your handling code here:
-        
-        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+      if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty()
+                && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
-            System.out.println("lab Registration: hi");
+            System.out.println("Lab Registration: hi");
+
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            OrganizationDirectory directory = ent.getOrganizationDirectory();
-            if (directory == null) {
-                Organization.Type type = Organization.Type.Lab;
-                Organization org = directory.createOrganization(type);
-                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null, null, role.toString());
+            System.out.println("entp:  " + ent);
+             
+            if(ent.equals(ent.getEnterpriseType().MedicalSchool)){
+            Organization directory = ent.getOrganizationDirectory().createOrganization(Lab);
+            System.out.println(directory);
+
+            Employee empDoctor = directory.getEmployeeDirectory().createEmployee(null, null, null, null, null, txtFiledFname.getText(), textFieldLname.getText(), textFieldept.getText());
+
+            for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
+                System.out.println(emp.getLastname());
                 System.out.println("Employee created");
-                org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-                System.out.println("User created");
-
             }
-
+            UserAccount account = directory.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            System.out.println("User created  " +account);
+            for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(user);
+            }
+            
+            
+            AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(role);
+            System.out.println(request.getRole());
+            request.setSender(account);
+            request.setStatus("Pending");
+            
+            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+                if (u.getUsername().equals(ent.getEnterpriseType().MedicalSchool)) {
+                    u.getWorkQueue().getWorkRequestList().add(request);
+                }
+            }
+            empDoctor.setRegStatus(request.getStatus());
+            }
+//           
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);

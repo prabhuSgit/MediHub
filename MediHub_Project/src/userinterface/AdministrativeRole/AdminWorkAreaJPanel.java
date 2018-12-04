@@ -5,9 +5,11 @@ package userinterface.AdministrativeRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import userinterface.SystemAdminWorkArea.OrgRegReqPanel;
 
 /**
@@ -19,12 +21,29 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem ecosystem;
+    UserAccount userAccount;
     /** Creates new form AdminWorkAreaJPanel */
     public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         valueLabel.setText(enterprise.getName());
+    }
+    
+    public void populateAccessRequestTbl(){
+        DefaultTableModel model = (DefaultTableModel) accessRequestTbl.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[2];
+            row[0] = request.getSender();
+            row[1] = request.getStatus();
+            row[2]= request.getRole();
+//            String result = ((AccessApprovalRequest) request).getTestResult();
+//            row[3] = result == null ? "Waiting" : result;
+            
+            model.addRow(row);
+        }
     }
     
     /** This method is called from within the constructor to
@@ -81,11 +100,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender Name", "Status"
+                "Sender Name", "role", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -154,7 +154,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-
+for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(user);
+            }
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

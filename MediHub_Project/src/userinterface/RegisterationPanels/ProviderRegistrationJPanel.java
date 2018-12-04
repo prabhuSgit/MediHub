@@ -282,7 +282,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 //        String type = "Health Care Provider";
 //        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
 //        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
-        
+         
         AccessApprovalRequest request = new AccessApprovalRequest();
         request.setRole(role);
         request.setSender(account);
@@ -293,6 +293,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                 u.getWorkQueue().getWorkRequestList().add(request);
             }
         }
+        
         employee.setRegStatus(request.getStatus());
 
 //        UserAccount userAccount = new UserAccount();
