@@ -232,7 +232,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
-        
+        System.out.println(role);
         organization.getUserAccountDirectory().createEmployeeAccount(userName, password, employee, role);
         
         popData();

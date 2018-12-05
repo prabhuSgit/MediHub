@@ -5,9 +5,12 @@
  */
 package userinterface.CustomerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.DoctorRole.RequestLabTestJPanel;
 
 /**
  *
@@ -20,10 +23,12 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount account;
-    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    EcoSystem system;
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
+        this.system=system;
         welcomeTxt.setText(account.getCustomer().getName());
     }
 
@@ -38,10 +43,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         welcomeTxt = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        doctorBookingBtn = new javax.swing.JButton();
+        myProfileBtn = new javax.swing.JButton();
+        apntmntHistoryBtn = new javax.swing.JButton();
+        vitalSignBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -50,34 +55,34 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         welcomeTxt.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         welcomeTxt.setForeground(new java.awt.Color(0, 204, 0));
 
-        jButton1.setText("Book Appointments");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        doctorBookingBtn.setText("Book Appointments");
+        doctorBookingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                doctorBookingBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\929372-200.png")); // NOI18N
-        jButton2.setText("My Profile");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        myProfileBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\929372-200.png")); // NOI18N
+        myProfileBtn.setText("My Profile");
+        myProfileBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        myProfileBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        myProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                myProfileBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Appontment History");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        apntmntHistoryBtn.setText("Appontment History");
+        apntmntHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                apntmntHistoryBtnActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\vitalsignbtn.jpg")); // NOI18N
-        jButton4.setText("Vital Signs");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        vitalSignBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\vitalsignbtn.jpg")); // NOI18N
+        vitalSignBtn.setText("Vital Signs");
+        vitalSignBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        vitalSignBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,8 +93,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(372, 372, 372)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(doctorBookingBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(apntmntHistoryBtn, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(284, 284, 284)
                         .addComponent(jLabel1)
@@ -100,9 +105,9 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(myProfileBtn)
                                 .addGap(226, 226, 226)
-                                .addComponent(jButton4)))))
+                                .addComponent(vitalSignBtn)))))
                 .addContainerGap(341, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,37 +120,40 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addComponent(doctorBookingBtn)
                 .addGap(7, 7, 7)
-                .addComponent(jButton3)
+                .addComponent(apntmntHistoryBtn)
                 .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vitalSignBtn)
+                    .addComponent(myProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void doctorBookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBookingBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("CustomerBookingDoctorJPanel", new CustomerBookingDoctorJPanel(userProcessContainer, system));
+        layout.next(userProcessContainer);    
+    }//GEN-LAST:event_doctorBookingBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void myProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_myProfileBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void apntmntHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apntmntHistoryBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_apntmntHistoryBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton apntmntHistoryBtn;
+    private javax.swing.JButton doctorBookingBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton myProfileBtn;
+    private javax.swing.JButton vitalSignBtn;
     private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
 }
