@@ -12,7 +12,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import javax.swing.JPanel;
-import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
+import userinterface.ProviderAdminRole.ProviderWorkAreaJPanel;
 import userinterface.CustomerRole.CustomerWorkAreaJPanel;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 
@@ -23,7 +23,9 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 public class CustomerRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
-        return new CustomerWorkAreaJPanel(userProcessContainer, account);
+
+        return new CustomerWorkAreaJPanel(userProcessContainer, account, business);
+
     }
 
 }

@@ -11,6 +11,10 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.Role.Role;
+import Business.Network.Network;
+import Business.Role.Role;
+import static Business.Role.Role.RoleType.*;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.Enterprise.Enterprise;
@@ -30,7 +34,9 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private JPanel container;
     private Enterprise enterprise;
     JPanel userProcessContainer;
-    EcoSystem system;
+
+    private EcoSystem system;
+
     private Role role;
 
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
@@ -46,7 +52,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Role.RoleType type : Role.RoleType.values()) {
             roleJComboBox.addItem(type);
         }
-
     }
 
     /**
@@ -104,7 +109,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 //        // TODO add your handling code here:
 //    }
 
-    
     private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
         // TODO add your handling code here:
         //Place your methods of calling the JPanels based on the slection from the Combo Box :)
@@ -114,12 +118,26 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        
+
         Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
-        
+
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
-            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
+            RegisterProviderJPanel provRegPnl = new RegisterProviderJPanel(userProcessContainer, system, roleType);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+        if (roleJComboBox.getSelectedItem().toString().equals("Lab Assistant")) {
+            RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", assist);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+        if (roleJComboBox.getSelectedItem().toString().equals("Doctor")) {
+            RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
+            userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
@@ -127,6 +145,13 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
             RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
             userProcessContainer.add("RegisterCustomerJPanel", regCust);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+        if (roleJComboBox.getSelectedItem().toString().equals("Medical School")) {
+            RegisterProviderJPanel provRegPnl = new RegisterProviderJPanel(userProcessContainer, system, roleType);
+            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

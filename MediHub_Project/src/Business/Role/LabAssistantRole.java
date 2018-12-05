@@ -22,6 +22,6 @@ public class LabAssistantRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
         return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
     }
-
-    
 }
+    
+

@@ -33,6 +33,8 @@ public abstract class Enterprise extends Organization {
     public enum EnterpriseType {
         HealthCareProvider("Health Care Provider"),
         MedicalSchool("Medical School");
+//        HealthCareProvider("Health Care Provider"),
+//        MedicalSchool("Medical School");
 
         private String value;
 

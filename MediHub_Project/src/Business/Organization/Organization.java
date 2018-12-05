@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
+    private Type type;   
     private String name;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
@@ -23,11 +24,21 @@ public abstract class Organization {
     private int organizationID;
     private static int counter = 0;
 
+    OrganizationDirectory directory;
+
+    public OrganizationDirectory getDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(OrganizationDirectory directory) {
+        this.directory = directory;
+    }
+
     public enum Type {
         SysAdmin("SysAdmin"),
         Admin("Admin"),
         Doctor("Doctor"),
-        Lab("Lab Assistant");
+        Lab("Lab");
         private String value;
 
         private Type(String value) {
@@ -40,7 +51,7 @@ public abstract class Organization {
     }
 
     public Organization(String name) {
-        
+
         this.name = name;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
@@ -77,6 +88,13 @@ public abstract class Organization {
 
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
+    }
+     public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override

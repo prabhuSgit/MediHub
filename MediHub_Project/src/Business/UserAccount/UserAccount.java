@@ -36,14 +36,6 @@ public class UserAccount {
         this.customer = customer;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
     public String getUsername() {
         return username;
     }
@@ -79,6 +71,15 @@ public class UserAccount {
     public WorkQueue getWorkQueue() {
         return workQueue;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 
     @Override
     public String toString() {
