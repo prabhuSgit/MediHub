@@ -73,8 +73,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = request.getSender();
             row[1] = request.getStatus();
-//            String result = ((AccessApprovalRequest) request).getTestResult();
-//            row[3] = result == null ? "Waiting" : result;
             
             model.addRow(row);
         }
