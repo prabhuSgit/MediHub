@@ -1,6 +1,6 @@
 
 
-package userinterface.AdministrativeRole;
+package userinterface.ProviderAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -16,14 +16,14 @@ import userinterface.SystemAdminWorkArea.OrgRegReqPanel;
  *
  * @author  raunak
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem ecosystem;
     UserAccount userAccount;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public ProviderWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -181,7 +181,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(BtnReview)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

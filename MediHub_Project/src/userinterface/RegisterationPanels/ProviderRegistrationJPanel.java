@@ -276,7 +276,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         String city = ProviderCityJTxtField.getText();
         String state = StateComboBox.getSelectedItem().toString();
 
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString(),null,null,null);
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString(),null,null);
         UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 
 //        String type = "Health Care Provider";

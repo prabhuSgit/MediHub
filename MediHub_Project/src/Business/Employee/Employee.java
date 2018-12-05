@@ -13,7 +13,7 @@ import Business.Network.Network;
 public class Employee {
     
     private String name;
-    private String Firstname;
+//    private String Firstname;
     private String Lastname;
     private String Department;
     private int id;
@@ -42,13 +42,13 @@ public class Employee {
         this.Department = Department;
     }
 
-    public String getFirstname() {
-        return Firstname;
-    }
-
-    public void setFirstname(String Firstname) {
-        this.Firstname = Firstname;
-    }
+//    public String getFirstname() {
+//        return Firstname;
+//    }
+//
+//    public void setFirstname(String Firstname) {
+//        this.Firstname = Firstname;
+//    }
 
     public String getLastname() {
         return Lastname;

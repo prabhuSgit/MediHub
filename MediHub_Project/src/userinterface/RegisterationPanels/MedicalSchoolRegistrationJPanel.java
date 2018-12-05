@@ -263,7 +263,7 @@ public class MedicalSchoolRegistrationJPanel extends javax.swing.JPanel {
         String city = ProviderCityJTxtField.getText();
         String state = StateComboBox.getSelectedItem().toString();
         String type = "Medical School";
-        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
+        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type, null, null);
         UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 
         AccessApprovalRequest request = new AccessApprovalRequest();

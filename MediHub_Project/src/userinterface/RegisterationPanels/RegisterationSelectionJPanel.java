@@ -109,7 +109,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 //        // TODO add your handling code here:
 //    }
 
-    
     private void registerationSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerationSelectionComboBoxActionPerformed
         // TODO add your handling code here:
         //Place your methods of calling the JPanels based on the slection from the Combo Box :)
@@ -121,21 +120,19 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
-        
+
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
             ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        }
-        else if (roleJComboBox.getSelectedItem().equals(LabAssistant)){
-        RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
+        } else if (roleJComboBox.getSelectedItem().equals(LabAssistant)) {
+            RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", assist);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        }
-        else if (roleJComboBox.getSelectedItem().equals(Doctor)){
-        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
+        } else if (roleJComboBox.getSelectedItem().equals(Doctor)) {
+            RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
             userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -155,9 +152,13 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         }
         System.out.println("on click of next button");
-for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
-                System.out.println(user);
-            }
+        for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+            System.out.println(user);
+        }
+        System.out.println("List of enterprise in network");
+        for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+            System.out.println(user);
+        }
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

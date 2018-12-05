@@ -22,14 +22,13 @@ public class EmployeeDirectory {
         return employeeList;
     }
     
-    public Employee createEmployee(String name, String address, String city, String state, String type,String fname,String lname, String Department){
+    public Employee createEmployee(String name, String address, String city, String state, String type,String lname, String Department){
         Employee employee = new Employee();
         employee.setName(name);
         employee.setAddress(address);
         employee.setEnterpriseCity(city);
         employee.setEnterpriseState(state);
         employee.setType(type);
-        employee.setFirstname(fname);
         employee.setLastname(lname);
         employee.setDepartment(Department);
         employeeList.add(employee);

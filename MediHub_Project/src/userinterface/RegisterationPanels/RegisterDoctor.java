@@ -50,7 +50,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         this.system = system;
         this.role = role;
         populateNetworkComboBox();
-        
+
     }
 
     private void populateNetworkComboBox() {
@@ -60,15 +60,15 @@ public class RegisterDoctor extends javax.swing.JPanel {
             networkJComboBox.addItem(network);
         }
     }
-      private void populateEnterpriseComboBox(Network n) {
+
+    private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
         for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
-            if(enter.equals(enter)) 
-            enterpriseTypeJComboBox.addItem(enter);
+            if (enter.equals(enter)) {
+                enterpriseTypeJComboBox.addItem(enter);
+            }
         }
-      }
-        
-
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -248,36 +248,39 @@ public class RegisterDoctor extends javax.swing.JPanel {
             System.out.println("Doctor Registration: hi");
 
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-              System.out.println("entp:  " + ent);
+            System.out.println("entp:  " + ent);
+            for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
+                if (o != null && o.getType().equals(Doctor)) {
+                    Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
+                    System.out.println("Organization created:  " + directory);
+                    Employee empDoctor = directory.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, null, null, textFieldLname.getText(), textFieldept.getText());
+                    UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
 
-            Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
-              System.out.println("Organization created:  " +directory);
+                    AccessApprovalRequest request = new AccessApprovalRequest();
+                    request.setRole(role);
+                    System.out.println("Role:  " + request.getRole());
+                    request.setSender(account);
+                    request.setStatus("Pending");
 
-            Employee empDoctor = directory.getEmployeeDirectory().createEmployee(null, null, null, null, null, txtFiledFname.getText(), textFieldLname.getText(), textFieldept.getText());
-
-            for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
-                System.out.println(emp.getLastname());
-                System.out.println("Employee created  " +emp);
-            }
-            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-              System.out.println("User created  " + account);
-              
-            for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
-                System.out.println(user);
-            }
-
-            AccessApprovalRequest request = new AccessApprovalRequest();
-            request.setRole(role);
-            System.out.println(request.getRole());
-            request.setSender(account);
-            request.setStatus("Pending");
-
-            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-                if (u.getUsername().equals(ent)) {
-                    u.getWorkQueue().getWorkRequestList().add(request);
                 }
             }
-            empDoctor.setRegStatus(request.getStatus());
+
+//            System.out.println("Employee " + empDoctor.getFirstname());
+//            System.out.println("User created  " + account);
+//            for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
+//                System.out.println(emp.getLastname());
+//                System.out.println("Employee created  " + emp.getFirstname());
+//            }
+//            for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+//                System.out.println(user);
+//            }
+            //Work Request
+//            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+//                if (u.getUsername().equals(ent)) {
+//                    u.getWorkQueue().getWorkRequestList().add(request);
+//                }
+//            }
+//            empDoctor.setRegStatus(request.getStatus());
 
 //           
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
@@ -372,7 +375,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
         checkForButtonVisibility();
     }
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;

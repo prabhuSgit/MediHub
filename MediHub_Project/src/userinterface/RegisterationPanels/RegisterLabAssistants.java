@@ -42,12 +42,12 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private Role role;
-    
+
     public RegisterLabAssistants(JPanel userProcessContainer, EcoSystem system, Role role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.role=role;
+        this.role = role;
         populateComboBoxProvider();
         populateComboBoxNetwork();
     }
@@ -55,8 +55,8 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     private void populateComboBoxProvider() {
 
         enterpriseTypeJComboBox.removeAllItems();
-        for (Enterprise.EnterpriseType enterprise : Enterprise.EnterpriseType.values()) {
-            enterpriseTypeJComboBox.addItem(enterprise.toString());
+        for (Enterprise.EnterpriseType enter : Enterprise.EnterpriseType.values()) {
+            enterpriseTypeJComboBox.addItem(enter);
         }
 
     }
@@ -69,6 +69,15 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             networkJComboBox.addItem(network);
         }
 
+    }
+
+    public void populateComboBoxEnterpriseList(Enterprise entrp) {
+        ComboBoxENTPList.removeAllItems();
+        if (enterpriseTypeJComboBox.getSelectedItem().equals(enterprise.getEnterpriseType().HealthCareProvider)) {
+            for (Employee employee : entrp.getEmployeeDirectory().getEmployeeList()) {
+                ComboBoxENTPList.addItem(employee.toString());
+            }
+        }
     }
 
     /**
@@ -101,6 +110,8 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
         btnregister = new javax.swing.JButton();
+        ComboBoxENTPList = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -111,22 +122,10 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         jLabel2.setText("*First Name:");
         add(jLabel2);
         jLabel2.setBounds(20, 100, 90, 20);
-
-        txtFiledFname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFiledFnameActionPerformed(evt);
-            }
-        });
         add(txtFiledFname);
         txtFiledFname.setBounds(100, 100, 200, 30);
         add(textFieldLname);
         textFieldLname.setBounds(410, 100, 200, 30);
-
-        textFieldept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldeptActionPerformed(evt);
-            }
-        });
         add(textFieldept);
         textFieldept.setBounds(100, 150, 200, 30);
         add(txtFieldSSN);
@@ -159,12 +158,6 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         jLabel8.setText("Create:");
         add(jLabel8);
         jLabel8.setBounds(370, 150, 150, 40);
-
-        userNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTxtActionPerformed(evt);
-            }
-        });
         add(userNameTxt);
         userNameTxt.setBounds(460, 190, 140, 30);
         add(pwsTxt);
@@ -182,7 +175,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         add(jLabel6);
         jLabel6.setBounds(20, 240, 90, 20);
 
-        jLabel7.setText("Select Provider:");
+        jLabel7.setText("Select Enterprise:");
         add(jLabel7);
         jLabel7.setBounds(20, 280, 90, 20);
 
@@ -191,8 +184,13 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         networkJComboBox.setBounds(150, 240, 150, 30);
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseTypeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseTypeJComboBoxActionPerformed(evt);
+            }
+        });
         add(enterpriseTypeJComboBox);
-        enterpriseTypeJComboBox.setBounds(150, 280, 150, 20);
+        enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
 
         btnregister.setText("register");
         btnregister.addActionListener(new java.awt.event.ActionListener() {
@@ -202,25 +200,20 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         });
         add(btnregister);
         btnregister.setBounds(460, 340, 69, 23);
+
+        ComboBoxENTPList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(ComboBoxENTPList);
+        ComboBoxENTPList.setBounds(150, 320, 150, 30);
+
+        jLabel11.setText("Select from list:");
+        add(jLabel11);
+        jLabel11.setBounds(20, 320, 130, 30);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtFiledFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledFnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFiledFnameActionPerformed
-
-    private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldeptActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTxtActionPerformed
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         // TODO add your handling code here:
@@ -239,7 +232,7 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
     private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
         // TODO add your handling code here:
-      if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty()
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty()
                 && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
@@ -247,36 +240,36 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
 
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             System.out.println("entp:  " + ent);
-             
-            if(ent.equals(ent.getEnterpriseType().MedicalSchool)){
-            Organization directory = ent.getOrganizationDirectory().createOrganization(Lab);
-            System.out.println(directory);
 
-            Employee empDoctor = directory.getEmployeeDirectory().createEmployee(null, null, null, null, null, txtFiledFname.getText(), textFieldLname.getText(), textFieldept.getText());
+            if (ent.equals(enterprise.getEnterpriseType().MedicalSchool)) {
+                Organization directory = ent.getOrganizationDirectory().createOrganization(Lab);
+                System.out.println(directory);
 
-            for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
-                System.out.println(emp.getLastname());
-                System.out.println("Employee created");
-            }
-            UserAccount account = directory.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-            System.out.println("User created  " +account);
-            for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
-                System.out.println(user);
-            }
-            
-            
-            AccessApprovalRequest request = new AccessApprovalRequest();
-            request.setRole(role);
-            System.out.println(request.getRole());
-            request.setSender(account);
-            request.setStatus("Pending");
-            
-            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-                if (u.getUsername().equals(ent.getEnterpriseType().MedicalSchool)) {
-                    u.getWorkQueue().getWorkRequestList().add(request);
+                Employee empDoctor = directory.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, null, null, textFieldLname.getText(), textFieldept.getText());
+//                System.out.println("Employee " + empDoctor.getFirstname());
+                for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
+                    System.out.println(emp.getLastname());
+                    System.out.println("Employee created");
                 }
-            }
-            empDoctor.setRegStatus(request.getStatus());
+                UserAccount account = directory.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+                System.out.println("User created  " + account);
+                for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println(user);
+                }
+
+                //Work Request
+                AccessApprovalRequest request = new AccessApprovalRequest();
+                request.setRole(role);
+                System.out.println(request.getRole());
+                request.setSender(account);
+                request.setStatus("Pending");
+
+                for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().equals(ent)) {
+                        u.getWorkQueue().getWorkRequestList().add(request);
+                    }
+                }
+                empDoctor.setRegStatus(request.getStatus());
             }
 //           
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
@@ -288,13 +281,24 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnregisterActionPerformed
 
+    private void enterpriseTypeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseTypeJComboBoxActionPerformed
+        // TODO add your handling code here:
+        Enterprise enter = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+        if (enter != null) {
+            populateComboBoxEnterpriseList(enter);
+
+        }
+    }//GEN-LAST:event_enterpriseTypeJComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxENTPList;
     private javax.swing.JButton btnregister;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
