@@ -128,12 +128,12 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         } else if (roleJComboBox.getSelectedItem().equals(LabAssistant)) {
             RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
-            userProcessContainer.add("ProviderRegistrationJPanel", assist);
+            userProcessContainer.add("LabAssistantRegistrationJPanel", assist);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         } else if (roleJComboBox.getSelectedItem().equals(Doctor)) {
             RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
-            userProcessContainer.add("ProviderRegistrationJPanel", doctor);
+            userProcessContainer.add("DoctorRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
@@ -155,10 +155,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
             System.out.println(user);
         }
-        System.out.println("List of enterprise in network");
-        for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
-            System.out.println(user);
-        }
+        
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

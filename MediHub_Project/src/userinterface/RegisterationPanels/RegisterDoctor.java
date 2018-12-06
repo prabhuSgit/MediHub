@@ -64,7 +64,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
         for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
-            if (enter.equals(enter)) {
+            if (enter.getEnterpriseType().equals(enter.getEnterpriseType().HealthCareProvider)) {
                 enterpriseTypeJComboBox.addItem(enter);
             }
         }
@@ -249,24 +249,20 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             System.out.println("entp:  " + ent);
-            for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-                if (o != null && o.getType().equals(Doctor)) {
-                    Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
-                    System.out.println("Organization created:  " + directory);
-                    Employee empDoctor = directory.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, null, null, textFieldLname.getText(), textFieldept.getText());
-                    UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
 
-                    AccessApprovalRequest request = new AccessApprovalRequest();
-                    request.setRole(role);
-                    System.out.println("Role:  " + request.getRole());
-                    request.setSender(account);
-                    request.setStatus("Pending");
+            Organization directory = ent.getOrganizationDirectory().createOrganization(Doctor);
+            System.out.println("Organization created:  " + directory);
+            Employee empDoctor = directory.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, null, null, textFieldLname.getText(), textFieldept.getText());
+            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
 
-                }
-            }
-
-//            System.out.println("Employee " + empDoctor.getFirstname());
-//            System.out.println("User created  " + account);
+            AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(role);
+            System.out.println("Role:  " + request.getRole());
+            request.setSender(account);
+            request.setStatus("Pending");
+            
+            //System.out.println("Employee " + empDoctor.getFirstname());
+            //System.out.println("User created  " + account);
 //            for (Employee emp : directory.getEmployeeDirectory().getEmployeeList()) {
 //                System.out.println(emp.getLastname());
 //                System.out.println("Employee created  " + emp.getFirstname());
@@ -274,15 +270,14 @@ public class RegisterDoctor extends javax.swing.JPanel {
 //            for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
 //                System.out.println(user);
 //            }
-            //Work Request
-//            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-//                if (u.getUsername().equals(ent)) {
-//                    u.getWorkQueue().getWorkRequestList().add(request);
-//                }
-//            }
-//            empDoctor.setRegStatus(request.getStatus());
 
-//           
+
+//            Work Request
+            for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+                    u.getWorkQueue().getWorkRequestList().add(request);
+            }
+//            empDoctor.setRegStatus(request.getStatus());
+         
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
             userProcessContainer.add("Original Panel", origin);
