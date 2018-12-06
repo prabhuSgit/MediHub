@@ -11,22 +11,15 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import userinterface.ProviderAdminRole.ProviderWorkAreaJPanel;
 import javax.swing.JPanel;
-import userinterface.MedicalSchoolAdminRole.MedicalSchoolWorkAreaJPanel;
 
 /**
  *
  * @author raunak
  */
 public class AdminRole extends Role{
-    
-    @Override
-   
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
-       if (account.equals(enterprise.getEnterpriseType().HealthCareProvider)){ 
-           return new ProviderWorkAreaJPanel(userProcessContainer, enterprise);
-       }
-       else if(account.equals(enterprise.getEnterpriseType().MedicalSchool)){
-            return new MedicalSchoolWorkAreaJPanel(userProcessContainer, enterprise);
-       }
-    
 
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
+        return new ProviderWorkAreaJPanel(userProcessContainer, enterprise);
+    }
+}
