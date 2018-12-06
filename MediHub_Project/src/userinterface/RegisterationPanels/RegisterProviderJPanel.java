@@ -44,22 +44,27 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     private Role role;
-
-    public RegisterProviderJPanel(JPanel userProcessContainer, EcoSystem system, Role.RoleType roleType) {
+    private String roleSelect;
+    public RegisterProviderJPanel(JPanel userProcessContainer, EcoSystem system, Role role, String roleSelect) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.role = role;
+        this.roleSelect=roleSelect;
         StateComboBox.removeAllItems();
         OrgTypCombobox.removeAllItems();
         for (Network n : system.getNetworkList()) {
             StateComboBox.addItem(n);
         }
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            
-            if (type.toString().equals(roleType.toString())) {
-                OrgTypCombobox.addItem(type);
-//                OrgTypeTxt.setText(String.valueOf(type));
+//            if (type.toString().equals(role.toString())) {
+//                OrgTypCombobox.addItem(type);
+////                OrgTypeTxt.setText(String.valueOf(type));
+//            }
+            if(roleSelect.equals("Health Care Provider")){
+                OrgTypCombobox.addItem(type.HealthCareProvider);
+            }else{
+                OrgTypCombobox.addItem(type.MedicalSchool);
             }
         }
 
@@ -296,7 +301,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
 //        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
 //        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
         AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(role);
+        request.setRole(roleSelect);
         request.setSender(account);
         request.setStatus("Pending");
 

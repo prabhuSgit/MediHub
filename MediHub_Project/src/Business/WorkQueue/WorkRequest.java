@@ -20,17 +20,17 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    private Role role;
+    private String role;
     
     public WorkRequest(){
         requestDate = new Date();
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -80,5 +80,10 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    
+    @Override
+    public String toString(){
+        return sender.toString();
     }
 }

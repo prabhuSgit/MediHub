@@ -209,12 +209,12 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             OrganizationDirectory directory = ent.getOrganizationDirectory();
             Organization.Type type = Organization.Type.Lab;
-            Organization org = directory.createOrganization(type);
+//            Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
-            System.out.println("Employee created");
-            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
-            System.out.println("User created");
+//            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
+//            System.out.println("Employee created");
+//            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+//            System.out.println("User created");
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);

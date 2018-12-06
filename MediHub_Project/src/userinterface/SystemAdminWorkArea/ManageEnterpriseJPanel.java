@@ -7,6 +7,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -41,7 +42,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 Object[] row = new Object[3];
-                row[0] = enterprise.getName();
+                row[0] = enterprise;
                 row[1] = network.getName();
                 row[2] = enterprise.getEnterpriseType().getValue();
 
@@ -83,6 +84,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
         submitJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,6 +131,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,8 +155,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(enterpriseTypeJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(39, 39, 39)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -155,15 +163,18 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                         .addGap(61, 61, 61)
                         .addComponent(backJButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitJButton)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(submitJButton))
+                    .addComponent(deleteBtn))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteBtn)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,8 +223,23 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int row = enterpriseJTable.getSelectedRow();
+        if(row<0) {
+             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Enterprise e = (Enterprise)enterpriseJTable.getValueAt(row, 0);
+        for(Network n : system.getNetworkList()){
+            n.getEnterpriseDirectory().getEnterpriseList().remove(e);
+        }
+        populateTable();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JTable enterpriseJTable;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JLabel jLabel1;

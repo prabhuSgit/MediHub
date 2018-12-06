@@ -33,8 +33,6 @@ public abstract class Enterprise extends Organization {
     public enum EnterpriseType {
         HealthCareProvider("Health Care Provider"),
         MedicalSchool("Medical School");
-//        HealthCareProvider("Health Care Provider"),
-//        MedicalSchool("Medical School");
 
         private String value;
 
@@ -103,4 +101,9 @@ public abstract class Enterprise extends Organization {
     public void setEnterpriseZipCode(String enterpriseZipCode) {
         this.enterpriseZipCode = enterpriseZipCode;
     }
+//    
+//    @Override
+//    public String toString() {
+//        return enterpriseName;
+//    }
 }

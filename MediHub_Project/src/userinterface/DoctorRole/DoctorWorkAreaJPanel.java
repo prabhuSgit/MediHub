@@ -70,8 +70,69 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        workRequestJTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Apnt. ID", "Date", "Customer Name", "Slot", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        requestTestJButton.setText("Request Test");
+        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestTestJButtonActionPerformed(evt);
+            }
+        });
+
+        refreshTestJButton.setText("Refresh");
+        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshTestJButtonActionPerformed(evt);
+            }
+        });
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("EnterPrise :");
+
+        valueLabel.setText("<value>");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Doctor Work Area");
+
+        workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -97,69 +158,60 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(workRequestJTable1);
+        if (workRequestJTable1.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable1.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable1.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable1.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
-            }
-        });
-
-        refreshTestJButton.setText("Refresh");
-        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTestJButtonActionPerformed(evt);
-            }
-        });
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-
-        valueLabel.setText("<value>");
+        jButton1.setText("Add");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+                .addGap(183, 183, 183)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(165, 165, 165))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(requestTestJButton)
-                        .addGap(86, 86, 86))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshTestJButton)
-                .addGap(103, 103, 103))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(refreshTestJButton)
+                        .addComponent(requestTestJButton)))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(77, 77, 77)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(refreshTestJButton)
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addComponent(refreshTestJButton)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(requestTestJButton)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,10 +231,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
+    private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 }

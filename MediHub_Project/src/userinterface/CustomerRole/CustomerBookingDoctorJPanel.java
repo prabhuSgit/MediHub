@@ -34,6 +34,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         populateNetwrokComboBox();
+        for (Network n : system.getNetworkList()) {
+            for(Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+                System.out.println(e.getName());
+            }
+        }
     }
 
     public void populateNetwrokComboBox() {
@@ -64,9 +69,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         doctorTbl = new javax.swing.JTable();
         bookBtn = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Schedule:");
-        jLabel4.setEnabled(false);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 233, 99, -1));
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backBtn.setText("<Back");
@@ -75,9 +82,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 498, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search Doctor");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 91, -1, -1));
 
         searchBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         searchBtn.setText("Search");
@@ -86,16 +95,19 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
                 searchBtnActionPerformed(evt);
             }
         });
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 274, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Network:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 194, 99, -1));
 
         scheduleDropDown.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         scheduleDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Select Schedule>", "Morning", "Afternoon", "Evening" }));
-        scheduleDropDown.setEnabled(false);
+        add(scheduleDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enterprise:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 194, 83, -1));
 
         networkComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         networkComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +115,10 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
                 networkComboBoxActionPerformed(evt);
             }
         });
+        add(networkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 191, 143, -1));
 
         enterpriseComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        add(enterpriseComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 191, 148, -1));
 
         doctorTbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         doctorTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -131,6 +145,8 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             doctorTbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 320, 604, 142));
+
         bookBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bookBtn.setText("Next>>");
         bookBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -138,67 +154,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
                 bookBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchBtn)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane1)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookBtn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(scheduleDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(networkComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGap(102, 102, 102)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(enterpriseComboBox, 0, 147, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(431, 431, 431)
-                        .addComponent(jLabel1)))
-                .addContainerGap(240, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jLabel1)
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(scheduleDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(searchBtn)
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookBtn)
-                    .addComponent(backBtn))
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
+        add(bookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 498, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -211,13 +167,13 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         populate();
-         Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
+        Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()){
+            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                 System.out.println(acc.getRole());
             }
         }
-        
+
     }//GEN-LAST:event_searchBtnActionPerformed
 
     public void populate() {
@@ -227,8 +183,19 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
         Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-                if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
+//            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+//                if (acc.getRole().toString().equals("Doctor")) {
+//                    Object[] row = new Object[dtm.getColumnCount()];
+//                    row[0] = acc;
+//                    row[1] = networkComboBox.getSelectedItem();
+//                    row[2] = acc.getPassword();
+//                    row[3] = acc.getUsername();
+//                    row[4] = acc.getStatus();
+//                    dtm.addRow(row);
+//                }
+//            }
+            if (o.getType().equals(Organization.Type.Doctor)) {
+                for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[dtm.getColumnCount()];
                     row[0] = acc;
                     row[1] = networkComboBox.getSelectedItem();
@@ -260,7 +227,10 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         enterpriseComboBox.removeAllItems();
         Network n = (Network) networkComboBox.getSelectedItem();
-        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//            enterpriseComboBox.addItem(e);
+//        }
+        for(Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
             enterpriseComboBox.addItem(e);
         }
     }//GEN-LAST:event_networkComboBoxActionPerformed
