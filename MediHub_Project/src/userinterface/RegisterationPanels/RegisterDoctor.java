@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Organization.Organization.Type;
+import Business.Role.LabAssistantRole;
 
 /**
  *
@@ -55,12 +56,12 @@ public class RegisterDoctor extends javax.swing.JPanel {
         this.role = role;
         this.roleSelect = roleSelect;
         populateNetworkComboBox();
-        if(roleSelect.equals(Role.RoleType.Doctor)){
+        if (roleSelect.equals(Role.RoleType.Doctor)) {
             msgTxt.setText("Doctor");
-        }else{
+        } else {
             msgTxt.setText("Lab Assistant");
         }
-        
+
     }
 
     private void populateNetworkComboBox() {
@@ -266,28 +267,55 @@ public class RegisterDoctor extends javax.swing.JPanel {
         } else {
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             OrganizationDirectory directory = ent.getOrganizationDirectory();
-            Organization.Type type = Organization.Type.Doctor;
-            Organization org = directory.createOrganization(type);
 
-            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
-            UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            if (roleSelect.equals(Role.RoleType.Doctor)) {
 
-            for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
-                System.out.println(entAccount);
+                Organization.Type type = Organization.Type.Doctor;
+                Organization org = directory.createOrganization(type);
 
-            }
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
+                UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
 
-            AccessApprovalRequest request = new AccessApprovalRequest();
-            request.setRole(roleSelect.toString());
-            request.setSender(ua);
-            request.setStatus("Pending");
-            for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
-//                if (u.getUsername().equals("sysadmin")) {
-//                    u.getWorkQueue().getWorkRequestList().add(request);
-//                }
-                if (u.getUsername().equalsIgnoreCase(ent.getName())) {
-                    System.out.println(u.getUsername() + " " + u.getRole());
-                    u.getWorkQueue().getWorkRequestList().add(request);
+                for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println(entAccount);
+
+                }
+
+                AccessApprovalRequest request = new AccessApprovalRequest();
+                request.setRole(roleSelect.toString());
+                request.setSender(ua);
+                request.setStatus("Pending");
+                for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().equalsIgnoreCase(ent.getName())) {
+                        System.out.println(u.getUsername() + " " + u.getRole());
+                        u.getWorkQueue().getWorkRequestList().add(request);
+                    }
+
+                }
+
+            } else {
+
+                Organization.Type type = Organization.Type.Lab;
+                Organization org = directory.createOrganization(type);
+
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
+                UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new LabAssistantRole());
+
+                for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println(entAccount);
+
+                }
+
+                AccessApprovalRequest request = new AccessApprovalRequest();
+                request.setRole(roleSelect.toString());
+                request.setSender(ua);
+                request.setStatus("Pending");
+                for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().equalsIgnoreCase(ent.getName())) {
+                        System.out.println(u.getUsername() + " " + u.getRole());
+                        u.getWorkQueue().getWorkRequestList().add(request);
+                    }
+
                 }
 
             }
