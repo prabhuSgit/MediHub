@@ -405,7 +405,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         WorkRequest request = (WorkRequest)accessRequestTbl.getValueAt(row, 0);
         UserAccount us = request.getSender();
 //        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
-        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer,ecosystem,us);
+        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer,ecosystem,us, userAccount);
         userProcessContainer.add("ViewFlightsPanel", reviewRegistrationJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

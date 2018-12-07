@@ -4,6 +4,7 @@
  */
 package userinterface.DoctorRole;
 
+import Business.AppoontmentQueue.AppointmentRequest;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
@@ -36,6 +37,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         valueLabel.setText(enterprise.getName());
         populateRequestTable();
+        
+        populateAppointmentTable();
     }
     
     public void populateRequestTable(){
@@ -53,6 +56,22 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    
+    public void populateAppointmentTable(){
+        DefaultTableModel model = (DefaultTableModel) appointmentTbl.getModel();
+        
+        model.setRowCount(0);
+        for (AppointmentRequest apointRqst : userAccount.getAppointmentQueue().getAppointmentList()){
+            Object[] row = new Object[4];
+            row[0] = apointRqst.getAppointmentID();
+            row[1] = apointRqst.getDate();
+            row[2] = apointRqst.getCustomer();
+            row[3] = apointRqst.getSlot();
+            row[4] = apointRqst.getStatus();
+            
+            model.addRow(row);
+        }
+    }
 
     
     /**
@@ -65,17 +84,17 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
+        appointmentTbl = new javax.swing.JTable();
         requestTestJButton = new javax.swing.JButton();
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        workRequestJTable1 = new javax.swing.JTable();
+        workRequestJTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        appointmentTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -101,13 +120,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(appointmentTbl);
+        if (appointmentTbl.getColumnModel().getColumnCount() > 0) {
+            appointmentTbl.getColumnModel().getColumn(0).setResizable(false);
+            appointmentTbl.getColumnModel().getColumn(1).setResizable(false);
+            appointmentTbl.getColumnModel().getColumn(2).setResizable(false);
+            appointmentTbl.getColumnModel().getColumn(3).setResizable(false);
+            appointmentTbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
         requestTestJButton.setText("Request Test");
@@ -132,7 +151,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Doctor Work Area");
 
-        workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
+        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -158,12 +177,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(workRequestJTable1);
-        if (workRequestJTable1.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable1.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable1.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable1.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jButton1.setText("Add");
@@ -230,6 +249,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable appointmentTbl;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -239,6 +259,5 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
-    private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@ import java.util.Date;
 public class AppointmentRequest {
     private static int appointmentID;
     private Date date;
-    private Customer customer;
+    private UserAccount customer;
     private UserAccount doctor;
     private String status;
     private String slot;
@@ -44,11 +44,11 @@ public class AppointmentRequest {
         this.date = date;
     }
 
-    public Customer getCustomer() {
+    public UserAccount getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(UserAccount customer) {
         this.customer = customer;
     }
 
@@ -82,6 +82,11 @@ public class AppointmentRequest {
 
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
+    }
+    
+    @Override
+    public String toString(){
+        return doctor.toString();
     }
     
 }

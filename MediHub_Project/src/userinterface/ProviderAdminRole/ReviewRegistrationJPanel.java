@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.ProviderAdminRole;
 
+import userinterface.SystemAdminWorkArea.*;
 import userinterface.RegisterationPanels.*;
 import Business.Customer.Customer;
 import Business.EcoSystem;
@@ -265,15 +266,15 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
 
 //        if (component.getName().equals("doctor")) {
-//            ProviderWorkAreaJPanel providerWorkAreJPanel = (ProviderWorkAreaJPanel) component;
-//            providerWorkAreJPanel.populateAccessRequestTbl();
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.previous(userProcessContainer);
-//        } else {
-            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
-            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+            ProviderWorkAreaJPanel providerWorkAreJPanel = (ProviderWorkAreaJPanel) component;
+            providerWorkAreJPanel.populateAccessRequestTbl();
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.previous(userProcessContainer);
+////        } else {
+//            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
+//            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.previous(userProcessContainer);
 //        }
     }//GEN-LAST:event_BtnBackActionPerformed
 

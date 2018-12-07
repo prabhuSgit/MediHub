@@ -21,6 +21,7 @@ public class Customer {
     private static int custId;
     private int id;
     private ArrayList<VitalSigns> customerVitalSigns;
+    private ArrayList<CustomerBooking> customerBookHistrory;
     
     public Customer() {
         id = custId;
@@ -81,6 +82,14 @@ public class Customer {
 
     public void setCustomerVitalSigns(ArrayList<VitalSigns> customerVitalSigns) {
         this.customerVitalSigns = customerVitalSigns;
+    }
+
+    public ArrayList<CustomerBooking> getCustomerBookHistrory() {
+        return customerBookHistrory;
+    }
+
+    public void setCustomerBookHistrory(ArrayList<CustomerBooking> customerBookHistrory) {
+        this.customerBookHistrory = customerBookHistrory;
     }
 
     

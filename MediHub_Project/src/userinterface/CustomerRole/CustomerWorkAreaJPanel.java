@@ -186,7 +186,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void doctorBookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBookingBtnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("CustomerBookingDoctorJPanel", new CustomerBookingDoctorJPanel(userProcessContainer, system));
+        userProcessContainer.add("CustomerBookingDoctorJPanel", new CustomerBookingDoctorJPanel(userProcessContainer, system, account));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_doctorBookingBtnActionPerformed
 

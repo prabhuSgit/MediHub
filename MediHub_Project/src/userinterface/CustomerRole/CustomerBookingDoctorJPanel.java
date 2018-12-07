@@ -5,6 +5,7 @@
  */
 package userinterface.CustomerRole;
 
+import Business.AppoontmentQueue.AppointmentRequest;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
@@ -13,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,13 +30,15 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     private DefaultTableModel dtm;
+    private UserAccount account;
 
-    public CustomerBookingDoctorJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public CustomerBookingDoctorJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.account = account;
         populateNetwrokComboBox();
-        
+
     }
 
     public void populateNetwrokComboBox() {
@@ -144,13 +148,13 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 320, 604, 142));
 
         bookBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        bookBtn.setText("Next>>");
+        bookBtn.setText("Book");
         bookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookBtnActionPerformed(evt);
             }
         });
-        add(bookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 498, -1, -1));
+        add(bookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 498, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -180,55 +184,53 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-//                if(acc.getRole()==null){
-//                    o.getUserAccountDirectory().getUserAccountList().remove(acc);
-//                }
-                if (acc.getRole().equals("Business.Role.DoctorRole")) {
+                if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
                     Object[] row = new Object[dtm.getColumnCount()];
                     row[0] = acc;
-                    row[1] = networkComboBox.getSelectedItem();
-                    row[2] = acc.getUsername();
-                    row[3] = acc.getStatus();
+                    row[1] = enterpriseComboBox.getSelectedItem();
+                    row[2] = acc.getRole();
+                    row[3] = acc.getUsername();
                     dtm.addRow(row);
                 }
             }
-//            if (o.getType().equals(Organization.Type.Doctor)) {
-//                for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-//                    Object[] row = new Object[dtm.getColumnCount()];
-//                    row[0] = acc;
-//                    row[1] = networkComboBox.getSelectedItem();
-//                    row[2] = acc.getPassword();
-//                    row[3] = acc.getUsername();
-//                    row[4] = acc.getStatus();
-//                    dtm.addRow(row);
-//                }
-//            }
         }
     }
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
         int selectRow = doctorTbl.getSelectedRow();
-//        if (selectRow < 0) {
-//            JOptionPane.showMessageDialog(null, "Please select a Flight");
-//        } else {
-//            Airline airline = (Airline) doctorTbl.getValueAt(selectRow, 0);
-//            Flight flight = (Flight) doctorTbl.getValueAt(selectRow, 1);
-//            FlightBookJPanel bookFlight = new FlightBookJPanel(rightJPanel, airline, flight);
-//            rightJPanel.add("FlightBookJPanel", bookFlight);
-//            CardLayout layout = (CardLayout) rightJPanel.getLayout();
-//            layout.next(rightJPanel);
-//        }
+        if (selectRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a Slot for a Doctor");
+        } else {
+            UserAccount docUser = (UserAccount) doctorTbl.getValueAt(selectRow, 0);
+            System.out.println(docUser.getUsername());
+            AppointmentRequest appointment = new AppointmentRequest();
+            appointment.setDate(null);
+            appointment.setCustomer(account);
+            appointment.setDoctor(docUser);
+            appointment.setEnterprise((Enterprise) enterpriseComboBox.getSelectedItem());
+            appointment.setStatus("Pending");
+
+            Enterprise ent = (Enterprise) enterpriseComboBox.getSelectedItem();
+            for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+                    if (acc.equals(docUser)) {
+                        System.out.println("Inside if");
+                        acc.getAppointmentQueue().getAppointmentList().add(appointment);
+                    }
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "Appointment Booked!");
+
+        }
     }//GEN-LAST:event_bookBtnActionPerformed
 
     private void networkComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkComboBoxActionPerformed
         // TODO add your handling code here:
         enterpriseComboBox.removeAllItems();
         Network n = (Network) networkComboBox.getSelectedItem();
-//        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-//            enterpriseComboBox.addItem(e);
-//        }
-        for(Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+        for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
             enterpriseComboBox.addItem(e);
         }
     }//GEN-LAST:event_networkComboBoxActionPerformed

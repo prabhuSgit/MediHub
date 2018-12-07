@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.Organization.Organization.Type;
 
 /**
  *
@@ -54,10 +55,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
         this.role = role;
         this.roleSelect = roleSelect;
         populateNetworkComboBox();
-//        Ent org = (Organization)networkJComboBox.getSelectedItem();
-        
-//        populateRoleComboBox(org);
-
     }
 
     private void populateNetworkComboBox() {
@@ -75,27 +72,23 @@ public class RegisterDoctor extends javax.swing.JPanel {
         }
     }
 
-    private void populateRoleComboBox(Organization organization) {
-        roleJComboBox.removeAllItems();
-        if (roleSelect.equals("Doctor")) {
-            for (Role role : organization.getSupportedRole()) {
-                roleJComboBox.addItem(role);
-            }
-        }
-
-    }
-
     private void create(Enterprise ent, Organization org) {
         Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, networkJComboBox.getSelectedItem().toString(), ent.getEnterpriseType().toString());
-        UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, (Role)roleJComboBox.getSelectedItem());
-        System.out.println("Test");
+        UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, role);
+
         AccessApprovalRequest request = new AccessApprovalRequest();
         request.setRole(roleSelect.toString());
         request.setSender(ua);
         request.setStatus("Pending");
 
-        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-            if (u.getUsername().equals("sysadmin")) {
+//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+//            if (u.getUsername().equals("sysadmin")) {
+//                u.getWorkQueue().getWorkRequestList().add(request);
+//            }
+//
+//        }
+        for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+            if (u.getUsername().equalsIgnoreCase(ent.getName())) {
                 u.getWorkQueue().getWorkRequestList().add(request);
             }
 
@@ -119,6 +112,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         textFieldLname = new javax.swing.JTextField();
+        textFieldept = new javax.swing.JTextField();
         txtFieldSSN = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         registerBtn = new javax.swing.JButton();
@@ -134,42 +128,50 @@ public class RegisterDoctor extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         txtfieldRetype = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
-        userNameMsg2 = new javax.swing.JLabel();
         userNameMsg1 = new javax.swing.JLabel();
-        textFieldept = new javax.swing.JTextField();
-        roleJComboBox = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
+        userNameMsg2 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
         setMaximumSize(new java.awt.Dimension(602, 390));
-        setPreferredSize(new java.awt.Dimension(800, 400));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(550, 390));
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Doctor Registration");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 113, 244, 36));
-        add(txtFiledFname, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 200, 30));
+        add(jLabel1);
+        jLabel1.setBounds(200, 30, 244, 36);
+        add(txtFiledFname);
+        txtFiledFname.setBounds(100, 110, 200, 30);
 
         jLabel2.setText("First Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 105, 30));
+        add(jLabel2);
+        jLabel2.setBounds(20, 110, 90, 20);
 
         jLabel3.setText("Last Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 81, 30));
+        add(jLabel3);
+        jLabel3.setBounds(340, 110, 70, 20);
 
         jLabel4.setText("Department: ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 108, 30));
+        add(jLabel4);
+        jLabel4.setBounds(20, 150, 90, 20);
 
         jLabel5.setText("Employee Id");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 108, 30));
-        add(textFieldLname, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 207, 30));
-        add(txtFieldSSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 200, 30));
+        add(jLabel5);
+        jLabel5.setBounds(20, 190, 90, 20);
+        add(textFieldLname);
+        textFieldLname.setBounds(410, 110, 200, 30);
+        add(textFieldept);
+        textFieldept.setBounds(100, 150, 200, 30);
+        add(txtFieldSSN);
+        txtFieldSSN.setBounds(100, 190, 200, 30);
 
         jLabel6.setText("Region:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 108, -1));
+        add(jLabel6);
+        jLabel6.setBounds(20, 240, 90, 20);
 
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -177,32 +179,40 @@ public class RegisterDoctor extends javax.swing.JPanel {
                 registerBtnActionPerformed(evt);
             }
         });
-        add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, 101, -1));
+        add(registerBtn);
+        registerBtn.setBounds(380, 380, 140, 29);
 
         jLabel7.setText("Select Provider:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 121, -1));
+        add(jLabel7);
+        jLabel7.setBounds(20, 280, 90, 20);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 10, 180));
+        add(jSeparator1);
+        jSeparator1.setBounds(340, 160, 10, 150);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 51));
         jLabel8.setText("Create:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 257, 150, 30));
+        add(jLabel8);
+        jLabel8.setBounds(370, 150, 150, 40);
 
         userNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTxtActionPerformed(evt);
             }
         });
-        add(userNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 296, 140, 30));
-        add(pwsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 139, 30));
+        add(userNameTxt);
+        userNameTxt.setBounds(460, 190, 140, 30);
+        add(pwsTxt);
+        pwsTxt.setBounds(460, 260, 140, 30);
 
         jLabel9.setText("Password:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 89, 30));
+        add(jLabel9);
+        jLabel9.setBounds(370, 260, 80, 30);
 
         jLabel10.setText("User Name:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 296, 131, 30));
+        add(jLabel10);
+        jLabel10.setBounds(370, 190, 80, 30);
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -210,83 +220,66 @@ public class RegisterDoctor extends javax.swing.JPanel {
                 networkJComboBoxActionPerformed(evt);
             }
         });
-        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 134, 30));
+        add(networkJComboBox);
+        networkJComboBox.setBounds(150, 240, 150, 30);
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 134, 30));
+        add(enterpriseTypeJComboBox);
+        enterpriseTypeJComboBox.setBounds(150, 280, 150, 30);
 
         backBtn.setText("<< Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
-        add(txtfieldRetype, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, 139, -1));
+        add(backBtn);
+        backBtn.setBounds(270, 380, 93, 29);
+        add(txtfieldRetype);
+        txtfieldRetype.setBounds(460, 300, 140, 26);
 
-        jLabel11.setText("Re-type password:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
-        add(userNameMsg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 334, 139, 30));
-        add(userNameMsg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(869, 296, 139, 30));
-        add(textFieldept, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 200, -1));
-
-        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(roleJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, -1));
-
-        jLabel12.setText("Role:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 60, 30));
+        jLabel11.setText("Re-Type Pass:");
+        add(jLabel11);
+        jLabel11.setBounds(370, 300, 70, 20);
+        add(userNameMsg1);
+        userNameMsg1.setBounds(610, 190, 140, 20);
+        add(userNameMsg2);
+        userNameMsg2.setBounds(460, 230, 140, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty()
-                && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            if (ent.getOrganizationDirectory().getOrganizationList().isEmpty()) {
-                Organization org = ent.getOrganizationDirectory().createOrganization(roleSelect.toString());
-                create(ent, org);
-            } else {
-                for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-                    if (o.getType().Doctor == null) {
-                        Organization org = ent.getOrganizationDirectory().createOrganization(Doctor.toString());
-                        create(ent, org);
-                    } else {
-                        Organization org = ent.getOrganizationDirectory().createOrganization(o.getType().Lab.toString());
-                        create(ent, org);
-                    }
-                }
+            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            Organization.Type type = Organization.Type.Doctor;
+            Organization org = directory.createOrganization(type);
+
+            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
+            UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+
+            for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(entAccount);
+
             }
-//            for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-//                System.out.println("hi");
-//                if (o.getType().equals(Doctor)) {
-//                    System.out.println("hi");
-//                    if (roleSelect.equals("Doctor")) {
-//                        Organization org = ent.getOrganizationDirectory().createOrganization(roleSelect);
-//
-//                    } else {
-//                        Employee empDoctor = o.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, networkJComboBox.getSelectedItem().toString(), ent.getEnterpriseType().toString());
-//                        UserAccount ua = o.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, role);
-//                        System.out.println("Test");
-//                        AccessApprovalRequest request = new AccessApprovalRequest();
-//                        request.setRole(roleSelect);
-//                        request.setSender(ua);
-//                        request.setStatus("Pending");
-//
-//                        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-//                            if (u.getUsername().equals("sysadmin")) {
-//                                u.getWorkQueue().getWorkRequestList().add(request);
-//                            }
-//
-//                        }
-//                    }
+
+            AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(roleSelect.toString());
+            request.setSender(ua);
+            request.setStatus("Pending");
+            for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+//                if (u.getUsername().equals("sysadmin")) {
+//                    u.getWorkQueue().getWorkRequestList().add(request);
 //                }
-//
-//            }
-//            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+                if (u.getUsername().equalsIgnoreCase(ent.getName())) {
+                    System.out.println(u.getUsername() + " " + u.getRole());
+                    u.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            }
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("Original Panel", origin);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
 
         }
     }//GEN-LAST:event_registerBtnActionPerformed
@@ -382,7 +375,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -395,7 +387,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JPasswordField pwsTxt;
     private javax.swing.JButton registerBtn;
-    private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTextField textFieldLname;
     private javax.swing.JTextField textFieldept;
     private javax.swing.JTextField txtFieldSSN;
