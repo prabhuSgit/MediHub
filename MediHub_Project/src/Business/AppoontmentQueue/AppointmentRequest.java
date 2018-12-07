@@ -99,7 +99,7 @@ public class AppointmentRequest {
 
     @Override
     public String toString() {
-        return doctor.toString();
+        return Integer.toString(appointmentID);
     }
 
 }

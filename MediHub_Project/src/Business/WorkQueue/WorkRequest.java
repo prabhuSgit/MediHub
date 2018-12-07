@@ -17,6 +17,7 @@ public abstract class WorkRequest {
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount customer;
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -80,6 +81,14 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+
+    public UserAccount getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UserAccount customer) {
+        this.customer = customer;
     }
     
     @Override
