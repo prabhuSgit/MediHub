@@ -14,6 +14,9 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -61,7 +64,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         searchBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        scheduleDropDown = new javax.swing.JComboBox();
+        slotDropDown = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         networkComboBox = new javax.swing.JComboBox();
         enterpriseComboBox = new javax.swing.JComboBox();
@@ -101,9 +104,9 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         jLabel2.setText("Network:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 194, 99, -1));
 
-        scheduleDropDown.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        scheduleDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Select Schedule>", "Morning", "Afternoon", "Evening" }));
-        add(scheduleDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 230, -1, -1));
+        slotDropDown.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        slotDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Select Slot>", "Morning", "Afternoon", "Evening" }));
+        add(slotDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enterprise:");
@@ -202,12 +205,17 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         if (selectRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a Slot for a Doctor");
         } else {
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+
             UserAccount docUser = (UserAccount) doctorTbl.getValueAt(selectRow, 0);
             System.out.println(docUser.getUsername());
             AppointmentRequest appointment = new AppointmentRequest();
-            appointment.setDate(null);
+            appointment.setDate(date);
             appointment.setCustomer(account);
             appointment.setDoctor(docUser);
+            appointment.setSlot(slotDropDown.getSelectedItem().toString());
             appointment.setEnterprise((Enterprise) enterpriseComboBox.getSelectedItem());
             appointment.setStatus("Pending");
 
@@ -247,7 +255,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox networkComboBox;
-    private javax.swing.JComboBox scheduleDropDown;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JComboBox slotDropDown;
     // End of variables declaration//GEN-END:variables
 }

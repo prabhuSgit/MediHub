@@ -124,6 +124,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         if (roleJComboBox.getSelectedItem().equals(Role.RoleType.Doctor)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.LabAssistant)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)) {
+            
             Role.RoleType roleOrgType = (Role.RoleType) roleJComboBox.getSelectedItem();
 
             if (roleJComboBox.getSelectedItem().toString().equals("Doctor")) {

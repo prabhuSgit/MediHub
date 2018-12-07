@@ -16,26 +16,39 @@ import java.util.Date;
  * @author prabh
  */
 public class AppointmentRequest {
-    private static int appointmentID;
+
+    private int appointmentID;
+    private static int count = 1;
     private Date date;
     private UserAccount customer;
     private UserAccount doctor;
     private String status;
     private String slot;
     private Enterprise enterprise;
-    
-    public AppointmentRequest(){
-        appointmentID++;
+
+    public AppointmentRequest() {
+        appointmentID = count;
+        count++;
+        date = new Date();
     }
 
-    public static int getAppointmentID() {
+    public int getAppointmentID() {
         return appointmentID;
     }
 
-    public static void setAppointmentID(int appointmentID) {
-        AppointmentRequest.appointmentID = appointmentID;
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        AppointmentRequest.count = count;
+    }
+
+    
     public Date getDate() {
         return date;
     }
@@ -83,10 +96,10 @@ public class AppointmentRequest {
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return doctor.toString();
     }
-    
+
 }

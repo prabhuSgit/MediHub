@@ -15,12 +15,11 @@ public class AppointmentQueue {
     
     private ArrayList<AppointmentRequest> appointmentList;
 
+    public AppointmentQueue() {
+        appointmentList = new ArrayList();
+    }
+    
     public ArrayList<AppointmentRequest> getAppointmentList() {
         return appointmentList;
     }
-
-    public void setAppointmentList(ArrayList<AppointmentRequest> appointmentList) {
-        this.appointmentList = appointmentList;
-    }
-    
 }
