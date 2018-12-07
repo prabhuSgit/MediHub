@@ -45,15 +45,18 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private Organization organization;
     private UserAccount userAccount;
     private Role role;
-    private String roleSelect;
+    private Role.RoleType roleSelect;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role, String roleSelect) {
+    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role, Role.RoleType roleSelect) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.role = role;
         this.roleSelect = roleSelect;
         populateNetworkComboBox();
+//        Ent org = (Organization)networkJComboBox.getSelectedItem();
+        
+//        populateRoleComboBox(org);
 
     }
 
@@ -72,12 +75,22 @@ public class RegisterDoctor extends javax.swing.JPanel {
         }
     }
 
+    private void populateRoleComboBox(Organization organization) {
+        roleJComboBox.removeAllItems();
+        if (roleSelect.equals("Doctor")) {
+            for (Role role : organization.getSupportedRole()) {
+                roleJComboBox.addItem(role);
+            }
+        }
+
+    }
+
     private void create(Enterprise ent, Organization org) {
         Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, null, networkJComboBox.getSelectedItem().toString(), ent.getEnterpriseType().toString());
-        UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, role);
+        UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, (Role)roleJComboBox.getSelectedItem());
         System.out.println("Test");
         AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(roleSelect);
+        request.setRole(roleSelect.toString());
         request.setSender(ua);
         request.setStatus("Pending");
 
@@ -124,6 +137,8 @@ public class RegisterDoctor extends javax.swing.JPanel {
         userNameMsg2 = new javax.swing.JLabel();
         userNameMsg1 = new javax.swing.JLabel();
         textFieldept = new javax.swing.JTextField();
+        roleJComboBox = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -214,6 +229,12 @@ public class RegisterDoctor extends javax.swing.JPanel {
         add(userNameMsg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 334, 139, 30));
         add(userNameMsg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(869, 296, 139, 30));
         add(textFieldept, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 200, -1));
+
+        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(roleJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, -1));
+
+        jLabel12.setText("Role:");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 60, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
@@ -224,14 +245,14 @@ public class RegisterDoctor extends javax.swing.JPanel {
         } else {
             Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             if (ent.getOrganizationDirectory().getOrganizationList().isEmpty()) {
-                Organization org = ent.getOrganizationDirectory().createOrganization(roleSelect);
+                Organization org = ent.getOrganizationDirectory().createOrganization(roleSelect.toString());
                 create(ent, org);
             } else {
-                for(Organization o : ent.getOrganizationDirectory().getOrganizationList()){
-                    if(o.getType().Doctor==null){
+                for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
+                    if (o.getType().Doctor == null) {
                         Organization org = ent.getOrganizationDirectory().createOrganization(Doctor.toString());
                         create(ent, org);
-                    }else{
+                    } else {
                         Organization org = ent.getOrganizationDirectory().createOrganization(o.getType().Lab.toString());
                         create(ent, org);
                     }
@@ -361,6 +382,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -373,6 +395,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JPasswordField pwsTxt;
     private javax.swing.JButton registerBtn;
+    private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTextField textFieldLname;
     private javax.swing.JTextField textFieldept;
     private javax.swing.JTextField txtFieldSSN;

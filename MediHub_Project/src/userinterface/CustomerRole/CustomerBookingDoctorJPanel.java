@@ -34,11 +34,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         populateNetwrokComboBox();
-        for (Network n : system.getNetworkList()) {
-            for(Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
-                System.out.println(e.getName());
-            }
-        }
+        
     }
 
     public void populateNetwrokComboBox() {
@@ -183,8 +179,21 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
         Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-//            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-//                if (acc.getRole().toString().equals("Doctor")) {
+            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+//                if(acc.getRole()==null){
+//                    o.getUserAccountDirectory().getUserAccountList().remove(acc);
+//                }
+                if (acc.getRole().equals("Business.Role.DoctorRole")) {
+                    Object[] row = new Object[dtm.getColumnCount()];
+                    row[0] = acc;
+                    row[1] = networkComboBox.getSelectedItem();
+                    row[2] = acc.getUsername();
+                    row[3] = acc.getStatus();
+                    dtm.addRow(row);
+                }
+            }
+//            if (o.getType().equals(Organization.Type.Doctor)) {
+//                for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
 //                    Object[] row = new Object[dtm.getColumnCount()];
 //                    row[0] = acc;
 //                    row[1] = networkComboBox.getSelectedItem();
@@ -194,17 +203,6 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 //                    dtm.addRow(row);
 //                }
 //            }
-            if (o.getType().equals(Organization.Type.Doctor)) {
-                for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[dtm.getColumnCount()];
-                    row[0] = acc;
-                    row[1] = networkComboBox.getSelectedItem();
-                    row[2] = acc.getPassword();
-                    row[3] = acc.getUsername();
-                    row[4] = acc.getStatus();
-                    dtm.addRow(row);
-                }
-            }
         }
     }
 

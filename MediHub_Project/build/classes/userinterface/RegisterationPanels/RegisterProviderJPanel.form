@@ -77,7 +77,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="usernameTxt" max="32767" attributes="0"/>
-                          <Component id="OrgTypCombobox" alignment="0" max="32767" attributes="0"/>
+                          <Component id="entTypCombobox" alignment="0" max="32767" attributes="0"/>
                           <Component id="pwdTxt" alignment="0" max="32767" attributes="0"/>
                           <Component id="rtypPwdTxt" max="32767" attributes="0"/>
                           <Component id="OrgTypeTxt" min="-2" pref="198" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="OrgTypCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="entTypCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -280,7 +280,7 @@
         <Property name="text" type="java.lang.String" value="Re-type password:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="OrgTypCombobox">
+    <Component class="javax.swing.JComboBox" name="entTypCombobox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

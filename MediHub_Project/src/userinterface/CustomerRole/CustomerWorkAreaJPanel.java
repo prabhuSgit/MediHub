@@ -7,6 +7,8 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
@@ -37,7 +39,17 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");
         date.setText(sdf.format(cal.getTime()));
-        
+
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+                        System.out.println(acc.getUsername()+" "+acc.getRole());
+                    }
+                }
+            }
+        }
+
     }
 
     /**

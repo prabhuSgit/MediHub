@@ -56,7 +56,7 @@ public class UserAccountDirectory {
             userAccount.setPassword(password);
             userAccount.setEmployee(employee);
             userAccount.setRole(role);
-            userAccount.setStatus("Pending");
+            userAccount.setStatus("Active");
             userAccountList.add(userAccount);
             return userAccount;
         }
