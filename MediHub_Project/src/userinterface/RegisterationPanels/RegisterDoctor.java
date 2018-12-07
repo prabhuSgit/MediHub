@@ -17,6 +17,7 @@ import Business.Role.AdminRole;
 import Business.Role.DoctorRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccessApprovalRequest;
 import Business.WorkQueue.DoctorRegistrationRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
@@ -38,12 +39,14 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private Organization organization;
     private UserAccount userAccount;
     private Role role;
+    private String roleType;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role) {
+    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role, String roleType) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.role= role;
+        this.role = role;
+        this.roleType=roleType;
         populateNetworkComboBox();
         //populateEnterpriseComboBox();
     }
@@ -87,6 +90,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -193,8 +197,17 @@ public class RegisterDoctor extends javax.swing.JPanel {
         backBtn.setText("<< Back");
         add(backBtn);
         backBtn.setBounds(270, 380, 93, 29);
+
+        jButton1.setText("Test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(590, 310, 63, 29);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void textFieldeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldeptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldeptActionPerformed
@@ -202,7 +215,6 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
 
-        
         if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
@@ -214,8 +226,27 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
             Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null);
             System.out.println("Employee created");
-            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+            UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
             System.out.println("User created");
+            
+            for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(entAccount);
+                
+            }
+
+            AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(roleType);
+            request.setSender(ua);
+            request.setStatus("Pending");
+            for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+//                if (u.getUsername().equals("sysadmin")) {
+//                    u.getWorkQueue().getWorkRequestList().add(request);
+//                }
+                if(u.getUsername().equalsIgnoreCase(ent.getName())){
+                    u.getWorkQueue().getWorkRequestList().add(request);
+                }
+
+            }
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
             RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
@@ -232,7 +263,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         // TODO add your handling code here:
-       Network network = (Network) networkJComboBox.getSelectedItem();
+        Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null) {
             populateEnterpriseComboBox(network);
         }
@@ -245,6 +276,15 @@ public class RegisterDoctor extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+        for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+            System.out.println(entAccount);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void populateEnterpriseComboBox(Network n) {
         enterpriseTypeJComboBox.removeAllItems();
         for (Enterprise enterprise : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -256,6 +296,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

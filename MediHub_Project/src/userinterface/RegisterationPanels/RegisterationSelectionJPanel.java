@@ -133,7 +133,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         }
         else if (roleJComboBox.getSelectedItem().equals(Doctor)){
-        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
+        RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system,role, roleType.toString());
             userProcessContainer.add("ProviderRegistrationJPanel", doctor);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

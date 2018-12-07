@@ -29,7 +29,8 @@ public class UserAccountDirectory {
         for (UserAccount ua : userAccountList) {
             if (ua.getUsername().equals(username)
                     && ua.getPassword().equals(password)
-                    && ua.getStatus().equals("Active")) {
+//                    && ua.getStatus().equals("Active")) {
+                    ){
                return ua;
             }
         }

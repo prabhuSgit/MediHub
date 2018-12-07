@@ -265,7 +265,7 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
 
         AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(role);
+        request.setRole(role.toString());
         request.setSender(ua);
         request.setStatus("Pending");
 
