@@ -12,22 +12,22 @@ import java.util.Date;
  *
  * @author prabh
  */
-public class Customer {
-    
+public class Customer extends VitalSigns {
+
     private String name;
     private String dob;
     private String address;
     private Integer phoneNbr;
     private static int custId;
     private int id;
-    private ArrayList<VitalSigns> customerVitalSigns;
     private ArrayList<CustomerBooking> customerBookHistrory;
-    
+    private int done = 0;
+
     public Customer() {
         id = custId;
         custId++;
     }
-   
+
     public String getName() {
         return name;
     }
@@ -76,14 +76,6 @@ public class Customer {
         this.id = id;
     }
 
-    public ArrayList<VitalSigns> getCustomerVitalSigns() {
-        return customerVitalSigns;
-    }
-
-    public void setCustomerVitalSigns(ArrayList<VitalSigns> customerVitalSigns) {
-        this.customerVitalSigns = customerVitalSigns;
-    }
-
     public ArrayList<CustomerBooking> getCustomerBookHistrory() {
         return customerBookHistrory;
     }
@@ -92,10 +84,17 @@ public class Customer {
         this.customerBookHistrory = customerBookHistrory;
     }
 
-    
+    public int getDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
+    }
+
     @Override
     public String toString() {
         return name;
     }
-    
+
 }
