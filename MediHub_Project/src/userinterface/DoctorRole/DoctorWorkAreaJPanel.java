@@ -8,6 +8,8 @@ import Business.AppoontmentQueue.AppointmentRequest;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
+import Business.Organization.LabOrganization;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -56,7 +58,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[6];
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Prabhu_P
             row[0] = request.getCustomer();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
@@ -95,7 +100,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         appointmentTbl = new javax.swing.JTable();
-        requestTestJButton = new javax.swing.JButton();
+        vitalSignBtn = new javax.swing.JButton();
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
@@ -146,12 +151,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             appointmentTbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        requestTestJButton.setBackground(new java.awt.Color(204, 255, 204));
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.setEnabled(false);
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+        vitalSignBtn.setBackground(new java.awt.Color(204, 255, 204));
+        vitalSignBtn.setText("VitalSigns");
+        vitalSignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
+                vitalSignBtnActionPerformed(evt);
             }
         });
 
@@ -245,7 +249,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(requestTestJButton)
+                    .addComponent(vitalSignBtn)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,18 +297,20 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(requestTestJButton)
+                .addComponent(vitalSignBtn)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+    private void vitalSignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignBtnActionPerformed
+        int row = workRequestJTable.getSelectedRow();
+        UserAccount custAcc = (UserAccount)workRequestJTable.getValueAt(row, 0);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestLabTestJPanel", new VitalSignJPanel(userProcessContainer, custAcc, enterprise));
+        layout.next(userProcessContainer);
 
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise));
-//        layout.next(userProcessContainer);
-
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+    }//GEN-LAST:event_vitalSignBtnActionPerformed
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
         populateRequestTable();
@@ -327,7 +333,18 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             labRequest.setSender(userAccount);
             labRequest.setMessage("Kindly perform Lab Test");
 
-            userAccount.getWorkQueue().getWorkRequestList().add(labRequest);
+//            userAccount.getWorkQueue().getWorkRequestList().add(labRequest);
+            Organization org = null;
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof LabOrganization) {
+                    org = organization;
+                    break;
+                }
+            }
+            if (org != null) {
+                org.getWorkQueue().getWorkRequestList().add(labRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(labRequest);
+            }
             populateRequestTable();
         }
 
@@ -348,9 +365,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton refreshTestJButton;
-    private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel userName;
     private javax.swing.JLabel valueLabel;
+    private javax.swing.JButton vitalSignBtn;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
