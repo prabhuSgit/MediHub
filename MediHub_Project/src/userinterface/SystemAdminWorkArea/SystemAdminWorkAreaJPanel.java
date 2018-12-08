@@ -43,111 +43,111 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     UserAccount userAccount;
     private SysAdmin sysAdmin;
-    
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount userAccount, Organization organization) {
+
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount, Organization organization) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;
-        this.userAccount=userAccount;
-        this.sysAdmin=(SysAdmin)organization;
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.userAccount = userAccount;
+        this.sysAdmin = (SysAdmin) organization;
         populateTree();
         populateAccessRequestTbl();
-        
+
         userName.setText(userAccount.getUsername());
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");
         date.setText(sdf.format(cal.getTime()));
 
     }
-    
-    public void pieChart(){
+
+    public void pieChart() {
         DefaultPieDataset pieDataset = new DefaultPieDataset();
         int entNbr = 0;
         int custNbr;
-        for(Network n : ecosystem.getNetworkList()){
+        for (Network n : ecosystem.getNetworkList()) {
             entNbr = n.getEnterpriseDirectory().getEnterpriseList().size();
         }
         pieDataset.setValue("Enterprises", entNbr);
         custNbr = ecosystem.getCustomerList().size();
         pieDataset.setValue("Customer", custNbr);
-        
+
         pieDataset.setValue("Organisation", new Integer(20));
-        
+
         JFreeChart chart = ChartFactory.createPieChart("Pie Diagram", pieDataset);
-        PiePlot p = (PiePlot)chart.getPlot();
-        
+        PiePlot p = (PiePlot) chart.getPlot();
+
         ChartFrame frame = new ChartFrame("Pie Frame", chart);
         frame.setVisible(true);
         frame.setSize(450, 500);
     }
-    
-    public void populateAccessRequestTbl(){
+
+    public void populateAccessRequestTbl() {
         DefaultTableModel model = (DefaultTableModel) accessRequestTbl.getModel();
-        
+
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[3];
             row[0] = request;
             row[1] = request.getRole();
             row[2] = request.getStatus();
-            
+
             model.addRow(row);
         }
     }
-    
-    
-    public void populateTree(){
-        DefaultTreeModel model=(DefaultTreeModel)EcoSystem.getModel();
-        ArrayList<Network> networkList=ecosystem.getNetworkList();
 
-        ArrayList<Customer> customerList=ecosystem.getCustomerList();
+    public void populateTree() {
+        DefaultTreeModel model = (DefaultTreeModel) EcoSystem.getModel();
+        ArrayList<Network> networkList = ecosystem.getNetworkList();
+
+        ArrayList<Customer> customerList = ecosystem.getCustomerList();
         ArrayList<Enterprise> enterpriseList;
         ArrayList<Organization> organizationList;
-        
+
         Network network;
         Customer customer;
         Enterprise enterprise;
         Organization organization;
-        
-        DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Networks");
-        DefaultMutableTreeNode customers=new DefaultMutableTreeNode("Customers");
-        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
+
+        DefaultMutableTreeNode networks = new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode customers = new DefaultMutableTreeNode("Customers");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         root.removeAllChildren();
         root.insert(networks, 0);
         root.insert(customers, 1);
-        
+
         DefaultMutableTreeNode networkNode;
         DefaultMutableTreeNode customerNode;
         DefaultMutableTreeNode enterpriseNode;
         DefaultMutableTreeNode organizationNode;
-        
-        for(int i=0;i<customerList.size();i++){
-            customer=customerList.get(i);
-            customerNode=new DefaultMutableTreeNode(customer.getName());
+
+        for (int i = 0; i < customerList.size(); i++) {
+            customer = customerList.get(i);
+            customerNode = new DefaultMutableTreeNode(customer.getName());
             customers.insert(customerNode, i);
         }
-        
-        for(int i=0;i<networkList.size();i++){
-            network=networkList.get(i);
-            networkNode=new DefaultMutableTreeNode(network.getName());
+
+        for (int i = 0; i < networkList.size(); i++) {
+            network = networkList.get(i);
+            networkNode = new DefaultMutableTreeNode(network.getName());
             networks.insert(networkNode, i);
-            
-            enterpriseList=network.getEnterpriseDirectory().getEnterpriseList();
-            for(int j=0; j<enterpriseList.size();j++){
-                enterprise=enterpriseList.get(j);
-                enterpriseNode=new DefaultMutableTreeNode(enterprise.getName());
+
+            enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+            for (int j = 0; j < enterpriseList.size(); j++) {
+                enterprise = enterpriseList.get(j);
+                enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
                 networkNode.insert(enterpriseNode, j);
-                
-                organizationList=enterprise.getOrganizationDirectory().getOrganizationList();
-                for(int k=0;k<organizationList.size();k++){
-                    organization=organizationList.get(i);
-                    organizationNode=new DefaultMutableTreeNode(organization.getName());
+
+                organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                for (int k = 0; k < organizationList.size(); k++) {
+                    organization = organizationList.get(i);
+                    organizationNode = new DefaultMutableTreeNode(organization.getName());
                     enterpriseNode.insert(organizationNode, k);
                 }
             }
         }
         model.reload();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -440,30 +440,30 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
-        ManageNetworkJPanel manageNetworkJPanel=new ManageNetworkJPanel(userProcessContainer, ecosystem);
-        userProcessContainer.add("manageNetworkJPanel",manageNetworkJPanel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("manageNetworkJPanel", manageNetworkJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
-        ManageEnterpriseJPanel manageEnterpriseJPanel=new ManageEnterpriseJPanel(userProcessContainer, ecosystem);
-        userProcessContainer.add("manageEnterpriseJPanel",manageEnterpriseJPanel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        ManageEnterpriseJPanel manageEnterpriseJPanel = new ManageEnterpriseJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("manageEnterpriseJPanel", manageEnterpriseJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     private void btnManageAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAdminActionPerformed
-        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel=new ManageEnterpriseAdminJPanel(userProcessContainer, ecosystem);
-        userProcessContainer.add("manageEnterpriseAdminJPanel",manageEnterpriseAdminJPanel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel = new ManageEnterpriseAdminJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("manageEnterpriseAdminJPanel", manageEnterpriseAdminJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageAdminActionPerformed
 
     private void EcoSystemValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_EcoSystemValueChanged
-        
-        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)EcoSystem.getLastSelectedPathComponent();
-        if(selectedNode!=null){
+
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) EcoSystem.getLastSelectedPathComponent();
+        if (selectedNode != null) {
             lblSelectedNode.setText(selectedNode.toString());
         }
     }//GEN-LAST:event_EcoSystemValueChanged
@@ -471,31 +471,34 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void BtnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReviewActionPerformed
         // TODO add your handling code here:
         int row = accessRequestTbl.getSelectedRow();
-        if(row<0) {
-             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        WorkRequest request = (WorkRequest)accessRequestTbl.getValueAt(row, 0);
+        WorkRequest request = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
         UserAccount us = request.getSender();
 //        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
-        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer,ecosystem,us, userAccount);
+        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer, ecosystem, us, userAccount);
         userProcessContainer.add("ViewFlightsPanel", reviewRegistrationJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        
+
     }//GEN-LAST:event_BtnReviewActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        int row = accessRequestTbl.getSelectedRow();
-        if(row<0) {
-             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
+        int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
+        if (dialogButton == JOptionPane.YES_OPTION) {
+            int row = accessRequestTbl.getSelectedRow();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            WorkRequest wr = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
+            userAccount.getWorkQueue().getWorkRequestList().remove(wr);
+
+            populateAccessRequestTbl();
         }
-        WorkRequest wr = (WorkRequest)accessRequestTbl.getValueAt(row, 0);
-        userAccount.getWorkQueue().getWorkRequestList().remove(wr);
-        
-        populateAccessRequestTbl();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void statsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statsBtnActionPerformed

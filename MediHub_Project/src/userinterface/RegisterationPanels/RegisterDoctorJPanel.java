@@ -36,7 +36,7 @@ import Business.Role.LabAssistantRole;
  *
  * @author hp
  */
-public class RegisterDoctor extends javax.swing.JPanel {
+public class RegisterDoctorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RegisterMedicalSchool
@@ -49,7 +49,7 @@ public class RegisterDoctor extends javax.swing.JPanel {
     private Role role;
     private Role.RoleType roleSelect;
 
-    public RegisterDoctor(JPanel userProcessContainer, EcoSystem system, Role role, Role.RoleType roleSelect) {
+    public RegisterDoctorJPanel(JPanel userProcessContainer, EcoSystem system, Role role, Role.RoleType roleSelect) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;

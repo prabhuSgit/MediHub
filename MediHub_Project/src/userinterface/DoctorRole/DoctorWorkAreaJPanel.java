@@ -55,18 +55,18 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
 //            row[0] = request.getMessage();
 //            row[1] = request.getReceiver();
 //            row[2] = request.getStatus();
-//            String result = ((LabTestWorkRequest) request).getTestResult();
-//            row[3] = result == null ? "Waiting" : result;
+
             row[0] = request.getCustomer();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
             row[3] = request.getSender();
             row[4] = request.getMessage();
-
+            String result = ((LabTestWorkRequest) request).getTestResult();
+            row[5] = result == null ? "Waiting" : result;
             model.addRow(row);
         }
     }
@@ -200,14 +200,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         addBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\adBtn.png")); // NOI18N
         addBtn.setText("Add Lab request");
@@ -323,7 +315,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-//        int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
         if (dialogButton == JOptionPane.YES_OPTION) {
             int row = appointmentTbl.getSelectedRow();
