@@ -15,6 +15,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.CustomerRole.BlankJPanel;
+import userinterface.CustomerRole.CustomerSurveyJPanel;
 import userinterface.ProviderAdminRole.ProviderWorkAreaJPanel;
 import userinterface.CustomerRole.CustomerWorkAreaJPanel;
 import userinterface.DoctorRole.DoctorWorkAreaJPanel;
@@ -24,7 +25,7 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
  * @author prabh
  */
 public class CustomerRole extends Role {
-
+    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
         JPanel panel = null;
@@ -34,12 +35,12 @@ public class CustomerRole extends Role {
 //                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 //                userProcessContainer.add("BlankJPanel", new BlankJPanel());
 //                layout.next(userProcessContainer);
-                panel = new BlankJPanel();
+                panel = new CustomerSurveyJPanel(userProcessContainer, account, business);
             } else {
                 panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
             }
-
-        }else{
+            
+        } else {
             panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
         }
         return panel;
