@@ -106,7 +106,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         OrgTypeTxt = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Provider Registration ");
+        jLabel1.setText("Enterprise Registration ");
 
         jLabel2.setText("Name:");
 

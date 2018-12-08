@@ -16,13 +16,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
-              <Component id="doctorBookingBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-              <Component id="apntmntHistoryBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -50,6 +43,21 @@
                   </Group>
               </Group>
               <EmptySpace min="0" pref="158" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
+                      <Component id="doctorBookingBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                      <Component id="apntmntHistoryBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="391" max="-2" attributes="0"/>
+                      <Component id="BtnSurvey" min="-2" pref="170" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,7 +94,9 @@
                   <Component id="vitalSignBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="myProfileBtn" min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <Component id="BtnSurvey" min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -167,6 +177,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="welcomeTxt">
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnSurvey">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Patient Survey"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSurveyActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

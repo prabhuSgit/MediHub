@@ -5,6 +5,11 @@
  */
 package userinterface.CustomerRole;
 
+import Business.AppoontmentQueue.AppointmentRequest;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,10 +25,18 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount account;
-    public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account) {
+    EcoSystem system;
+    float ques1;
+    float ques2;
+    float ques3;
+    float ques4;
+    float ques5;
+    public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.system = system;
+        populateDoctor();
     }
 
 
@@ -43,7 +56,6 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         Question5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        DocTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -83,6 +95,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         BtnSubmit = new javax.swing.JButton();
+        DoctorComboBox = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Patient Satisfaction Survey");
@@ -218,6 +231,8 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
             }
         });
 
+        DoctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<none>" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,11 +242,6 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -246,28 +256,32 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 .addComponent(Q5R1)
                                 .addGap(31, 31, 31))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel10))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Q1R5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(Q1R4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(Q1R3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Q1R2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Q1R1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(DocTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(29, 29, 29))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Q1R5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Q1R4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Q1R3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Q1R2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Q1R1)
+                                .addGap(29, 29, 29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(62, 62, 62)
+                                .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator4))
@@ -277,12 +291,13 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Q2R5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Q2R4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Q2R3)
@@ -290,8 +305,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 .addComponent(Q2R2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Q2R1)
-                                .addGap(37, 37, 37))
-                            .addComponent(jSeparator1)))
+                                .addGap(29, 29, 29))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,12 +354,12 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(DocTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(46, 46, 46)
+                    .addComponent(jLabel1)
+                    .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -415,90 +429,140 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         .addComponent(Q5R1)))
                 .addGap(18, 18, 18)
                 .addComponent(BtnSubmit)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void populateDoctor(){
+        DoctorComboBox.removeAllItems();
+        for (Network n : system.getNetworkList()){
+            //System.out.println("Inside network list");
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+                //System.out.println("Inside Enteprise list");
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
+                    //System.out.println("Inside organization list");
+                    for(UserAccount acc : o.getUserAccountDirectory().getUserAccountList()){
+                        //System.out.println("Inside organization's user account list");
+                        if(acc.getRole().toString().equals("Business.Role.DoctorRole")){
+                            //System.out.println("Inside doctor organization ");
+                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
+                                //System.out.println("Inside doctor's appointment list ");
+                                if(this.account.equals(ar.getCustomer())){
+                                    //System.out.println("Found customer!!");
+                                    DoctorComboBox.addItem(ar.getDoctor());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void rateDoctor(float rating){
+         for (Network n : system.getNetworkList()){
+            //System.out.println("Inside network list");
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+                //System.out.println("Inside Enteprise list");
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
+                    //System.out.println("Inside organization list");
+                    for(UserAccount acc : o.getUserAccountDirectory().getUserAccountList()){
+                        //System.out.println("Inside organization's user account list");
+                        if(acc.getRole().toString().equals("Business.Role.DoctorRole")){
+                            //System.out.println("Inside doctor organization ");
+                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
+                                //System.out.println("Inside doctor's appointment list ");
+                                if(this.account.equals(ar.getCustomer())){
+                                    //System.out.println("Found customer!!");
+                                    ar.getDoctor().getEmployee().setRating(rating);
+                                    System.out.println("Doctor is rated!!");
+                                    System.out.println("Rating:" + ar.getDoctor().getEmployee().getRating());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     private void Q1R5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Q1R5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Q1R5ActionPerformed
 
-    public int RateQuestion1(){
-        int ques1 = 0;
+    public void RateQuestion1(){
+       
         if (Question1.isSelected(Q1R5.getModel())){ ques1 = 5;}
         else if (Question1.isSelected(Q1R4.getModel())){ques1 = 4;}
         else if (Question1.isSelected(Q1R3.getModel())){ques1 = 3;}
         else if (Question1.isSelected(Q1R2.getModel())){ques1 = 2;}
         else if (Question1.isSelected(Q1R1.getModel())){ques1 = 1;}
         else {System.out.println("Please make a selection");}
-        return ques1;
+        
     }
     
-    public int RateQuestion2(){
-        int ques2 = 0;
+    public void RateQuestion2(){
+        
          if (Question2.isSelected(Q2R5.getModel())){ques2=5;}
         else if (Question2.isSelected(Q2R4.getModel())){ques2=4;}
         else if (Question2.isSelected(Q2R3.getModel())){ques2=3;}
         else if (Question2.isSelected(Q2R2.getModel())){ques2=2;}
         else if (Question2.isSelected(Q2R1.getModel())){ques2=1;}
         else {System.out.println("Please make a selection");}
-        return ques2;
+        
     }
     
     public void RateQuestion3(){ 
-        if (Question3.isSelected(Q3R5.getModel())){account.getCustomer().getCustomerSurvey().setQuestion3(5);}
-        else if (Question3.isSelected(Q3R4.getModel())){account.getCustomer().getCustomerSurvey().setQuestion3(4);}
-        else if (Question3.isSelected(Q3R3.getModel())){account.getCustomer().getCustomerSurvey().setQuestion3(3);}
-        else if (Question3.isSelected(Q3R2.getModel())){account.getCustomer().getCustomerSurvey().setQuestion3(2);}
-        else if (Question3.isSelected(Q3R1.getModel())){account.getCustomer().getCustomerSurvey().setQuestion3(1);}
+        
+        if (Question3.isSelected(Q3R5.getModel())){ques3=5;}
+        else if (Question3.isSelected(Q3R4.getModel())){ques3=4;}
+        else if (Question3.isSelected(Q3R3.getModel())){ques3=3;}
+        else if (Question3.isSelected(Q3R2.getModel())){ques3=2;}
+        else if (Question3.isSelected(Q3R1.getModel())){ques3=1;}
         else {System.out.println("Please make a selection");}
+        
     }
     
     public void RateQuestion4(){
          
-        if (Question4.isSelected(Q4R5.getModel())){account.getCustomer().getCustomerSurvey().setQuestion4(5);}
-        else if (Question4.isSelected(Q4R4.getModel())){account.getCustomer().getCustomerSurvey().setQuestion4(4);}
-        else if (Question4.isSelected(Q4R3.getModel())){account.getCustomer().getCustomerSurvey().setQuestion4(3);}
-        else if (Question4.isSelected(Q4R2.getModel())){account.getCustomer().getCustomerSurvey().setQuestion4(2);}
-        else if (Question4.isSelected(Q4R1.getModel())){account.getCustomer().getCustomerSurvey().setQuestion4(1);}
+        if (Question4.isSelected(Q4R5.getModel())){ques4=5;}
+        else if (Question4.isSelected(Q4R4.getModel())){ques4=4;}
+        else if (Question4.isSelected(Q4R3.getModel())){ques4=3;}
+        else if (Question4.isSelected(Q4R2.getModel())){ques4=2;}
+        else if (Question4.isSelected(Q4R1.getModel())){ques4=1;}
         else {System.out.println("Please make a selection");}
+        
     }
     
     public void RateQuestion5(){
-       if (Question5.isSelected(Q5R5.getModel())){account.getCustomer().getCustomerSurvey().setQuestion5(5);}
-        else if (Question5.isSelected(Q5R4.getModel())){account.getCustomer().getCustomerSurvey().setQuestion5(4);}
-        else if (Question5.isSelected(Q5R3.getModel())){account.getCustomer().getCustomerSurvey().setQuestion5(3);}
-        else if (Question5.isSelected(Q5R2.getModel())){account.getCustomer().getCustomerSurvey().setQuestion5(2);}
-        else if (Question5.isSelected(Q5R1.getModel())){account.getCustomer().getCustomerSurvey().setQuestion5(1);}
+        
+       if (Question5.isSelected(Q5R5.getModel())){ques5=5;}
+        else if (Question5.isSelected(Q5R4.getModel())){ques5=4;}
+        else if (Question5.isSelected(Q5R3.getModel())){ques5=3;}
+        else if (Question5.isSelected(Q5R2.getModel())){ques5=2;}
+        else if (Question5.isSelected(Q5R1.getModel())){ques5=1;}
         else {System.out.println("Please make a selection");}
+       
     }
     private void BtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSubmitActionPerformed
         // TODO add your handling code here:
-        RateQuestion1();
-//        RateQuestion2();
-//        RateQuestion3();
-//        RateQuestion4();
-//        RateQuestion5();
-//        
-//        int q1 = account.getCustomer().getCustomerSurvey().getQuestion1();
-//        int q2 = account.getCustomer().getCustomerSurvey().getQuestion2();
-//        int q3 = account.getCustomer().getCustomerSurvey().getQuestion3();
-//        int q4 = account.getCustomer().getCustomerSurvey().getQuestion4();
-//        int q5 = account.getCustomer().getCustomerSurvey().getQuestion5();
-//        
-//        int avg = (q1+q2+q3+q4+q5)/5;
-//        System.out.println("Average: "+avg);
         
-//        String q1 = Question1.getSelection().getActionCommand();
-//        String q2 = Question2.getSelection().getActionCommand();
-//        System.out.println(Question1.getSelection().getActionCommand() + " " + Question2.getSelection().getActionCommand());
-       
+        float rating;
+        RateQuestion1();
+        RateQuestion2();
+        RateQuestion3();
+        RateQuestion4();
+        RateQuestion5();
+        
+        rating = (ques1+ques2+ques3+ques4+ques5)/5;
+        rateDoctor(rating);
+        JOptionPane.showMessageDialog(null, "Submitted successfully");
+        
     }//GEN-LAST:event_BtnSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSubmit;
-    private javax.swing.JTextField DocTxt;
+    private javax.swing.JComboBox DoctorComboBox;
     private javax.swing.JRadioButton Q1R1;
     private javax.swing.JRadioButton Q1R2;
     private javax.swing.JRadioButton Q1R3;

@@ -24,6 +24,7 @@ public class Employee {
     private String enterpriseCity;
     private String enterpriseState;
     private String type;
+    private float rating;
     
     public Employee() {
         id = count;
@@ -109,6 +110,15 @@ public class Employee {
     public String getName() {
         return name;
     }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    
 
     @Override
     public String toString() {

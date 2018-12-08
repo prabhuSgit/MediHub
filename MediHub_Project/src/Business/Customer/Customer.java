@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class Customer {
     
+    private int done;
     private String name;
     private String dob;
     private String address;
@@ -27,6 +28,7 @@ public class Customer {
 
     
     public Customer() {
+        done = 1;
         id = custId;
         custId++;
         //this.customerSurveyList = new ArrayList<>();

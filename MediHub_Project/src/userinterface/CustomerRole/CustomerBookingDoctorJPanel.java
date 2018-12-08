@@ -210,7 +210,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             Date date = new Date();
 
             UserAccount docUser = (UserAccount) doctorTbl.getValueAt(selectRow, 0);
-            System.out.println(docUser.getUsername());
+            //System.out.println(docUser.getUsername());
             AppointmentRequest appointment = new AppointmentRequest();
             appointment.setDate(date);
             appointment.setCustomer(account);
@@ -223,7 +223,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                     if (acc.equals(docUser)) {
-                        System.out.println("Inside if");
+                        //System.out.println("Inside if");
                         acc.getAppointmentQueue().getAppointmentList().add(appointment);
                     }
                 }
