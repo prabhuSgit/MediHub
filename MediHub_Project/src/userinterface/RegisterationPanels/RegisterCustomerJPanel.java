@@ -90,6 +90,7 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
         welcomeTxt.setForeground(new java.awt.Color(0, 204, 102));
 
         backBtn.setText("<< Back");
+        backBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);

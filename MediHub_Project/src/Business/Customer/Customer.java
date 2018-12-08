@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,12 +20,32 @@ public class Customer {
     private Integer phoneNbr;
     private static int custId;
     private int id;
+    private CustomerSurvey customerSurvey;
+    //private ArrayList<CustomerSurvey> customerSurveyList = new ArrayList<>();
     
     public Customer() {
         id = custId;
         custId++;
+        //this.customerSurveyList = new ArrayList<>();
+        this.customerSurvey = new CustomerSurvey();
     }
-   
+
+//    public ArrayList<CustomerSurvey> getCustomerSurveyList() {
+//        return customerSurveyList;
+//    }
+//
+//    public void setCustomerSurveyList(ArrayList<CustomerSurvey> customerSurveyList) {
+//        this.customerSurveyList = customerSurveyList;
+//    }
+
+    public CustomerSurvey getCustomerSurvey() {
+        return customerSurvey;
+    }
+
+    public void setCustomerSurvey(CustomerSurvey customerSurvey) {
+        this.customerSurvey = customerSurvey;
+    }
+    
     public String getName() {
         return name;
     }
