@@ -48,6 +48,11 @@ public abstract class Organization {
         public String getValue() {
             return value;
         }
+        
+        @Override
+        public String toString() {
+            return value;
+        }
     }
 
     public Organization(String name) {

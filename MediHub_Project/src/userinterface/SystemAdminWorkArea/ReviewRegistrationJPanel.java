@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
+import userinterface.ProviderAdminRole.ProviderWorkAreaJPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -46,12 +47,14 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     private UserAccount userAccount;
+    private UserAccount reviewer;
 
-    public ReviewRegistrationJPanel(JPanel userProcessContainer, EcoSystem system,UserAccount userAccount) {
+    public ReviewRegistrationJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount, UserAccount reviewer) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.userAccount = userAccount;
+        this.reviewer = reviewer;
         populateRegistration();
     }
 
@@ -108,7 +111,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         ProviderAddrJTxtArea.setRows(5);
         jScrollPane1.setViewportView(ProviderAddrJTxtArea);
 
-        BtnUpdate.setText("Update Status");
+        BtnUpdate.setText("Edit Status");
         BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUpdateActionPerformed(evt);
@@ -117,14 +120,14 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
 
         FilePathTxtField.setEditable(false);
 
-        BtnBack.setText("<<Back");
+        BtnBack.setText("<< Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
 
-        BtnBrowse.setText("Browse Computer");
+        BtnBrowse.setText("Browse");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -153,51 +156,58 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)))
-                    .addComponent(jLabel6))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnBrowse)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                            .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addComponent(BtnBack))
-                .addGap(65, 65, 65)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(StatusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addComponent(entTypTxt))
-                    .addComponent(BtnUpdate)
-                    .addComponent(SaveBtn))
-                .addGap(196, 196, 196))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(181, 181, 181))
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2)))
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BtnBrowse)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                        .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(FilePathTxtField, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(BtnBack))
+                        .addGap(65, 65, 65)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(entTypTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BtnUpdate)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(StatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SaveBtn)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(226, 226, 226))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(43, 43, 43)
                         .addComponent(jLabel1)
-                        .addGap(50, 50, 50)
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,31 +227,30 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnBrowse)
-                        .addGap(32, 32, 32)
+                        .addGap(41, 41, 41)
                         .addComponent(BtnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(111, 111, 111)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
                                     .addComponent(entTypTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(StatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
-                                .addComponent(BtnUpdate)
-                                .addGap(18, 18, 18)
-                                .addComponent(SaveBtn))
+                                    .addComponent(StatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SaveBtn))
+                                .addGap(38, 38, 38)
+                                .addComponent(BtnUpdate))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void populateRegistration(){
+    public void populateRegistration() {
         ProviderNameJTxtField.setText(userAccount.getEmployee().getName());
         ProviderAddrJTxtArea.setText(userAccount.getEmployee().getEnterpriseAddress());
         ProviderCityJTxtField.setText(userAccount.getEmployee().getEnterpriseCity());
@@ -252,7 +261,8 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
         StatusTxt.setEditable(true);
-        
+        StatusTxt.setBackground(Color.green);
+
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
@@ -260,27 +270,42 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
-        systemAdminWorkAreaJPanel.populateAccessRequestTbl();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+
+//        if (component.getName().equals("doctor")) {
+//            ProviderWorkAreaJPanel providerWorkAreJPanel = (ProviderWorkAreaJPanel) component;
+//            providerWorkAreJPanel.populateAccessRequestTbl();
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.previous(userProcessContainer);
+//        } else {
+            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
+            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+//        }
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         // TODO add your handling code here:
         userAccount.getEmployee().setRegStatus("Active");
-        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
-            if(u.getUsername().equals("sysadmin")){
-                System.out.println(u.getPassword());
-                for (WorkRequest wr : u.getWorkQueue().getWorkRequestList()){
-                    if(wr.getSender().equals(userAccount)){
-                        wr.setStatus(StatusTxt.getText());
-                        userAccount.setStatus(StatusTxt.getText());
-                    }
-                }
+//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
+//            if(u.getUsername().equals("sysadmin")){
+//                System.out.println(u.getPassword());
+//                for (WorkRequest wr : u.getWorkQueue().getWorkRequestList()){
+//                    if(wr.getSender().equals(userAccount)){
+//                        wr.setStatus(StatusTxt.getText());
+//                        userAccount.setStatus(StatusTxt.getText());
+//                    }
+//                }
+//            }
+//        }
+        for (WorkRequest wr : reviewer.getWorkQueue().getWorkRequestList()) {
+            if (wr.getSender().equals(userAccount)) {
+                wr.setStatus(StatusTxt.getText());
+                userAccount.setStatus(StatusTxt.getText());
             }
         }
-        JOptionPane.showMessageDialog(null, "Registered Successfully");
+
+        JOptionPane.showMessageDialog(null, "User account ACTIVATED!");
         StatusTxt.setEditable(false);
     }//GEN-LAST:event_SaveBtnActionPerformed
 

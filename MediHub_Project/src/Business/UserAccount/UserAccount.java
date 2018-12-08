@@ -4,6 +4,7 @@
  */
 package Business.UserAccount;
 
+import Business.AppoontmentQueue.AppointmentQueue;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.Customer.Customer;
@@ -21,11 +22,12 @@ public class UserAccount {
     private Customer customer;
     private Role role;
     private WorkQueue workQueue;
+    private AppointmentQueue appointmentQueue;
     private String status;
 
     public UserAccount() {
         workQueue = new WorkQueue();
-        
+        appointmentQueue = new AppointmentQueue();
     }
 
     public Customer getCustomer() {
@@ -79,8 +81,15 @@ public class UserAccount {
     public void setStatus(String status) {
         this.status = status;
     }
-    
 
+    public AppointmentQueue getAppointmentQueue() {
+        return appointmentQueue;
+    }
+
+    public void setAppointmentQueue(AppointmentQueue appointmentQueue) {
+        this.appointmentQueue = appointmentQueue;
+    }
+    
     @Override
     public String toString() {
         return username;

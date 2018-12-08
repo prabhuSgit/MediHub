@@ -5,11 +5,18 @@
  */
 package userinterface.CustomerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import userinterface.RegisterationPanels.ProviderRegistrationJPanel;
+//import userinterface.RegisterationPanels.ProviderRegistrationJPanel;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JPanel;
+import userinterface.DoctorRole.RequestLabTestJPanel;
 
 /**
  *
@@ -22,11 +29,29 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount account;
-    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    EcoSystem system;
+
+    public CustomerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.account=account;
-        welcomeTxt.setText(account.getUsername());
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.system = system;
+        welcomeTxt.setText(account.getCustomer().getName());
+        userName.setText(account.getUsername());
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");
+        date.setText(sdf.format(cal.getTime()));
+
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+                        System.out.println(acc.getUsername()+" "+acc.getRole());
+                    }
+                }
+            }
+        }
+
     }
 
     /**
@@ -39,49 +64,118 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        doctorBookingBtn = new javax.swing.JButton();
+        myProfileBtn = new javax.swing.JButton();
+        apntmntHistoryBtn = new javax.swing.JButton();
+        vitalSignBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        userName = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         welcomeTxt = new javax.swing.JLabel();
-        BtnSurvey = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel1.setText("Welcome ");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setText("Welcome Customer :");
 
-        welcomeTxt.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        welcomeTxt.setForeground(new java.awt.Color(0, 204, 0));
-
-        BtnSurvey.setText("Complete Survey");
-        BtnSurvey.addActionListener(new java.awt.event.ActionListener() {
+        doctorBookingBtn.setText("Book Appointments");
+        doctorBookingBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        doctorBookingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSurveyActionPerformed(evt);
+                doctorBookingBtnActionPerformed(evt);
             }
         });
+
+        myProfileBtn.setText("My Profile");
+        myProfileBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        myProfileBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        myProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myProfileBtnActionPerformed(evt);
+            }
+        });
+
+        apntmntHistoryBtn.setText("Appontment History");
+        apntmntHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apntmntHistoryBtnActionPerformed(evt);
+            }
+        });
+
+        vitalSignBtn.setText("Vital Signs");
+        vitalSignBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        vitalSignBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        userName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        date.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Logged as: ");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Date & Time:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(362, 362, 362)
+                .addComponent(doctorBookingBtn)
+                .addGap(118, 118, 118)
+                .addComponent(apntmntHistoryBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(myProfileBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(vitalSignBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(BtnSurvey, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(400, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(welcomeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(146, 146, 146)
-                .addComponent(BtnSurvey, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(apntmntHistoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorBookingBtn))
+                .addGap(99, 99, 99)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vitalSignBtn)
+                    .addComponent(myProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -93,10 +187,35 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
     }//GEN-LAST:event_BtnSurveyActionPerformed
 
+                      
+
+    private void doctorBookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBookingBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("CustomerBookingDoctorJPanel", new CustomerBookingDoctorJPanel(userProcessContainer, system, account));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_doctorBookingBtnActionPerformed
+
+    private void myProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_myProfileBtnActionPerformed
+
+    private void apntmntHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apntmntHistoryBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apntmntHistoryBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnSurvey;
+    private javax.swing.JButton apntmntHistoryBtn;
+    private javax.swing.JLabel date;
+    private javax.swing.JButton doctorBookingBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton myProfileBtn;
+    private javax.swing.JLabel userName;
+    private javax.swing.JButton vitalSignBtn;
     private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
 }

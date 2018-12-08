@@ -101,4 +101,9 @@ public abstract class Enterprise extends Organization {
     public void setEnterpriseZipCode(String enterpriseZipCode) {
         this.enterpriseZipCode = enterpriseZipCode;
     }
+//    
+//    @Override
+//    public String toString() {
+//        return enterpriseName;
+//    }
 }
