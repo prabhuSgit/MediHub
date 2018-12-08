@@ -16,6 +16,7 @@ import Business.Organization.Organization;
 import Business.Organization.SysAdmin;
 import Business.Role.AdminRole;
 import Business.Role.CustomerRole;
+import Business.Role.MedicalSchoolRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
@@ -45,12 +46,13 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
     EcoSystem system;
     private Role role;
     private Enterprise.EnterpriseType roleSelect;
+
     public RegisterProviderJPanel(JPanel userProcessContainer, EcoSystem system, Role role, Enterprise.EnterpriseType roleSelect) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.role = role;
-        this.roleSelect=roleSelect;
+        this.roleSelect = roleSelect;
         StateComboBox.removeAllItems();
         entTypCombobox.removeAllItems();
         for (Network n : system.getNetworkList()) {
@@ -61,9 +63,9 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
 //                OrgTypCombobox.addItem(type);
 ////                OrgTypeTxt.setText(String.valueOf(type));
 //            }
-            if(roleSelect.equals(type.HealthCareProvider)){
+            if (roleSelect.equals(type.HealthCareProvider)) {
                 entTypCombobox.addItem(type.HealthCareProvider);
-            }else{
+            } else {
                 entTypCombobox.addItem(type.MedicalSchool);
             }
         }
@@ -280,7 +282,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) entTypCombobox.getSelectedItem();
 
 //        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) OrgTypeTxt.getText();
-        
         if (network == null || type == null) {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
@@ -289,52 +290,62 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         String name = ProviderNameJTxtField.getText();
 
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-//        Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
+//      Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
         String address = ProviderAddrJTxtArea.getText();
         String city = ProviderCityJTxtField.getText();
         String state = StateComboBox.getSelectedItem().toString();
 
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString(),null,null);
-        UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
+        UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+                employee, new MedicalSchoolRole());
+         AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(entTypCombobox.getSelectedItem().toString());
+            request.setSender(account);
+            request.setStatus("Pending");
 
-//        String type = "Health Care Provider";
-//        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
-//        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
-<<<<<<< HEAD:MediHub_Project/src/userinterface/RegisterationPanels/ProviderRegistrationJPanel.java
-         
-=======
->>>>>>> origin/Prabhu_P:MediHub_Project/src/userinterface/RegisterationPanels/RegisterProviderJPanel.java
-        AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(entTypCombobox.getSelectedItem().toString());
-        request.setSender(account);
-        request.setStatus("Pending");
-
-        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-            if (u.getUsername().equals("sysadmin")) {
-                u.getWorkQueue().getWorkRequestList().add(request);
+            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+                if (u.getUsername().equals("sysadmin")) {
+                    u.getWorkQueue().getWorkRequestList().add(request);
+                }
             }
-        }
-        
-        employee.setRegStatus(request.getStatus());
 
-//        UserAccount userAccount = new UserAccount();
-//        userAccount.setEnterpriseName(ProviderNameJTxtField.getText());
-//        userAccount.setEnterpriseAddress(ProviderAddrJTxtArea.getText());
-//        userAccount.setEnterpriseCity(ProviderCityJTxtField.getText());
-//        userAccount.setEnterpriseState(StateComboBox.getSelectedItem().toString());
-//        userAccount.setRegStatus("Pending Approval");
-//        Role rl = role;
-//        employee.setName(ProviderNameJTxtField.getText());
-//        String userName = usernameTxt.getText();
-//        String password = pwdTxt.getText();
-//        userAccount.setUsername(userName);
-//        userAccount.setPassword(password);
-//        userAccount.setRole(rl);
-//        userAccount.setEmployee(employee);
+            employee.setRegStatus(request.getStatus());
+
+
+
+//        if (employee.getType().equals("MedicalSchool")) {
+//            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+//                    employee, new MedicalSchoolRole());
+//            AccessApprovalRequest request = new AccessApprovalRequest();
+//            request.setRole(entTypCombobox.getSelectedItem().toString());
+//            request.setSender(account);
+//            request.setStatus("Pending");
 //
-//        UserAccountDirectory usd = new UserAccountDirectory();
-//        usd.getUserAccountList().add(userAccount);
-//        SystemAdminWorkAreaJPanel sysadmin = new SystemAdminWorkAreaJPanel(userProcessContainer, system, usd);
+//            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+//                if (u.getUsername().equals("sysadmin")) {
+//                    u.getWorkQueue().getWorkRequestList().add(request);
+//                }
+//            }
+//
+//            employee.setRegStatus(request.getStatus());
+//        } else {
+//            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+//                    employee, new AdminRole());
+//            AccessApprovalRequest request = new AccessApprovalRequest();
+//            request.setRole(entTypCombobox.getSelectedItem().toString());
+//            request.setSender(account);
+//            request.setStatus("Pending");
+//
+//            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+//                if (u.getUsername().equals("sysadmin")) {
+//                    u.getWorkQueue().getWorkRequestList().add(request);
+//                }
+//            }
+//
+//            employee.setRegStatus(request.getStatus());
+//        }
+
+//        
         ProviderNameJTxtField.setText("");
         ProviderAddrJTxtArea.setText("");
         ProviderCityJTxtField.setText("");

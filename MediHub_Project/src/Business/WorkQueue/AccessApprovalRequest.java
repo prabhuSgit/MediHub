@@ -22,5 +22,9 @@ public class AccessApprovalRequest extends WorkRequest{
     public void setUseraccount(UserAccount useraccount) {
         this.useraccount = useraccount;
     }
+
+    public void setRole(Role role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

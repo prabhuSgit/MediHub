@@ -121,26 +121,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
 
-<<<<<<< HEAD
-        Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
 
-        if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
-            ProviderRegistrationJPanel provRegPnl = new ProviderRegistrationJPanel(userProcessContainer, system, role);
-            userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else if (roleJComboBox.getSelectedItem().equals(LabAssistant)) {
-            RegisterLabAssistants assist = new RegisterLabAssistants(userProcessContainer, system, role);
-            userProcessContainer.add("LabAssistantRegistrationJPanel", assist);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else if (roleJComboBox.getSelectedItem().equals(Doctor)) {
-            RegisterDoctor doctor = new RegisterDoctor(userProcessContainer, system, role);
-            userProcessContainer.add("DoctorRegistrationJPanel", doctor);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
-=======
         if (roleJComboBox.getSelectedItem().equals(Role.RoleType.Doctor)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.LabAssistant)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)) {
@@ -153,7 +134,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
             }
->>>>>>> origin/Prabhu_P
+
 
             if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
                 RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleOrgType, system);
@@ -185,16 +166,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 layout.next(userProcessContainer);
             }
         }
-<<<<<<< HEAD
-        System.out.println("on click of next button");
-        for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
-            System.out.println(user);
-        }
-        
-=======
 
-
->>>>>>> origin/Prabhu_P
     }//GEN-LAST:event_nextBtnActionPerformed
 
 

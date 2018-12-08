@@ -22,15 +22,15 @@ public class EmployeeDirectory {
         return employeeList;
     }
     
-    public Employee createEmployee(String name, String address, String city, String state, String type,String lname, String Department){
+    public Employee createEmployee(String name, String address, String city, String state, String type){
         Employee employee = new Employee();
         employee.setName(name);
         employee.setAddress(address);
         employee.setEnterpriseCity(city);
         employee.setEnterpriseState(state);
         employee.setType(type);
-        employee.setLastname(lname);
-        employee.setDepartment(Department);
+//        employee.setLastname(lname);
+//        employee.setDepartment(Department);
         employeeList.add(employee);
         return employee;
     }

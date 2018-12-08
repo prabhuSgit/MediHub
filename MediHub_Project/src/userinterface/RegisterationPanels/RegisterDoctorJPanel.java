@@ -273,7 +273,9 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                 Organization.Type type = Organization.Type.Doctor;
                 Organization org = directory.createOrganization(type);
 
-                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(),
+                        textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), 
+                        type.toString());
                 UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
 
                 for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
@@ -298,7 +300,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                 Organization.Type type = Organization.Type.Lab;
                 Organization org = directory.createOrganization(type);
 
-                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), textFieldept.getText(), null, networkJComboBox.getSelectedItem().toString(), type.toString());
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(),null, textFieldept.getText(),   networkJComboBox.getSelectedItem().toString(), type.toString());
                 UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new LabAssistantRole());
 
                 for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {

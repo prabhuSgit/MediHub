@@ -6,42 +6,49 @@
 package userinterface.MedicalSchoolAdminRole;
 
 import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
  *
  * @author hp
  */
-
 public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
-Network network;
-EcoSystem system;
-Enterprise enterprise;
-JPanel userProcessContainer;
+
+   JPanel userProcessContainer;
+    Enterprise enterprise;
+    UserAccount userAccount;
+    EcoSystem system;
+    Employee emp;
     /**
      * Creates new form MedicalSchoolWorkAreaJPanel
      */
-    public MedicalSchoolWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public MedicalSchoolWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount, EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        this.userAccount=userAccount;
+        this.system = ecoSystem;
+       // valueLabel.setText(enterprise.getName());
         populateComboBOXProvider();
     }
-    public void populateComboBOXProvider(){
-        SelectComboBox.removeAllItems();
+
+    public void populateComboBOXProvider() {
+        EnterpriseBox.removeAllItems();
         for (Network n : system.getNetworkList()) {
-        for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
-            if (enter.getEnterpriseType().equals(enter.getEnterpriseType().HealthCareProvider)) {
-                SelectComboBox.addItem(enter.toString());
-            }
+            for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
+//                if(enter.getEnterpriseType().equals(enterprise.getEnterpriseType().HealthCareProvider)){
+                    EnterpriseBox.addItem(enter.toString());
+//            }
+                }
+            
         }
-        }
-        //for()
-        
     }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,8 +58,8 @@ JPanel userProcessContainer;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        SelectComboBox = new javax.swing.JComboBox<>();
+        enterpriseTypeJComboBox = new javax.swing.JButton();
+        EnterpriseBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
@@ -60,9 +67,14 @@ JPanel userProcessContainer;
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
 
-        jButton1.setText("Request Provider");
+        enterpriseTypeJComboBox.setText("Request Provider");
+        enterpriseTypeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseTypeJComboBoxActionPerformed(evt);
+            }
+        });
 
-        SelectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EnterpriseBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Select Provider: ");
 
@@ -85,8 +97,8 @@ JPanel userProcessContainer;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SelectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EnterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,19 +110,23 @@ JPanel userProcessContainer;
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EnterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void enterpriseTypeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseTypeJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseTypeJComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> SelectComboBox;
+    private javax.swing.JComboBox<String> EnterpriseBox;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enterpriseTypeJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

@@ -29,7 +29,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount=userAccount;
         this.ecoSystem=ecoSystem;
-        valueLabel.setText(enterprise.getName());
+//        valueLabel.setText(enterprise.getName());
         
         populateAccessRequestTbl();
     }

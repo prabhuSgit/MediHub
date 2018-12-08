@@ -28,11 +28,9 @@ public class UserAccountDirectory {
     public UserAccount authenticateUser(String username, String password) {
         for (UserAccount ua : userAccountList) {
             if (ua.getUsername().equals(username)
-<<<<<<< HEAD
+
                     && ua.getPassword().equals(password) 
-=======
-                    && ua.getPassword().equals(password)
->>>>>>> origin/Prabhu_P
+
                     && ua.getStatus().equals("Active")) {
                return ua;
 

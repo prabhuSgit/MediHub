@@ -32,11 +32,9 @@ public class SchoolLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-<<<<<<< HEAD:MediHub_Project/src/userinterface/LabAssistantRole/SchoolLabAssistantWorkAreaJPanel.java
+
     public SchoolLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-=======
-    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
->>>>>>> origin/Prabhu_P:MediHub_Project/src/userinterface/LabAssistantRole/LabAssistantWorkAreaJPanel.java
+
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
