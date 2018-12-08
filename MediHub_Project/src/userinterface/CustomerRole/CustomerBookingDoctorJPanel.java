@@ -129,11 +129,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Doctor", "Provider", "Location", "Timing", "Book"
+                "Doctor", "Provider", "Location", "Timing", "Rating", "Book"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -145,7 +145,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             doctorTbl.getColumnModel().getColumn(0).setResizable(false);
             doctorTbl.getColumnModel().getColumn(1).setResizable(false);
             doctorTbl.getColumnModel().getColumn(2).setResizable(false);
-            doctorTbl.getColumnModel().getColumn(4).setResizable(false);
+            doctorTbl.getColumnModel().getColumn(5).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 320, 604, 142));
@@ -189,10 +189,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                 if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
                     Object[] row = new Object[dtm.getColumnCount()];
-                    row[0] = acc;
+                    row[0] = acc.getEmployee().getName();
                     row[1] = enterpriseComboBox.getSelectedItem();
-                    row[2] = acc.getRole();
-                    row[3] = acc.getUsername();
+                    row[2] = networkComboBox.getSelectedItem();
+                    row[3] = slotDropDown.getSelectedItem();
+                    row[4] = acc.getEmployee().getRating();
                     dtm.addRow(row);
                 }
             }

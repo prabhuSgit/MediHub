@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -31,6 +32,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
     float ques3;
     float ques4;
     float ques5;
+    float rating;
     public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -96,6 +98,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         BtnSubmit = new javax.swing.JButton();
         DoctorComboBox = new javax.swing.JComboBox();
+        BtnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Patient Satisfaction Survey");
@@ -233,6 +236,13 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
 
         DoctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<none>" }));
 
+        BtnBack.setText("<<Back");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -347,7 +357,9 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                             .addComponent(jSeparator3))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(BtnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnSubmit)
                 .addGap(58, 58, 58))
         );
@@ -428,7 +440,9 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         .addComponent(Q5R2)
                         .addComponent(Q5R1)))
                 .addGap(18, 18, 18)
-                .addComponent(BtnSubmit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnSubmit)
+                    .addComponent(BtnBack))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -449,7 +463,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 //System.out.println("Inside doctor's appointment list ");
                                 if(this.account.equals(ar.getCustomer())){
                                     //System.out.println("Found customer!!");
-                                    DoctorComboBox.addItem(ar.getDoctor());
+                                    DoctorComboBox.addItem(ar.getDoctor().getEmployee().getName());
                                 }
                             }
                         }
@@ -470,15 +484,15 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         //System.out.println("Inside organization's user account list");
                         if(acc.getRole().toString().equals("Business.Role.DoctorRole")){
                             //System.out.println("Inside doctor organization ");
-                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
+                            //for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
                                 //System.out.println("Inside doctor's appointment list ");
-                                if(this.account.equals(ar.getCustomer())){
-                                    //System.out.println("Found customer!!");
-                                    ar.getDoctor().getEmployee().setRating(rating);
-                                    System.out.println("Doctor is rated!!");
-                                    System.out.println("Rating:" + ar.getDoctor().getEmployee().getRating());
+                                if(acc.getEmployee().getName().equals(DoctorComboBox.getSelectedItem())){
+                                    //System.out.println("Found doctor!!");
+                                    acc.getEmployee().setRating(rating);
+                                    //System.out.println("Doctor is rated!!");
+                                    //System.out.println("Rating:" + acc.getEmployee().getRating());
                                 }
-                            }
+                            //}
                         }
                     }
                 }
@@ -546,7 +560,6 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
     private void BtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSubmitActionPerformed
         // TODO add your handling code here:
         
-        float rating;
         RateQuestion1();
         RateQuestion2();
         RateQuestion3();
@@ -559,8 +572,16 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BtnSubmitActionPerformed
 
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BtnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnSubmit;
     private javax.swing.JComboBox DoctorComboBox;
     private javax.swing.JRadioButton Q1R1;
