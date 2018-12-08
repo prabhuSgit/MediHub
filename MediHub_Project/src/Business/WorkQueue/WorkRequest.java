@@ -17,20 +17,21 @@ public abstract class WorkRequest {
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount customer;
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    private Role role;
+    private String role;
     
     public WorkRequest(){
         requestDate = new Date();
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -80,5 +81,18 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+
+    public UserAccount getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UserAccount customer) {
+        this.customer = customer;
+    }
+    
+    @Override
+    public String toString(){
+        return sender.toString();
     }
 }

@@ -337,7 +337,8 @@ public class RegisterCustomerJPanel extends javax.swing.JPanel {
         userNameMsg1.setText("");
         userNameMsg2.setText("");
         for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
-            if (ua.getUsername().equalsIgnoreCase(userNameTxt.getText())) {
+            if (ua.getUsername().equalsIgnoreCase(userNameTxt.getText()) &&
+                    ua.getUsername().equals("sysadmin")) {
                 System.out.println(ua.getUsername());
                 userNameMsg1.setText("Username is not available");
                 userNameMsg2.setText("");

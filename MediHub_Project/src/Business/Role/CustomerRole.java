@@ -24,7 +24,7 @@ public class CustomerRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
 
-        return new CustomerWorkAreaJPanel(userProcessContainer, account);
+        return new CustomerWorkAreaJPanel(userProcessContainer, account, business);
 
     }
 

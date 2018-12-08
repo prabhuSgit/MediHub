@@ -10,7 +10,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.SystemAdminWorkArea.OrgRegReqPanel;
+import userinterface.ProviderAdminRole.ReviewRegistrationJPanel;
 
 /**
  *
@@ -20,14 +20,18 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
-    EcoSystem ecosystem;
     UserAccount userAccount;
+    EcoSystem ecoSystem;
     /** Creates new form AdminWorkAreaJPanel */
-    public ProviderWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public ProviderWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount, EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.userAccount=userAccount;
+        this.ecoSystem=ecoSystem;
         valueLabel.setText(enterprise.getName());
+        
+        populateAccessRequestTbl();
     }
     
     public void populateAccessRequestTbl(){
@@ -36,11 +40,9 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
-            row[0] = request.getSender();
-            row[1] = request.getStatus();
-            row[2] = request.getRole();
-//            String result = ((AccessApprovalRequest) request).getTestResult();
-//            row[3] = result == null ? "Waiting" : result;
+            row[0] = request;
+            row[1] = request.getRole();
+            row[2] = request.getStatus();
             
             model.addRow(row);
         }
@@ -60,10 +62,10 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
         accessRequestTbl = new javax.swing.JTable();
-        LablePendingReq = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         BtnReview = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -100,11 +102,11 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender Name", "role", "Status"
+                "Sender Name", "Role", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -112,8 +114,13 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(accessRequestTbl);
+        if (accessRequestTbl.getColumnModel().getColumnCount() > 0) {
+            accessRequestTbl.getColumnModel().getColumn(0).setResizable(false);
+            accessRequestTbl.getColumnModel().getColumn(1).setResizable(false);
+            accessRequestTbl.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        LablePendingReq.setText("Pending request for Access :");
+        jLabel2.setText("Pending request for Access :");
 
         BtnReview.setText("Review");
         BtnReview.addActionListener(new java.awt.event.ActionListener() {
@@ -127,42 +134,36 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(manageOrganizationJButton))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(LablePendingReq))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
-                .addComponent(BtnReview))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageOrganizationJButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnReview, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2)
+                                .addComponent(jSeparator1)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(129, 129, 129)
                 .addComponent(jLabel1)
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(manageOrganizationJButton)
@@ -170,16 +171,15 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(manageEmployeeJButton)
                 .addGap(21, 21, 21)
                 .addComponent(userJButton)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(LablePendingReq)
+                .addGap(41, 41, 41)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(BtnReview))))
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnReview)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,9 +217,11 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
-        OrgRegReqPanel reviewRegistrationJPanel = new OrgRegReqPanel(userProcessContainer,ecosystem,us);
-        userProcessContainer.add("ViewFlightsPanel", reviewRegistrationJPanel);
+        WorkRequest request = (WorkRequest)accessRequestTbl.getValueAt(row, 0);
+        UserAccount us = request.getSender();
+        //        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
+        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer,ecoSystem,us, userAccount);
+        userProcessContainer.add("ReviewRegistrationJPanel", reviewRegistrationJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
@@ -228,10 +230,10 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReview;
-    private javax.swing.JLabel LablePendingReq;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton manageEmployeeJButton;

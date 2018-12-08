@@ -36,7 +36,7 @@ import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  *
  * @author pravinash
  */
-public class ProviderRegistrationJPanel extends javax.swing.JPanel {
+public class RegisterProviderJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProviderAdminRegistrationWorkAreaJPanel
@@ -44,22 +44,28 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     private Role role;
-
-    public ProviderRegistrationJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
+    private Enterprise.EnterpriseType roleSelect;
+    public RegisterProviderJPanel(JPanel userProcessContainer, EcoSystem system, Role role, Enterprise.EnterpriseType roleSelect) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.role = role;
+        this.roleSelect=roleSelect;
         StateComboBox.removeAllItems();
-        OrgTypCombobox.removeAllItems();
+        entTypCombobox.removeAllItems();
         for (Network n : system.getNetworkList()) {
             StateComboBox.addItem(n);
-//            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-//                OrgTypCombobox.addItem(e);
-//            }
         }
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            OrgTypCombobox.addItem(type);
+//            if (type.toString().equals(role.toString())) {
+//                OrgTypCombobox.addItem(type);
+////                OrgTypeTxt.setText(String.valueOf(type));
+//            }
+            if(roleSelect.equals(type.HealthCareProvider)){
+                entTypCombobox.addItem(type.HealthCareProvider);
+            }else{
+                entTypCombobox.addItem(type.MedicalSchool);
+            }
         }
 
     }
@@ -93,10 +99,11 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         usernameTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        OrgTypCombobox = new javax.swing.JComboBox();
+        entTypCombobox = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         pwdTxt = new javax.swing.JPasswordField();
         rtypPwdTxt = new javax.swing.JPasswordField();
+        OrgTypeTxt = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Provider Registration ");
@@ -141,6 +148,8 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Re-type password:");
 
+        entTypCombobox.setEnabled(false);
+
         jLabel10.setText("Enterprise Type:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -148,87 +157,101 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2)))
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(ProviderNameJTxtField)
-                                        .addComponent(ProviderCityJTxtField)
-                                        .addComponent(FilePathTxtField)
-                                        .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(RegisterJBtn)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtnBack))
-                                    .addComponent(BtnBrowse)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jLabel10))
+                                        .addGap(25, 25, 25)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel2)))
+                                    .addComponent(jLabel6))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel9))
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addComponent(jLabel10)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(BtnBrowse))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnBack)
+                                .addGap(197, 197, 197)
+                                .addComponent(RegisterJBtn)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(usernameTxt)
-                            .addComponent(OrgTypCombobox, 0, 198, Short.MAX_VALUE)
+                            .addComponent(entTypCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pwdTxt)
-                            .addComponent(rtypPwdTxt))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                            .addComponent(rtypPwdTxt)
+                            .addComponent(OrgTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(entTypCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OrgTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnBrowse)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel2)
+                                            .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(25, 25, 25)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel4)
+                                            .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel6)
+                                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BtnBrowse))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(RegisterJBtn)
@@ -246,23 +269,18 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
                                     .addComponent(rtypPwdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(98, 98, 98))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(OrgTypCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                                .addGap(98, 98, 98)))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterJBtnActionPerformed
         // TODO add your handling code here:
         Network network = (Network) StateComboBox.getSelectedItem();
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) OrgTypCombobox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) entTypCombobox.getSelectedItem();
 
+//        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) OrgTypeTxt.getText();
+        
         if (network == null || type == null) {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
@@ -282,9 +300,12 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
 //        String type = "Health Care Provider";
 //        Employee employee = ent.getEmployeeDirectory().createEmployee(name, address, city, state,type);
 //        UserAccount ua = ent.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
+<<<<<<< HEAD:MediHub_Project/src/userinterface/RegisterationPanels/ProviderRegistrationJPanel.java
          
+=======
+>>>>>>> origin/Prabhu_P:MediHub_Project/src/userinterface/RegisterationPanels/RegisterProviderJPanel.java
         AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(role);
+        request.setRole(entTypCombobox.getSelectedItem().toString());
         request.setSender(account);
         request.setStatus("Pending");
 
@@ -339,12 +360,13 @@ public class ProviderRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnBrowse;
     private javax.swing.JTextField FilePathTxtField;
-    private javax.swing.JComboBox OrgTypCombobox;
+    private javax.swing.JLabel OrgTypeTxt;
     private javax.swing.JTextArea ProviderAddrJTxtArea;
     private javax.swing.JTextField ProviderCityJTxtField;
     private javax.swing.JTextField ProviderNameJTxtField;
     private javax.swing.JButton RegisterJBtn;
     private javax.swing.JComboBox StateComboBox;
+    private javax.swing.JComboBox entTypCombobox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,6 +20,8 @@ public class Customer {
     private Integer phoneNbr;
     private static int custId;
     private int id;
+    private ArrayList<VitalSigns> customerVitalSigns;
+    private ArrayList<CustomerBooking> customerBookHistrory;
     
     public Customer() {
         id = custId;
@@ -72,6 +75,23 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
+
+    public ArrayList<VitalSigns> getCustomerVitalSigns() {
+        return customerVitalSigns;
+    }
+
+    public void setCustomerVitalSigns(ArrayList<VitalSigns> customerVitalSigns) {
+        this.customerVitalSigns = customerVitalSigns;
+    }
+
+    public ArrayList<CustomerBooking> getCustomerBookHistrory() {
+        return customerBookHistrory;
+    }
+
+    public void setCustomerBookHistrory(ArrayList<CustomerBooking> customerBookHistrory) {
+        this.customerBookHistrory = customerBookHistrory;
+    }
+
     
     @Override
     public String toString() {

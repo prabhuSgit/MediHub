@@ -213,6 +213,30 @@ public class RegisterLabAssistants extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+<<<<<<< HEAD
+=======
+        if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
+        } else {
+            System.out.println("Lab Assistant Registration: hi");
+            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+            OrganizationDirectory directory = ent.getOrganizationDirectory();
+            Organization.Type type = Organization.Type.Lab;
+//            Organization org = directory.createOrganization(type);
+
+//            Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.toString(), null, null,null,role.toString());
+//            System.out.println("Employee created");
+//            org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new DoctorRole());
+//            System.out.println("User created");
+
+            JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
+            RegisterationSelectionJPanel origin = new RegisterationSelectionJPanel(userProcessContainer, system, role);
+            userProcessContainer.add("Original Panel", origin);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        }
+>>>>>>> origin/Prabhu_P
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed

@@ -34,9 +34,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private JPanel container;
     private Enterprise enterprise;
     JPanel userProcessContainer;
-
     private EcoSystem system;
-
     private Role role;
 
     public RegisterationSelectionJPanel(JPanel userProcessContainer, EcoSystem system, Role role) {
@@ -52,6 +50,10 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
         for (Role.RoleType type : Role.RoleType.values()) {
             roleJComboBox.addItem(type);
         }
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            roleJComboBox.addItem(type);
+        }
+
     }
 
     /**
@@ -119,6 +121,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
 
+<<<<<<< HEAD
         Role.RoleType roleType = (Role.RoleType) roleJComboBox.getSelectedItem();
 
         if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
@@ -137,25 +140,61 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
+=======
+        if (roleJComboBox.getSelectedItem().equals(Role.RoleType.Doctor)
+                || roleJComboBox.getSelectedItem().equals(Role.RoleType.LabAssistant)
+                || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)) {
+            
+            Role.RoleType roleOrgType = (Role.RoleType) roleJComboBox.getSelectedItem();
 
-        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
-            userProcessContainer.add("RegisterCustomerJPanel", regCust);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
+            if (roleJComboBox.getSelectedItem().toString().equals("Doctor")) {
+                RegisterDoctorJPanel doctor = new RegisterDoctorJPanel(userProcessContainer, system, role, roleOrgType);
+                userProcessContainer.add("ProviderRegistrationJPanel", doctor);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+>>>>>>> origin/Prabhu_P
 
-        if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
-            RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleType, system);
-            userProcessContainer.add("RegisterCustomerJPanel", regCust);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
+                RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleOrgType, system);
+                userProcessContainer.add("RegisterCustomerJPanel", regCust);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+
+            if (roleJComboBox.getSelectedItem().toString().equals("Lab Assistant")) {
+                RegisterDoctorJPanel assist = new RegisterDoctorJPanel(userProcessContainer, system, role, roleOrgType);
+                userProcessContainer.add("ProviderRegistrationJPanel", assist);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+        } else {
+            
+            Enterprise.EnterpriseType roleEntType = (Enterprise.EnterpriseType) roleJComboBox.getSelectedItem();
+            if (roleJComboBox.getSelectedItem().toString().equals("Health Care Provider")) {
+                RegisterProviderJPanel provRegPnl = new RegisterProviderJPanel(userProcessContainer, system, role, roleEntType);
+                userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+
+            if (roleJComboBox.getSelectedItem().toString().equals("Medical School")) {
+                RegisterProviderJPanel provRegPnl = new RegisterProviderJPanel(userProcessContainer, system, role, roleEntType);
+                userProcessContainer.add("ProviderRegistrationJPanel", provRegPnl);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
         }
+<<<<<<< HEAD
         System.out.println("on click of next button");
         for (UserAccount user : system.getUserAccountDirectory().getUserAccountList()) {
             System.out.println(user);
         }
         
+=======
+
+
+>>>>>>> origin/Prabhu_P
     }//GEN-LAST:event_nextBtnActionPerformed
 
 
