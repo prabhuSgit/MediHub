@@ -72,15 +72,12 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         ProviderNameJTxtField = new javax.swing.JTextField();
         ProviderCityJTxtField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProviderAddrJTxtArea = new javax.swing.JTextArea();
         BtnUpdate = new javax.swing.JButton();
-        FilePathTxtField = new javax.swing.JTextField();
         BtnBack = new javax.swing.JButton();
-        BtnBrowse = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         entTypTxt = new javax.swing.JTextField();
@@ -100,8 +97,6 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Network:");
 
-        jLabel6.setText("License Document:");
-
         ProviderNameJTxtField.setEditable(false);
 
         ProviderCityJTxtField.setEditable(false);
@@ -118,16 +113,12 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
             }
         });
 
-        FilePathTxtField.setEditable(false);
-
         BtnBack.setText("<< Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
-
-        BtnBrowse.setText("Browse");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -159,26 +150,20 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2)))
-                            .addComponent(jLabel6))
-                        .addGap(30, 30, 30)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnBrowse)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                        .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(FilePathTxtField, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                    .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addComponent(BtnBack))
                         .addGap(65, 65, 65)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,13 +208,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(NetworkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnBrowse)
-                        .addGap(41, 41, 41)
+                        .addGap(135, 135, 135)
                         .addComponent(BtnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
@@ -258,6 +237,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         entTypTxt.setText(userAccount.getEmployee().getType());
         StatusTxt.setText(userAccount.getEmployee().getRegStatus());
     }
+    
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
         StatusTxt.setText("");
@@ -302,9 +282,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBack;
-    private javax.swing.JButton BtnBrowse;
     private javax.swing.JButton BtnUpdate;
-    private javax.swing.JTextField FilePathTxtField;
     private javax.swing.JTextField NetworkTxt;
     private javax.swing.JTextArea ProviderAddrJTxtArea;
     private javax.swing.JTextField ProviderCityJTxtField;
@@ -318,7 +296,6 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

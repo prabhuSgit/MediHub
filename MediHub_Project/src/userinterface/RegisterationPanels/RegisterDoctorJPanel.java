@@ -297,6 +297,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                     }
 
                 }
+                empDoctor.setRegStatus(request.getStatus());
 
             } else if (roleSelect.equals(Role.RoleType.LabAssistant)) {
                 Organization.Type type = Organization.Type.Lab;
@@ -321,6 +322,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                     }
 
                 }
+                empDoctor.setRegStatus(request.getStatus());
 
             } else if (roleSelect.equals(Role.RoleType.MedicalSchoolLab)) {
                 Organization.Type type = Organization.Type.Lab;

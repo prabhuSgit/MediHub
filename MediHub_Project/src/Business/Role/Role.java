@@ -18,6 +18,8 @@ import javax.swing.JPanel;
  */
 public abstract class Role {
     
+    
+    
     public enum RoleType{
 //        SysAdmin("SysAdmin"),
         Doctor("Doctor"),
@@ -40,7 +42,7 @@ public abstract class Role {
             return value;
         }
     }
-    
+
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account, 
             Organization organization, 

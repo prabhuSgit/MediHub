@@ -129,7 +129,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Doctor", "Provider", "Timing", "Rating", "No of Reviews"
+                "Doctor", "Provider", "Timing", "Rating", "No of Reviewers"
             }
         ) {
             boolean[] canEdit = new boolean [] {
