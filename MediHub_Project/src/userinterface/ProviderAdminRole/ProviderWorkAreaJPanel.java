@@ -34,6 +34,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         populateAccessRequestTbl();
     }
     
+    
     public void populateAccessRequestTbl(){
         DefaultTableModel model = (DefaultTableModel) accessRequestTbl.getModel();
         

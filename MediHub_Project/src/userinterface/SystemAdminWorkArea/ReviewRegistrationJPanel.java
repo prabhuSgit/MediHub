@@ -260,6 +260,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     }
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
+        StatusTxt.setText(" ");
         StatusTxt.setEditable(true);
         StatusTxt.setBackground(Color.green);
 

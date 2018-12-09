@@ -9,7 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-import userinterface.LabAssistantRole.SchoolLabAssistantWorkAreaJPanel;
+import userinterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +21,7 @@ public class LabAssistantRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
 
-        return new SchoolLabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
 
     }
 }

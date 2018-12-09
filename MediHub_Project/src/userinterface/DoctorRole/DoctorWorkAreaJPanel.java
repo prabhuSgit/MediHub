@@ -58,10 +58,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[6];
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Prabhu_P
             row[0] = request.getCustomer();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();

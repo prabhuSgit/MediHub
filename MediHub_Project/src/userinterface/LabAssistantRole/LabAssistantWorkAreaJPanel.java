@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author raunak
  */
-public class SchoolLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
+public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem business;
@@ -33,7 +33,7 @@ public class SchoolLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form LabAssistantWorkAreaJPanel
      */
 
-    public SchoolLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
 
         initComponents();
         

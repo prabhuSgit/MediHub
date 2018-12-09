@@ -18,7 +18,7 @@ public class Employee {
     private String Department;
     private int id;
     private String address;
-    private Network network;
+    Network network;
     private static int count = 1000;
     private int registrationID;
     private String regStatus;

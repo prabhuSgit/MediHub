@@ -289,16 +289,17 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
 
         String name = ProviderNameJTxtField.getText();
 
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-//      Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
-        String address = ProviderAddrJTxtArea.getText();
-        String city = ProviderCityJTxtField.getText();
-        String state = StateComboBox.getSelectedItem().toString();
+        if (type.equals(type.HealthCareProvider)) {
 
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
-        UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
-                employee, new MedicalSchoolRole());
-         AccessApprovalRequest request = new AccessApprovalRequest();
+            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+            String address = ProviderAddrJTxtArea.getText();
+            String city = ProviderCityJTxtField.getText();
+            String state = StateComboBox.getSelectedItem().toString();
+
+            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
+            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+                    employee, new AdminRole());
+            AccessApprovalRequest request = new AccessApprovalRequest();
             request.setRole(entTypCombobox.getSelectedItem().toString());
             request.setSender(account);
             request.setStatus("Pending");
@@ -310,8 +311,44 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             }
 
             employee.setRegStatus(request.getStatus());
+            ProviderNameJTxtField.setText("");
+            ProviderAddrJTxtArea.setText("");
+            ProviderCityJTxtField.setText("");
+            usernameTxt.setText("");
+            pwdTxt.setText("");
+            rtypPwdTxt.setText("");
+            FilePathTxtField.setText(" ");
+            JOptionPane.showMessageDialog(null, "Registered Successfully");
 
+        } else {
+            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+            String address = ProviderAddrJTxtArea.getText();
+            String city = ProviderCityJTxtField.getText();
+            String state = StateComboBox.getSelectedItem().toString();
 
+            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
+            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+                    employee, new MedicalSchoolRole());
+            AccessApprovalRequest request = new AccessApprovalRequest();
+            request.setRole(entTypCombobox.getSelectedItem().toString());
+            request.setSender(account);
+            request.setStatus("Pending");
+
+            for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
+                if (u.getUsername().equals("sysadmin")) {
+                    u.getWorkQueue().getWorkRequestList().add(request);
+                }
+            }
+
+            ProviderNameJTxtField.setText("");
+            ProviderAddrJTxtArea.setText("");
+            ProviderCityJTxtField.setText("");
+            usernameTxt.setText("");
+            pwdTxt.setText("");
+            rtypPwdTxt.setText("");
+            JOptionPane.showMessageDialog(null, "Registered Successfully");
+//         
+        }
 
 //        if (employee.getType().equals("MedicalSchool")) {
 //            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
@@ -344,7 +381,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
 //
 //            employee.setRegStatus(request.getStatus());
 //        }
-
 //        
         ProviderNameJTxtField.setText("");
         ProviderAddrJTxtArea.setText("");

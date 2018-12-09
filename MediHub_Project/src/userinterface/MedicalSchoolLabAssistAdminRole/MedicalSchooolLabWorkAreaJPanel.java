@@ -9,12 +9,12 @@ package userinterface.MedicalSchoolLabAssistAdminRole;
  *
  * @author hp
  */
-public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
+public class MedicalSchooolLabWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public LabAssistantWorkAreaJPanel() {
+    public MedicalSchooolLabWorkAreaJPanel() {
         initComponents();
     }
 
