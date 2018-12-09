@@ -149,7 +149,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         Network network = system.createAndAddNetwork();
         network.setName(name);
         populateNetworkTable();
-        nameJTextField.setText(" ");
+        nameJTextField.setText("");
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 

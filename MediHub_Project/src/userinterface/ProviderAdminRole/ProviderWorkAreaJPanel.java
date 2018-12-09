@@ -5,7 +5,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.OrganRequest;
+import Business.OrganQueue.OrganRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -104,6 +104,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         OrganTable = new javax.swing.JTable();
         valueLabel = new javax.swing.JLabel();
+        organRqstBtn = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -184,6 +185,15 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(160, 280, 420, 103);
         add(valueLabel);
         valueLabel.setBounds(320, 180, 120, 30);
+
+        organRqstBtn.setText("Organ Requests");
+        organRqstBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organRqstBtnActionPerformed(evt);
+            }
+        });
+        add(organRqstBtn);
+        organRqstBtn.setBounds(393, 180, 180, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -225,6 +235,14 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         pieChart();
     }//GEN-LAST:event_statsBtnActionPerformed
+
+    private void organRqstBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organRqstBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("manageOrganizationJPanel", new OrganRequestJPanel(userProcessContainer, enterprise, userAccount, ecoSystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_organRqstBtnActionPerformed
 
     public void pieChart() {
         DefaultPieDataset pieDataset = new DefaultPieDataset();
@@ -276,6 +294,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton manageOrganizationJButton;
+    private javax.swing.JButton organRqstBtn;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 

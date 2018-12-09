@@ -20,10 +20,14 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 
 import Business.WorkQueue.AccessApprovalRequest;
-import Business.WorkQueue.OrganRequest;
+import Business.OrganQueue.OrganRequest;
+import Business.Organization.LabOrganization;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.SystemAdminWorkArea.ReviewRegistrationJPanel;
 
 /**
  *
@@ -34,7 +38,7 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprise enterprise;
     UserAccount userAccount;
-    EcoSystem system;
+    EcoSystem ecoSystem;
     Employee emp;
     Role role;
 
@@ -47,16 +51,74 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
 
-        this.system = ecoSystem;
-//         valueLabel.setText(enterprise.getName());
+        this.ecoSystem = ecoSystem;
+        valueLabel.setText(enterprise.getName());
         populateComboBOXProvider();
+        populateAccessRequestTbl();
+        populateOrganRequestTbl();
+        populateLabRequest();
+    }
+
+    public void populateLabRequest() {
+        DefaultTableModel model = (DefaultTableModel) labRqstTable.getModel();
+
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (OrganRequest request : organization.getOrganQueue().getOrganList()) {
+                Object[] row = new Object[7];
+                row[0] = request;
+                row[1] = request.getQty();
+                row[2] = request.getStatus();
+                row[3] = request.getSender();
+                row[4] = request.getSchool();
+                row[5] = request.getProvider();
+                row[6] = request.getMsg();
+
+                model.addRow(row);
+            }
+        }
+
+    }
+
+    public void populateAccessRequestTbl() {
+        DefaultTableModel model = (DefaultTableModel) accessRequestTbl.getModel();
+
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[3];
+            row[0] = request;
+            row[1] = request.getRole();
+            row[2] = request.getStatus();
+
+            model.addRow(row);
+        }
+    }
+
+    public void populateOrganRequestTbl() {
+        DefaultTableModel model = (DefaultTableModel) organRqstTable.getModel();
+
+        Enterprise ent = (Enterprise) enterpriseJComboBox.getSelectedItem();
+        model.setRowCount(0);
+        for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+            for (OrganRequest request : u.getOrganQueue().getOrganList()) {
+                Object[] row = new Object[7];
+                row[0] = request;
+                row[1] = request.getQty();
+                row[2] = request.getStatus();
+                row[3] = request.getSender();
+                row[4] = request.getSchool();
+                row[5] = request.getProvider();
+                row[6] = request.getMsg();
+
+                model.addRow(row);
+            }
+        }
     }
 
     public void populateComboBOXProvider() {
 
         enterpriseJComboBox.removeAllItems();
 
-        for (Network n : system.getNetworkList()) {
+        for (Network n : ecoSystem.getNetworkList()) {
             if (userAccount.getEmployee().getEnterpriseState().equals(n.toString())) {
                 System.out.print(n);
                 for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -68,15 +130,14 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         }
     }
 
-    public void populateQtyComboBox() {
-        QtyBox.removeAllItems();
-        int row = OrganTable.getSelectedRow();
-        OrganRequest req = (OrganRequest) OrganTable.getValueAt(row, 2);
-        //for(OrganRequest orgReq : userAccount.getWorkQueue().getOrganreqlist(){
-
-        //}
-    }
-
+//    public void populateQtyComboBox() {
+//        QtyBox.removeAllItems();
+//        int row = organRqstTable.getSelectedRow();
+//        OrganRequest req = (OrganRequest) organRqstTable.getValueAt(row, 2);
+//        //for(OrganRequest orgReq : userAccount.getWorkQueue().getOrganreqlist(){
+//
+//        //}
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,13 +153,22 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseJComboBox = new javax.swing.JComboBox();
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        OrganTable = new javax.swing.JTable();
+        organRqstTable = new javax.swing.JTable();
+        deleteBtn = new javax.swing.JButton();
+        BtnReview = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        accessRequestTbl = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        organTxt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        labRqstTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        QtyBox = new javax.swing.JComboBox<String>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
-        setLayout(null);
 
         ReqButton.setText("Request Provider");
         ReqButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,88 +176,294 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
                 ReqButtonActionPerformed(evt);
             }
         });
-        add(ReqButton);
-        ReqButton.setBounds(141, 299, 219, 56);
 
         jLabel1.setText("Select Provider: ");
-        add(jLabel1);
-        jLabel1.setBounds(109, 238, 97, 32);
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel);
-        enterpriseLabel.setBounds(109, 36, 120, 30);
 
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseJComboBox);
-        enterpriseJComboBox.setBounds(210, 239, 150, 30);
 
-        valueLabel.setText("jLabel2");
-        add(valueLabel);
-        valueLabel.setBounds(239, 39, 137, 30);
-
-        OrganTable.setModel(new javax.swing.table.DefaultTableModel(
+        organRqstTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Organ", "qty", "Status", "Sender", "Reciever", "message"
+                "Organ", "qty", "Status", "Sender", "Reciever", "Provider", "message"
             }
-        ));
-        jScrollPane1.setViewportView(OrganTable);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true
+            };
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(60, 80, 452, 100);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(organRqstTable);
 
-        jLabel2.setText("Quantity:");
-        add(jLabel2);
-        jLabel2.setBounds(110, 200, 70, 20);
+        deleteBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\deleteBtn.png")); // NOI18N
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
-        QtyBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(QtyBox);
-        QtyBox.setBounds(210, 190, 150, 30);
+        BtnReview.setText("Review");
+        BtnReview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReviewActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Pending Access requests :");
+
+        accessRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Sender Name", "Role", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(accessRequestTbl);
+
+        labRqstTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Organ", "qty", "Status", "Sender", "Reciever", "Provider", "message"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        labRqstTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labRqstTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(labRqstTable);
+
+        jLabel2.setText("Organ to request:");
+
+        jLabel4.setText("Organs requests from LAB:");
+
+        jLabel5.setText("Organ request sent to Providers:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(deleteBtn)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(BtnReview))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(389, 389, 389)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(ReqButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(organTxt)
+                                    .addComponent(enterpriseJComboBox, 0, 150, Short.MAX_VALUE))))))
+                .addContainerGap(192, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(organTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                        .addGap(3, 3, 3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ReqButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(deleteBtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnReview, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqButtonActionPerformed
         // TODO add your handling code here:
-//        int row = OrganTable.getSelectedRow();
-//        OrganRequest req = (OrganRequest) OrganTable.getValueAt(row, 1);
         Enterprise ent = (Enterprise) enterpriseJComboBox.getSelectedItem();
-         int row = OrganTable.getSelectedRow();
-         
+        int row = organRqstTable.getSelectedRow();
+
         OrganRequest request = new OrganRequest();
-        //request.setOrgan(OrganTable.getValueAt(row, 2).toString());
-        //request.setQty(2);
+        request.setQty(2);
+        request.setOrgan(organTxt.getText());
         request.setSender(userAccount);
         request.setStatus("Pending");
-         
+
+        UserAccount u1 = null;
         for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
-            System.out.println( "Finding user name ");
-            if (u.getUsername().equalsIgnoreCase(ent.getName())) {
-                System.out.println(u.getUsername() + " ");
-                u.getWorkQueue().getOrganreqlist().add(request);
-            }
+            u.getOrganQueue().getOrganList().add(request);
+            u1=u;
         }
+        populateOrganRequestTbl();
+
+        int row1 = labRqstTable.getSelectedRow();
+        OrganRequest request1 = (OrganRequest) labRqstTable.getValueAt(row1, 0);
+        request1.setProvider(u1);
+        request1.setSchool(userAccount);
+        request.setStatus("Sent to Provider"+ " "+u1);
+        
+        populateLabRequest();
         JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
+
+
     }//GEN-LAST:event_ReqButtonActionPerformed
 
     private void EnterpriseBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterpriseBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EnterpriseBoxActionPerformed
 
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+
+        int row = accessRequestTbl.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
+            if (dialogButton == JOptionPane.YES_OPTION) {
+                WorkRequest wr = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
+                userAccount.getWorkQueue().getWorkRequestList().remove(wr);
+
+                populateAccessRequestTbl();
+            }
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void BtnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReviewActionPerformed
+        // TODO add your handling code here:
+        int row = accessRequestTbl.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        WorkRequest request = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
+        UserAccount us = request.getSender();
+        //        UserAccount us = (UserAccount)accessRequestTbl.getValueAt(row, 0);
+        ReviewRegistrationJPanel reviewRegistrationJPanel = new ReviewRegistrationJPanel(userProcessContainer, ecoSystem, us, userAccount);
+        userProcessContainer.add("ViewFlightsPanel", reviewRegistrationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_BtnReviewActionPerformed
+
+    private void labRqstTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labRqstTableMouseClicked
+        // TODO add your handling code here:
+        int row = labRqstTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String organ = labRqstTable.getValueAt(row, 0).toString();
+        organTxt.setText(organ);
+    }//GEN-LAST:event_labRqstTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable OrganTable;
-    private javax.swing.JComboBox<String> QtyBox;
+    private javax.swing.JButton BtnReview;
     private javax.swing.JButton ReqButton;
+    private javax.swing.JTable accessRequestTbl;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable labRqstTable;
+    private javax.swing.JTable organRqstTable;
+    private javax.swing.JTextField organTxt;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

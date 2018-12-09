@@ -124,7 +124,8 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
 
         if (roleJComboBox.getSelectedItem().equals(Role.RoleType.Doctor)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.LabAssistant)
-                || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)) {
+                || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)
+                || roleJComboBox.getSelectedItem().equals(Role.RoleType.MedicalSchoolLab)) {
             
             Role.RoleType roleOrgType = (Role.RoleType) roleJComboBox.getSelectedItem();
 
@@ -144,6 +145,13 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
             }
 
             if (roleJComboBox.getSelectedItem().toString().equals("Lab Assistant")) {
+                RegisterDoctorJPanel assist = new RegisterDoctorJPanel(userProcessContainer, system, role, roleOrgType);
+                userProcessContainer.add("ProviderRegistrationJPanel", assist);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+            
+            if (roleJComboBox.getSelectedItem().toString().equals("Medical School Lab")) {
                 RegisterDoctorJPanel assist = new RegisterDoctorJPanel(userProcessContainer, system, role, roleOrgType);
                 userProcessContainer.add("ProviderRegistrationJPanel", assist);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();

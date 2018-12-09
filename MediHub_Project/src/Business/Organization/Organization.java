@@ -5,6 +5,7 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.OrganQueue.OrganQueue;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -16,9 +17,10 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
-    private Type type;   
+    private Type type;
     private String name;
     private WorkQueue workQueue;
+    private OrganQueue organQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -35,10 +37,12 @@ public abstract class Organization {
     }
 
     public enum Type {
+
         SysAdmin("SysAdmin"),
         Admin("Admin"),
         Doctor("Doctor"),
-        Lab("Lab");
+        Lab("Lab"),
+        MedicalLab("MedicalLab");
         private String value;
 
         private Type(String value) {
@@ -48,7 +52,7 @@ public abstract class Organization {
         public String getValue() {
             return value;
         }
-        
+
         @Override
         public String toString() {
             return value;
@@ -61,6 +65,7 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        organQueue = new OrganQueue();
         organizationID = counter;
         ++counter;
     }
@@ -94,12 +99,21 @@ public abstract class Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-     public Type getType() {
+
+    public Type getType() {
         return type;
     }
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public OrganQueue getOrganQueue() {
+        return organQueue;
+    }
+
+    public void setOrganQueue(OrganQueue organQueue) {
+        this.organQueue = organQueue;
     }
 
     @Override

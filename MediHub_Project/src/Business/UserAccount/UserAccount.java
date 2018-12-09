@@ -8,6 +8,7 @@ import Business.AppoontmentQueue.AppointmentQueue;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.Customer.Customer;
+import Business.OrganQueue.OrganQueue;
 import Business.WorkQueue.WorkQueue;
 
 /**
@@ -23,11 +24,13 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private AppointmentQueue appointmentQueue;
+    private OrganQueue organQueue;
     private String status;
 
     public UserAccount() {
         workQueue = new WorkQueue();
         appointmentQueue = new AppointmentQueue();
+        organQueue = new OrganQueue();
     }
 
     public Customer getCustomer() {
@@ -88,6 +91,14 @@ public class UserAccount {
 
     public void setAppointmentQueue(AppointmentQueue appointmentQueue) {
         this.appointmentQueue = appointmentQueue;
+    }
+
+    public OrganQueue getOrganQueue() {
+        return organQueue;
+    }
+
+    public void setOrganQueue(OrganQueue organQueue) {
+        this.organQueue = organQueue;
     }
     
     @Override

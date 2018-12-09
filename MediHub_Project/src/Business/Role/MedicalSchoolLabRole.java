@@ -22,7 +22,7 @@ public class MedicalSchoolLabRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
 
-        return new MedicalLabWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new MedicalLabWorkAreaJPanel(userProcessContainer, account, organization, business, enterprise);
 
     }
 }

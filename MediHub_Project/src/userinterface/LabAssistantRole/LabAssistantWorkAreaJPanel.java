@@ -33,7 +33,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form LabAssistantWorkAreaJPanel
      */
 
-    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Enterprise enterprise) {
 
         initComponents();
         

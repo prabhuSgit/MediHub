@@ -60,8 +60,10 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         populateNetworkComboBox();
         if (roleSelect.equals(Role.RoleType.Doctor)) {
             msgTxt.setText("Doctor");
-        } else {
+        } else if(roleSelect.equals(Role.RoleType.LabAssistant)) {
             msgTxt.setText("Lab Assistant");
+        } else{
+            msgTxt.setText("Medical School Lab");
         }
 
     }
@@ -74,9 +76,9 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
     }
 
     private void populateEnterpriseComboBox(Network n) {
-        enterpriseTypeJComboBox.removeAllItems();
+        enterpriseJComboBox.removeAllItems();
         for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
-            enterpriseTypeJComboBox.addItem(enter);
+            enterpriseJComboBox.addItem(enter);
 
         }
     }
@@ -127,7 +129,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
-        enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        enterpriseJComboBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
         txtfieldRetype = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
@@ -226,9 +228,14 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         add(networkJComboBox);
         networkJComboBox.setBounds(270, 300, 150, 30);
 
-        enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseTypeJComboBox);
-        enterpriseTypeJComboBox.setBounds(270, 340, 150, 30);
+        enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseJComboBoxActionPerformed(evt);
+            }
+        });
+        add(enterpriseJComboBox);
+        enterpriseJComboBox.setBounds(270, 340, 150, 30);
 
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +268,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         if (txtFiledFname.getText().isEmpty() && txtFieldSSN.getText().isEmpty() && textFieldLname.getText().isEmpty() && textFieldept.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
         } else {
-            Enterprise ent = (Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+            Enterprise ent = (Enterprise) enterpriseJComboBox.getSelectedItem();
             OrganizationDirectory directory = ent.getOrganizationDirectory();
 
             if (roleSelect.equals(Role.RoleType.Doctor)) {
@@ -291,55 +298,53 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
 
                 }
 
-            } else {
-                if (enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.HealthCareProvider)) {
-                    Organization.Type type = Organization.Type.Lab;
-                    Organization org = directory.createOrganization(type);
+            } else if (roleSelect.equals(Role.RoleType.LabAssistant)) {
+                Organization.Type type = Organization.Type.Lab;
+                Organization org = ent.getOrganizationDirectory().createOrganization(type);
 
-                    Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, textFieldept.getText(), networkJComboBox.getSelectedItem().toString(), type.toString());
-                    UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new LabAssistantRole());
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, textFieldept.getText(), networkJComboBox.getSelectedItem().toString(), type.toString());
+                UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new LabAssistantRole());
 
-                    for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
-                        System.out.println(entAccount);
+                for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println(entAccount);
 
-                    }
+                }
 
-                    AccessApprovalRequest request = new AccessApprovalRequest();
-                    request.setRole(roleSelect.toString());
-                    request.setSender(ua);
-                    request.setStatus("Pending");
-                    for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
-                        if (u.getUsername().equalsIgnoreCase(ent.getName())) {
-                            System.out.println(u.getUsername() + " " + u.getRole());
-                            u.getWorkQueue().getWorkRequestList().add(request);
-                        }
-
-                    }
-
-                } else {
-                    Organization.Type type = Organization.Type.Lab;
-                    Organization org = directory.createOrganization(type);
-
-                    Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, textFieldept.getText(), networkJComboBox.getSelectedItem().toString(), type.toString());
-                    UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new MedicalSchoolLabRole());
-
-                    for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
-                        System.out.println(entAccount);
-
-                    }
-                    AccessApprovalRequest request = new AccessApprovalRequest();
-                    request.setRole(roleSelect.toString());
-                    request.setSender(ua);
-                    request.setStatus("Pending");
-                    for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
-                        if (u.getUsername().equalsIgnoreCase(ent.getName())) {
-                            System.out.println(u.getUsername() + " " + u.getRole());
-                            u.getWorkQueue().getWorkRequestList().add(request);
-                        }
-
+                AccessApprovalRequest request = new AccessApprovalRequest();
+                request.setRole(roleSelect.toString());
+                request.setSender(ua);
+                request.setStatus("Pending");
+                for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().equalsIgnoreCase(ent.getName())) {
+                        System.out.println(u.getUsername() + " " + u.getRole());
+                        u.getWorkQueue().getWorkRequestList().add(request);
                     }
 
                 }
+
+            } else if (roleSelect.equals(Role.RoleType.MedicalSchoolLab)) {
+                Organization.Type type = Organization.Type.Lab;
+                Organization org = ent.getOrganizationDirectory().createOrganization(type);
+
+                Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, textFieldept.getText(), networkJComboBox.getSelectedItem().toString(), type.toString());
+                UserAccount ua = org.getUserAccountDirectory().createEmployeeAccount(userNameTxt.getText(), pwsTxt.getText(), empDoctor, new MedicalSchoolLabRole());
+
+                for (UserAccount entAccount : ent.getUserAccountDirectory().getUserAccountList()) {
+                    System.out.println(entAccount);
+
+                }
+                AccessApprovalRequest request = new AccessApprovalRequest();
+                request.setRole(roleSelect.toString());
+                request.setSender(ua);
+                request.setStatus("Pending");
+                for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+                    if (u.getUsername().equalsIgnoreCase(ent.getName())) {
+                        System.out.println(u.getUsername() + " " + u.getRole());
+                        u.getWorkQueue().getWorkRequestList().add(request);
+                    }
+
+                }
+
             }
 
             JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
@@ -405,6 +410,10 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_userNameTxtKeyReleased
+
+    private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseJComboBoxActionPerformed
     public boolean passwordPatternCorrect() {
         Pattern p = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$");
         Matcher m = p.matcher(pwsTxt.getText());
@@ -437,7 +446,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox enterpriseTypeJComboBox;
+    private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

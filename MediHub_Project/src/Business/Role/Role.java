@@ -22,7 +22,7 @@ public abstract class Role {
 //        SysAdmin("SysAdmin"),
         Doctor("Doctor"),
         LabAssistant("Lab Assistant"),
-//        HealthCareProvider("Health Care Provider"),
+        MedicalSchoolLab("Medical School Lab"),
 //        MedicalSchool("Medical School"),
         Customer("Customer");
         

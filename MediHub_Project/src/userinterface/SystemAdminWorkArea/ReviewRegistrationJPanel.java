@@ -269,8 +269,8 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
 
 //        if (component.getName().equals("doctor")) {
 //            ProviderWorkAreaJPanel providerWorkAreJPanel = (ProviderWorkAreaJPanel) component;
@@ -278,8 +278,8 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
 //            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 //            layout.previous(userProcessContainer);
 //        } else {
-            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
-            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+//            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
+//            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.previous(userProcessContainer);
 //        }
