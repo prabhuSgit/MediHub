@@ -53,15 +53,15 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     public void populateOrganReqTable() {
         DefaultTableModel model2 = (DefaultTableModel) OrganTable.getModel();
         model2.setRowCount(0);
-        for (WorkRequest req : userAccount.getWorkQueue().getOrganreqlist()) {
-            Object[] row = new Object[6];
-            row[0] = req;
-            //row[1] = req;
-            row[3] = req.getSender();
-            //row[5] = req.getStatus();
-            model2.addRow(row);
-        }
-    }
+//        for (WorkRequest req : userAccount.getWorkQueue().getOrganreqlist()) {
+//            Object[] row = new Object[6];
+//            row[0] = req;
+//            //row[1] = req;
+//            row[3] = req.getSender();
+//            //row[5] = req.getStatus();
+//            model2.addRow(row);
+     }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
