@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -57,6 +59,10 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         valueLabel.setText(enterprise.getName());
         populateOrganReqTable();
+        userName.setText(userAccount.getUsername());
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");
+        date.setText(sdf.format(cal.getTime()));
         populateAccessRequestTbl();
 
     }
@@ -84,15 +90,15 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     public void populateOrganReqTable() {
         DefaultTableModel model2 = (DefaultTableModel) OrganTable.getModel();
         model2.setRowCount(0);
-        for (WorkRequest req : userAccount.getWorkQueue().getOrganreqlist()) {
-            Object[] row = new Object[6];
-            row[0] = req;
-            //row[1] = req;
-            row[3] = req.getSender();
-            //row[5] = req.getStatus();
-            model2.addRow(row);
-        }
-    }
+//        for (WorkRequest req : userAccount.getWorkQueue().getOrganreqlist()) {
+//            Object[] row = new Object[6];
+//            row[0] = req;
+//            //row[1] = req;
+//            row[3] = req.getSender();
+//            //row[5] = req.getStatus();
+//            model2.addRow(row);
+     }
+//    }
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,16 +114,27 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         BtnReview = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         OrganTable = new javax.swing.JTable();
+<<<<<<< HEAD
         valueLabel = new javax.swing.JLabel();
         organRqstBtn = new javax.swing.JButton();
         BtnStats = new javax.swing.JButton();
+=======
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+>>>>>>> origin/Urja_U
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
         setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("My Work Area - Adminstrative Role");
         add(jLabel1);
-        jLabel1.setBounds(164, 129, 418, 29);
+        jLabel1.setBounds(60, 50, 418, 29);
 
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,13 +143,25 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(manageOrganizationJButton);
+<<<<<<< HEAD
         manageOrganizationJButton.setBounds(390, 220, 181, 29);
+=======
+        manageOrganizationJButton.setBounds(320, 190, 135, 23);
+>>>>>>> origin/Urja_U
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        enterpriseLabel.setForeground(new java.awt.Color(0, 102, 51));
         enterpriseLabel.setText("EnterPrise :");
         add(enterpriseLabel);
-        enterpriseLabel.setBounds(164, 179, 120, 30);
+        enterpriseLabel.setBounds(60, 90, 120, 30);
 
+<<<<<<< HEAD
+=======
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        add(valueLabel);
+        valueLabel.setBounds(180, 100, 130, 30);
+
+>>>>>>> origin/Urja_U
         accessRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -157,13 +186,18 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(164, 477, 418, 148);
+        jScrollPane3.setBounds(60, 450, 418, 148);
 
+        jLabel2.setForeground(new java.awt.Color(0, 102, 51));
         jLabel2.setText("Pending request for Access :");
         add(jLabel2);
+<<<<<<< HEAD
         jLabel2.setBounds(164, 445, 202, 20);
+=======
+        jLabel2.setBounds(60, 420, 250, 20);
+>>>>>>> origin/Urja_U
         add(jSeparator1);
-        jSeparator1.setBounds(164, 417, 418, 10);
+        jSeparator1.setBounds(60, 390, 418, 10);
 
         BtnReview.setText("Review");
         BtnReview.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +206,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(BtnReview);
-        BtnReview.setBounds(498, 629, 84, 30);
+        BtnReview.setBounds(390, 610, 84, 30);
 
         OrganTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,6 +222,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(OrganTable);
 
         add(jScrollPane1);
+<<<<<<< HEAD
         jScrollPane1.setBounds(160, 280, 420, 103);
         add(valueLabel);
         valueLabel.setBounds(320, 180, 120, 30);
@@ -209,6 +244,36 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(BtnStats);
         BtnStats.setBounds(620, 130, 67, 29);
+=======
+        jScrollPane1.setBounds(60, 260, 410, 90);
+
+        jLabel3.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel3.setText("Organ Requests from Health care Providers:");
+        add(jLabel3);
+        jLabel3.setBounds(60, 230, 340, 20);
+
+        jLabel4.setBackground(new java.awt.Color(0, 102, 0));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel4.setText("Logged as: ");
+        add(jLabel4);
+        jLabel4.setBounds(470, 30, 100, 30);
+
+        jLabel5.setBackground(new java.awt.Color(0, 102, 0));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel5.setText("Date & Time:");
+        add(jLabel5);
+        jLabel5.setBounds(470, 70, 100, 30);
+
+        userName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(userName);
+        userName.setBounds(580, 30, 190, 30);
+
+        date.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(date);
+        date.setBounds(580, 70, 160, 20);
+>>>>>>> origin/Urja_U
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -349,14 +414,22 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BtnStats;
     private javax.swing.JTable OrganTable;
     private javax.swing.JTable accessRequestTbl;
+    private javax.swing.JLabel date;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton manageOrganizationJButton;
+<<<<<<< HEAD
     private javax.swing.JButton organRqstBtn;
+=======
+    private javax.swing.JLabel userName;
+>>>>>>> origin/Urja_U
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 

@@ -72,45 +72,42 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         doctorTbl = new javax.swing.JTable();
         bookBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Schedule:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 233, 99, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 99, -1));
 
-        backBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backBtn.setText("<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 498, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
         jLabel1.setText("Search Doctor");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 91, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
-        searchBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
             }
         });
-        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 274, -1, -1));
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Network:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 194, 99, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 99, -1));
 
-        slotDropDown.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         slotDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Select Slot>", "Morning", "Afternoon", "Evening" }));
-        add(slotDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 140, -1));
+        add(slotDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 140, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Enterprise:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 194, 83, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 83, -1));
 
         networkComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         networkComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -118,10 +115,10 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
                 networkComboBoxActionPerformed(evt);
             }
         });
-        add(networkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 191, 143, -1));
+        add(networkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 143, -1));
 
         enterpriseComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        add(enterpriseComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 191, 148, -1));
+        add(enterpriseComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 148, -1));
 
         doctorTbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         doctorTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -147,16 +144,15 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             doctorTbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 320, 604, 142));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 604, 142));
 
-        bookBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bookBtn.setText("Book");
         bookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookBtnActionPerformed(evt);
             }
         });
-        add(bookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 498, 80, -1));
+        add(bookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

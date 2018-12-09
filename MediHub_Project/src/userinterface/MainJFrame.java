@@ -69,8 +69,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setEnabled(false);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 5));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 204), 5, true));
         jPanel1.setForeground(new java.awt.Color(240, 240, 240));
 
         loginJButton.setBackground(new java.awt.Color(204, 255, 204));
@@ -100,7 +102,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        registerBtn.setBackground(new java.awt.Color(102, 204, 255));
+        registerBtn.setBackground(new java.awt.Color(51, 204, 255));
         registerBtn.setForeground(new java.awt.Color(0, 0, 51));
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -175,13 +177,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
+        container.setBackground(new java.awt.Color(255, 255, 255));
+        container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
         container.setToolTipText("");
         container.setLayout(new java.awt.CardLayout());
 
         jLabel3.setBackground(new java.awt.Color(51, 0, 51));
         jLabel3.setForeground(new java.awt.Color(0, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\prabh\\MediHub_TheBusinessSquad\\medihub_thebusinesssquad\\MediHub_Project\\images\\mediHub.jpg")); // NOI18N
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         container.add(jLabel3, "card2");
 

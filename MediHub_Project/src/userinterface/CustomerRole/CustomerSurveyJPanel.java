@@ -100,25 +100,43 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         BtnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 204));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Patient Satisfaction Survey");
 
+<<<<<<< HEAD
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+=======
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel3.setText("Doctor:");
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 51));
+>>>>>>> origin/Urja_U
         jLabel4.setText("We are interested in recieving your feedback about the care provided to you at your selected healthcare provider.");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 102, 51));
         jLabel5.setText(" Please take a few minutes to answer this survey. Your feedback is important to us.");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 102, 51));
         jLabel6.setText("Please rate the following based on your experience.");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 102, 51));
         jLabel9.setText("2. Willingness to listen carefully to you");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 102, 51));
         jLabel10.setText("1. Instructions regarding medication/follow-up care");
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 102, 51));
         jLabel11.setText("5. Advice given to you on ways to stay healthy");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -131,7 +149,9 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
 
+        Q1R5.setBackground(new java.awt.Color(255, 255, 204));
         Question1.add(Q1R5);
+        Q1R5.setForeground(new java.awt.Color(0, 102, 51));
         Q1R5.setMnemonic('5');
         Q1R5.setText("5");
         Q1R5.addActionListener(new java.awt.event.ActionListener() {
@@ -140,87 +160,122 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
             }
         });
 
+        Q1R4.setBackground(new java.awt.Color(255, 255, 204));
         Question1.add(Q1R4);
         Q1R4.setMnemonic('4');
         Q1R4.setText("4");
 
+        Q1R3.setBackground(new java.awt.Color(255, 255, 204));
         Question1.add(Q1R3);
         Q1R3.setMnemonic('3');
         Q1R3.setText("3");
 
+        Q1R2.setBackground(new java.awt.Color(255, 255, 204));
         Question1.add(Q1R2);
         Q1R2.setMnemonic('3');
         Q1R2.setText("2");
 
+        Q1R1.setBackground(new java.awt.Color(255, 255, 204));
         Question1.add(Q1R1);
         Q1R1.setText("1");
 
+        Q2R1.setBackground(new java.awt.Color(255, 255, 204));
         Question2.add(Q2R1);
         Q2R1.setText("1");
 
+        Q2R2.setBackground(new java.awt.Color(255, 255, 204));
         Question2.add(Q2R2);
         Q2R2.setText("2");
 
+        Q2R3.setBackground(new java.awt.Color(255, 255, 204));
         Question2.add(Q2R3);
         Q2R3.setText("3");
 
+        Q2R4.setBackground(new java.awt.Color(255, 255, 204));
         Question2.add(Q2R4);
         Q2R4.setMnemonic('4');
         Q2R4.setText("4");
 
+        Q2R5.setBackground(new java.awt.Color(255, 255, 204));
         Question2.add(Q2R5);
+        Q2R5.setForeground(new java.awt.Color(0, 102, 51));
         Q2R5.setMnemonic('5');
         Q2R5.setText("5");
 
+        Q3R1.setBackground(new java.awt.Color(255, 255, 204));
         Question3.add(Q3R1);
         Q3R1.setText("1");
+        Q3R1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Q3R1ActionPerformed(evt);
+            }
+        });
 
+        Q3R2.setBackground(new java.awt.Color(255, 255, 204));
         Question3.add(Q3R2);
         Q3R2.setText("2");
 
+        Q3R3.setBackground(new java.awt.Color(255, 255, 204));
         Question3.add(Q3R3);
         Q3R3.setText("3");
 
+        Q3R4.setBackground(new java.awt.Color(255, 255, 204));
         Question3.add(Q3R4);
+        Q3R4.setForeground(new java.awt.Color(0, 102, 51));
         Q3R4.setText("4");
 
+        Q3R5.setBackground(new java.awt.Color(255, 255, 204));
         Question3.add(Q3R5);
         Q3R5.setText("5");
 
+        Q4R1.setBackground(new java.awt.Color(255, 255, 204));
         Question4.add(Q4R1);
         Q4R1.setText("1");
 
+        Q4R2.setBackground(new java.awt.Color(255, 255, 204));
         Question4.add(Q4R2);
         Q4R2.setText("2");
 
+        Q4R3.setBackground(new java.awt.Color(255, 255, 204));
         Question4.add(Q4R3);
         Q4R3.setText("3");
 
+        Q4R4.setBackground(new java.awt.Color(255, 255, 204));
         Question4.add(Q4R4);
+        Q4R4.setForeground(new java.awt.Color(0, 102, 51));
         Q4R4.setText("4");
 
+        Q4R5.setBackground(new java.awt.Color(255, 255, 204));
         Question4.add(Q4R5);
         Q4R5.setText("5");
 
+        Q5R1.setBackground(new java.awt.Color(255, 255, 204));
         Question5.add(Q5R1);
         Q5R1.setText("1");
 
+        Q5R2.setBackground(new java.awt.Color(255, 255, 204));
         Question5.add(Q5R2);
         Q5R2.setText("2");
 
+        Q5R3.setBackground(new java.awt.Color(255, 255, 204));
         Question5.add(Q5R3);
         Q5R3.setText("3");
 
+        Q5R4.setBackground(new java.awt.Color(255, 255, 204));
         Question5.add(Q5R4);
         Q5R4.setText("4");
 
+        Q5R5.setBackground(new java.awt.Color(255, 255, 204));
         Question5.add(Q5R5);
+        Q5R5.setForeground(new java.awt.Color(0, 102, 51));
         Q5R5.setText("5");
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 102, 51));
         jLabel12.setText("4. Amount of time spent with you");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 102, 51));
         jLabel13.setText("3. Explaining things in a way you could understand");
 
         BtnSubmit.setText("Submit");
@@ -278,6 +333,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Q1R1)
                                 .addGap(29, 29, 29))
+<<<<<<< HEAD
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -290,6 +346,17 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 .addGap(51, 51, 51)
                                 .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12))))
+=======
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel4)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addGap(62, 62, 62)
+                                    .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+>>>>>>> origin/Urja_U
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator4))
@@ -364,12 +431,17 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
+<<<<<<< HEAD
                     .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(45, 45, 45)
+=======
+                    .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
+>>>>>>> origin/Urja_U
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -438,9 +510,13 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         .addComponent(Q5R2)
                         .addComponent(Q5R1)))
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnSubmit)
                     .addComponent(BtnBack))
+=======
+                .addComponent(BtnSubmit)
+>>>>>>> origin/Urja_U
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -652,6 +728,10 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_BtnSubmitActionPerformed
+
+    private void Q3R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Q3R1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Q3R1ActionPerformed
 
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed

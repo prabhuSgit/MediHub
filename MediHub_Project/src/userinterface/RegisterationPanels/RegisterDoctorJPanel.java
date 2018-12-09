@@ -60,9 +60,9 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         populateNetworkComboBox();
         if (roleSelect.equals(Role.RoleType.Doctor)) {
             msgTxt.setText("Doctor");
-        } else if(roleSelect.equals(Role.RoleType.LabAssistant)) {
+        } else if (roleSelect.equals(Role.RoleType.LabAssistant)) {
             msgTxt.setText("Lab Assistant");
-        } else{
+        } else {
             msgTxt.setText("Medical School Lab");
         }
 
@@ -109,7 +109,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         msgTxt = new javax.swing.JLabel();
         txtFiledFname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -133,11 +133,11 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         txtfieldRetype = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         userNameMsg1 = new javax.swing.JLabel();
         userNameMsg2 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -145,38 +145,38 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(550, 390));
         setLayout(null);
 
-        msgTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        msgTxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         msgTxt.setForeground(new java.awt.Color(0, 102, 51));
         add(msgTxt);
-        msgTxt.setBounds(184, 90, 120, 36);
+        msgTxt.setBounds(160, 40, 120, 36);
         add(txtFiledFname);
-        txtFiledFname.setBounds(250, 170, 200, 30);
+        txtFiledFname.setBounds(160, 100, 210, 30);
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(140, 170, 90, 20);
+        jLabel2.setBounds(50, 100, 100, 20);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(490, 170, 110, 20);
+        jLabel3.setBounds(400, 100, 120, 20);
 
         jLabel4.setText("Department: ");
         add(jLabel4);
-        jLabel4.setBounds(140, 210, 100, 20);
+        jLabel4.setBounds(50, 140, 110, 20);
 
         jLabel5.setText("Employee Id");
         add(jLabel5);
-        jLabel5.setBounds(140, 250, 90, 20);
+        jLabel5.setBounds(50, 180, 100, 30);
         add(textFieldLname);
-        textFieldLname.setBounds(610, 170, 200, 30);
+        textFieldLname.setBounds(520, 100, 210, 30);
         add(textFieldept);
-        textFieldept.setBounds(250, 210, 200, 30);
+        textFieldept.setBounds(160, 140, 210, 30);
         add(txtFieldSSN);
-        txtFieldSSN.setBounds(250, 250, 200, 30);
+        txtFieldSSN.setBounds(160, 180, 210, 30);
 
         jLabel6.setText("Region:");
         add(jLabel6);
-        jLabel6.setBounds(140, 310, 90, 20);
+        jLabel6.setBounds(50, 240, 100, 20);
 
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -185,39 +185,39 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
             }
         });
         add(registerBtn);
-        registerBtn.setBounds(550, 450, 110, 29);
+        registerBtn.setBounds(460, 410, 120, 30);
 
         jLabel7.setText("Select Provider:");
         add(jLabel7);
-        jLabel7.setBounds(140, 350, 120, 20);
+        jLabel7.setBounds(50, 280, 130, 20);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         add(jSeparator1);
-        jSeparator1.setBounds(490, 220, 10, 170);
+        jSeparator1.setBounds(400, 160, 20, 170);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 51));
         jLabel8.setText("Create:");
         add(jLabel8);
-        jLabel8.setBounds(520, 210, 150, 40);
+        jLabel8.setBounds(430, 150, 160, 40);
 
-        userNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTxtActionPerformed(evt);
+        userNameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                userNameTxtKeyReleased(evt);
             }
         });
         add(userNameTxt);
-        userNameTxt.setBounds(640, 250, 140, 30);
+        userNameTxt.setBounds(550, 190, 150, 30);
         add(pwsTxt);
-        pwsTxt.setBounds(640, 320, 140, 30);
+        pwsTxt.setBounds(550, 250, 150, 30);
 
         jLabel9.setText("Password:");
         add(jLabel9);
-        jLabel9.setBounds(520, 320, 80, 30);
+        jLabel9.setBounds(430, 250, 90, 30);
 
         jLabel10.setText("User Name:");
         add(jLabel10);
-        jLabel10.setBounds(520, 250, 110, 30);
+        jLabel10.setBounds(430, 190, 120, 30);
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -226,8 +226,9 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
             }
         });
         add(networkJComboBox);
-        networkJComboBox.setBounds(270, 300, 150, 30);
+        networkJComboBox.setBounds(180, 230, 160, 30);
 
+<<<<<<< HEAD
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,31 +237,51 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         });
         add(enterpriseJComboBox);
         enterpriseJComboBox.setBounds(270, 340, 150, 30);
+=======
+        enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseTypeJComboBox);
+        enterpriseTypeJComboBox.setBounds(180, 270, 160, 30);
+>>>>>>> origin/Urja_U
 
-        backBtn.setText("<< Back");
+        backBtn.setText("<<  Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
         add(backBtn);
-        backBtn.setBounds(340, 450, 93, 29);
+        backBtn.setBounds(250, 410, 80, 30);
+
+        txtfieldRetype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfieldRetypeActionPerformed(evt);
+            }
+        });
+        txtfieldRetype.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfieldRetypeKeyTyped(evt);
+            }
+        });
         add(txtfieldRetype);
-        txtfieldRetype.setBounds(640, 360, 140, 26);
+        txtfieldRetype.setBounds(550, 290, 150, 30);
 
         jLabel11.setText("Re-Type Pass:");
         add(jLabel11);
-        jLabel11.setBounds(520, 360, 110, 20);
-        add(userNameMsg1);
-        userNameMsg1.setBounds(790, 250, 140, 20);
-        add(userNameMsg2);
-        userNameMsg2.setBounds(640, 290, 140, 20);
+        jLabel11.setBounds(430, 290, 120, 30);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel12.setText("Registration");
+        jLabel12.setText("Register as ");
         add(jLabel12);
-        jLabel12.setBounds(320, 90, 244, 36);
+        jLabel12.setBounds(50, 40, 244, 36);
+
+        userNameMsg1.setForeground(new java.awt.Color(251, 51, 51));
+        add(userNameMsg1);
+        userNameMsg1.setBounds(710, 190, 160, 30);
+
+        userNameMsg2.setForeground(new java.awt.Color(0, 204, 102));
+        add(userNameMsg2);
+        userNameMsg2.setBounds(550, 220, 140, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
@@ -358,10 +379,6 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_registerBtnActionPerformed
 
-    private void userNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTxtActionPerformed
-
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         // TODO add your handling code here:
         Network network = (Network) networkJComboBox.getSelectedItem();
@@ -376,26 +393,6 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
-
-    private void txtfieldRetypeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfieldRetypeKeyTyped
-        // TODO add your handling code here:
-        checkForButtonVisibility();
-        String check = "" + evt.getKeyChar();
-        String compare = txtfieldRetype.getText();
-        if (!check.isEmpty()) {
-            compare += check;
-        }
-        if (pwsTxt.getText().equals(compare)
-                && userNameMsg2.getText().equals("Available")) {
-            registerBtn.setEnabled(true);
-            txtfieldRetype.setBackground(Color.white);
-        } else {
-            registerBtn.setEnabled(false);
-            txtfieldRetype.setBackground(Color.red);
-        }
-
-
-    }//GEN-LAST:event_txtfieldRetypeKeyTyped
 
     private void userNameTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameTxtKeyReleased
         // TODO add your handling code here:
@@ -413,9 +410,44 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_userNameTxtKeyReleased
 
+    private void txtfieldRetypeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfieldRetypeKeyTyped
+        // TODO add your handling code here:
+        checkForButtonVisibility();
+        String check = "" + evt.getKeyChar();
+        String compare = txtfieldRetype.getText();
+        if (!check.isEmpty()) {
+            compare += check;
+        }
+        if (pwsTxt.getText().equals(compare)
+                && userNameMsg2.getText().equals("Available")) {
+            registerBtn.setEnabled(true);
+            txtfieldRetype.setBackground(Color.white);
+        } else {
+            registerBtn.setEnabled(false);
+            txtfieldRetype.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_txtfieldRetypeKeyTyped
+
+    private void txtfieldRetypeActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        userNameMsg1.setText("");
+        userNameMsg2.setText("");
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            if (ua.getUsername().equalsIgnoreCase(userNameTxt.getText())) {
+                System.out.println(ua.getUsername());
+                userNameMsg1.setText("Username is not available");
+                userNameMsg2.setText("");
+            } else {
+                userNameMsg1.setText("");
+                userNameMsg2.setText("Available");
+            }
+        }
+    }
+
     private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_enterpriseJComboBoxActionPerformed
+
     public boolean passwordPatternCorrect() {
         Pattern p = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$");
         Matcher m = p.matcher(pwsTxt.getText());
