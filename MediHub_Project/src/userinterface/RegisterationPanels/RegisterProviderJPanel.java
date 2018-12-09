@@ -58,11 +58,9 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         for (Network n : system.getNetworkList()) {
             StateComboBox.addItem(n);
         }
+
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-//            if (type.toString().equals(role.toString())) {
-//                OrgTypCombobox.addItem(type);
-////                OrgTypeTxt.setText(String.valueOf(type));
-//            }
+//            
             if (roleSelect.equals(type.HealthCareProvider)) {
                 entTypCombobox.addItem(type.HealthCareProvider);
             } else {
@@ -93,7 +91,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         ProviderAddrJTxtArea = new javax.swing.JTextArea();
         RegisterJBtn = new javax.swing.JButton();
         FilePathTxtField = new javax.swing.JTextField();
-        StateComboBox = new javax.swing.JComboBox();
         BtnBack = new javax.swing.JButton();
         BtnBrowse = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -106,6 +103,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         pwdTxt = new javax.swing.JPasswordField();
         rtypPwdTxt = new javax.swing.JPasswordField();
         OrgTypeTxt = new javax.swing.JLabel();
+        StateComboBox = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Enterprise Registration ");
@@ -131,8 +129,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             }
         });
 
-        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<none>" }));
-
         BtnBack.setText("<<Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +149,8 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
         entTypCombobox.setEnabled(false);
 
         jLabel10.setText("Enterprise Type:");
+
+        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,12 +177,12 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(ProviderNameJTxtField)
+                                                .addComponent(jScrollPane1)
+                                                .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(39, 39, 39)
                                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,11 +239,11 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel4)
                                             .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(27, 27, 27)
+                                        .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel5)
-                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
+                                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(25, 25, 25)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel6)
                                             .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -278,47 +276,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
 
     private void RegisterJBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterJBtnActionPerformed
         // TODO add your handling code here:
-//        Network network = (Network) StateComboBox.getSelectedItem();
-//        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) entTypCombobox.getSelectedItem();
-//
-////        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) OrgTypeTxt.getText();
-//        
-//        if (network == null || type == null) {
-//            JOptionPane.showMessageDialog(null, "Invalid Input!");
-//            return;
-//        }
-//
-//        String name = ProviderNameJTxtField.getText();
-//
-//        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-////        Enterprise ent = (Enterprise) OrgTypCombobox.getSelectedItem();
-//        String address = ProviderAddrJTxtArea.getText();
-//        String city = ProviderCityJTxtField.getText();
-//        String state = StateComboBox.getSelectedItem().toString();
-//
-//        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
-//        UserAccount account = enterprise.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(), employee, new AdminRole());
-//
-//        AccessApprovalRequest request = new AccessApprovalRequest();
-//        request.setRole(entTypCombobox.getSelectedItem().toString());
-//        request.setSender(account);
-//        request.setStatus("Pending");
-//
-//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-//            if (u.getUsername().equals("sysadmin")) {
-//                u.getWorkQueue().getWorkRequestList().add(request);
-//            }
-//        }
-//        employee.setRegStatus(request.getStatus());
-//
-//        ProviderNameJTxtField.setText("");
-//        ProviderAddrJTxtArea.setText("");
-//        ProviderCityJTxtField.setText("");
-//        usernameTxt.setText("");
-//        pwdTxt.setText("");
-//        rtypPwdTxt.setText("");
-//        JOptionPane.showMessageDialog(null, "Registered Successfully");
-
         Network network = (Network) StateComboBox.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) entTypCombobox.getSelectedItem();
 
@@ -389,7 +346,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Registered Successfully");
 //
         }
-
+        
     }//GEN-LAST:event_RegisterJBtnActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed

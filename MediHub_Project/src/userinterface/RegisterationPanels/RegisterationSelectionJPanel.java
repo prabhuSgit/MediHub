@@ -121,6 +121,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
 
+
         if (roleJComboBox.getSelectedItem().equals(Role.RoleType.Doctor)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.LabAssistant)
                 || roleJComboBox.getSelectedItem().equals(Role.RoleType.Customer)) {
@@ -133,6 +134,7 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
             }
+
 
             if (roleJComboBox.getSelectedItem().toString().equals("Customer")) {
                 RegisterCustomerJPanel regCust = new RegisterCustomerJPanel(userProcessContainer, roleOrgType, system);
@@ -164,7 +166,6 @@ public class RegisterationSelectionJPanel extends javax.swing.JPanel {
                 layout.next(userProcessContainer);
             }
         }
-
 
     }//GEN-LAST:event_nextBtnActionPerformed
 

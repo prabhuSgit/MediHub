@@ -29,6 +29,8 @@ public class EmployeeDirectory {
         employee.setEnterpriseCity(city);
         employee.setEnterpriseState(state);
         employee.setType(type);
+//        employee.setLastname(lname);
+//        employee.setDepartment(Department);
         employeeList.add(employee);
         return employee;
     }

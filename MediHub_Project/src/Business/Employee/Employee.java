@@ -13,9 +13,12 @@ import Business.Network.Network;
 public class Employee {
     
     private String name;
+//    private String Firstname;
+    private String Lastname;
+    private String Department;
     private int id;
     private String address;
-    private Network network;
+    Network network;
     private static int count = 1000;
     private int registrationID;
     private String regStatus;
@@ -48,6 +51,31 @@ public class Employee {
     public int getNoOfReviews() {
         return noOfReviews;
     }
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String Department) {
+        this.Department = Department;
+    }
+
+//    public String getFirstname() {
+//        return Firstname;
+//    }
+//
+//    public void setFirstname(String Firstname) {
+//        this.Firstname = Firstname;
+//    }
+
+    public String getLastname() {
+        return Lastname;
+    }
+
+    public void setLastname(String Lastname) {
+        this.Lastname = Lastname;
+    }   
+    
+   
 
     public int getRegistrationID() {
         return registrationID;

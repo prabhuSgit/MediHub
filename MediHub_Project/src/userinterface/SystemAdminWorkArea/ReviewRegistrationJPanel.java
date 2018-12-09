@@ -260,6 +260,7 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     }
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
+        StatusTxt.setText("");
         StatusTxt.setEditable(true);
         StatusTxt.setBackground(Color.green);
 
@@ -287,17 +288,6 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         // TODO add your handling code here:
         userAccount.getEmployee().setRegStatus("Active");
-//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
-//            if(u.getUsername().equals("sysadmin")){
-//                System.out.println(u.getPassword());
-//                for (WorkRequest wr : u.getWorkQueue().getWorkRequestList()){
-//                    if(wr.getSender().equals(userAccount)){
-//                        wr.setStatus(StatusTxt.getText());
-//                        userAccount.setStatus(StatusTxt.getText());
-//                    }
-//                }
-//            }
-//        }
         for (WorkRequest wr : reviewer.getWorkQueue().getWorkRequestList()) {
             if (wr.getSender().equals(userAccount)) {
                 wr.setStatus(StatusTxt.getText());
