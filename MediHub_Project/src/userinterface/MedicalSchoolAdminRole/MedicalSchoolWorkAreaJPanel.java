@@ -10,8 +10,10 @@ import Business.Employee.Employee;
 
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.AccessApprovalRequest;
 import javax.swing.JPanel;
 
@@ -36,6 +38,7 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
+
         this.system = ecoSystem;
 //         valueLabel.setText(enterprise.getName());
         populateComboBOXProvider();
@@ -45,13 +48,13 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         EnterpriseBox.removeAllItems();
 
         for (Network n : system.getNetworkList()) {
-            if(userAccount.getEmployee().getEnterpriseState().equals(n.toString())){
-                System.out.print(n);
-            for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
+            if (userAccount.getEmployee().getEnterpriseState().equals(n.toString())) {
 
-                if (enter.getEnterpriseType().equals(Enterprise.EnterpriseType.HealthCareProvider)) {
-                    EnterpriseBox.addItem(enter.toString());
-                }
+                for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enter.getEnterpriseType().equals(Enterprise.EnterpriseType.HealthCareProvider)) {
+//                        EnterpriseBox.addItem(enter);
+                          EnterpriseBox.addItem(enter.toString());
+                    }
                 }
             }
         }
@@ -71,9 +74,12 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        OrganTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
+        setLayout(null);
 
         ReqButton.setText("Request Provider");
         ReqButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +87,8 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
                 ReqButtonActionPerformed(evt);
             }
         });
+        add(ReqButton);
+        ReqButton.setBounds(110, 320, 219, 56);
 
         EnterpriseBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         EnterpriseBox.addActionListener(new java.awt.event.ActionListener() {
@@ -88,48 +96,37 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
                 EnterpriseBoxActionPerformed(evt);
             }
         });
+        add(EnterpriseBox);
+        EnterpriseBox.setBounds(220, 260, 112, 32);
 
         jLabel1.setText("Select Provider: ");
+        add(jLabel1);
+        jLabel1.setBounds(110, 260, 97, 32);
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
+        add(enterpriseLabel);
+        enterpriseLabel.setBounds(109, 36, 120, 30);
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        add(valueLabel);
+        valueLabel.setBounds(235, 36, 130, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(EnterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(ReqButton, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(186, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(ReqButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
-        );
+        OrganTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Organ", "qty", "Status", "Sender", "Receiver", "Message"
+            }
+        ));
+        jScrollPane1.setViewportView(OrganTable);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(44, 114, 432, 92);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqButtonActionPerformed
@@ -137,7 +134,6 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
         Enterprise ent = (Enterprise) EnterpriseBox.getSelectedItem();
         AccessApprovalRequest request = new AccessApprovalRequest();
         request.setRole(role);
-
         request.setSender(userAccount);
         request.setStatus("Pending");
         for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
@@ -155,9 +151,11 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> EnterpriseBox;
+    private javax.swing.JTable OrganTable;
     private javax.swing.JButton ReqButton;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }
