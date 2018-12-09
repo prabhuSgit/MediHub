@@ -25,6 +25,8 @@
                           <Component id="userJButton" alignment="1" max="32767" attributes="0"/>
                           <Component id="manageOrganizationJButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="BtnStats" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
@@ -35,7 +37,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="enterpriseLabel" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="valueLabel" min="-2" pref="136" max="-2" attributes="0"/>
+                                  <Component id="valueLabel" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
@@ -44,7 +46,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="270" max="32767" attributes="0"/>
+              <EmptySpace pref="232" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,16 +56,19 @@
               <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enterpriseLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="valueLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="enterpriseLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="valueLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="manageOrganizationJButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
               <Component id="manageEmployeeJButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-              <Component id="userJButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="userJButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnStats" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -173,6 +178,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnReviewActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnStats">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Stats"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnStatsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="valueLabel">

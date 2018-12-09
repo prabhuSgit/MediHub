@@ -7,9 +7,19 @@ import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import userinterface.ProviderAdminRole.ReviewRegistrationJPanel;
 
 /**
@@ -30,11 +40,11 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount=userAccount;
         this.ecoSystem=ecoSystem;
-        valueLabel.setText(enterprise.getName());
-        
+//        valueLabel.setText(enterprise.getName());
         populateAccessRequestTbl();
+        
     }
-    
+//    
     public void populateAccessRequestTbl(){
         DefaultTableModel model = (DefaultTableModel) accessRequestTbl.getModel();
         
@@ -48,6 +58,56 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+//    
+//    private void initUI() {
+//
+//        CategoryDataset dataset = createDataset();
+//
+//        JFreeChart chart = createChart(dataset);
+//        ChartPanel chartPanel = new ChartPanel(chart);
+//        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+//        chartPanel.setBackground(Color.white);
+//        add(chartPanel);
+//
+////        pack();
+////        setTitle("Bar chart");
+////        setLocationRelativeTo(null);
+////        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    }
+//    
+//    private CategoryDataset createDataset() {
+//
+//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//        dataset.setValue(46, "Gold medals", "USA");
+//        dataset.setValue(38, "Gold medals", "China");
+//        dataset.setValue(29, "Gold medals", "UK");
+//        dataset.setValue(22, "Gold medals", "Russia");
+//        dataset.setValue(13, "Gold medals", "South Korea");
+//        dataset.setValue(11, "Gold medals", "Germany");
+//
+//        return dataset;
+//    }
+//    
+//     private JFreeChart createChart(CategoryDataset dataset) {
+//
+//        JFreeChart barChart = ChartFactory.createBarChart(
+//                "Performance rating for doctors",
+//                "",
+//                "Ratings",
+//                dataset,
+//                PlotOrientation.VERTICAL,
+//                false, true, false);
+//
+//        return barChart;
+//    }
+//
+//     public static void main(String[] args) {
+//
+//        SwingUtilities.invokeLater(() -> {
+//            ProviderWorkAreaJPanel ex = new ProviderWorkAreaJPanel( userProcessContainer,  enterprise,  userAccount,  ecoSystem);
+//            ex.setVisible(true);
+//        });
+//    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -67,6 +127,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         BtnReview = new javax.swing.JButton();
+        BtnStats = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -128,6 +189,13 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        BtnStats.setText("Stats");
+        BtnStats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnStatsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +207,9 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageOrganizationJButton)))
+                            .addComponent(manageOrganizationJButton))
+                        .addGap(80, 80, 80)
+                        .addComponent(BtnStats))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,11 +219,11 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel2)
                                 .addComponent(jSeparator1)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,15 +231,17 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(129, 129, 129)
                 .addComponent(jLabel1)
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(valueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
                 .addComponent(manageOrganizationJButton)
                 .addGap(21, 21, 21)
                 .addComponent(manageEmployeeJButton)
                 .addGap(21, 21, 21)
-                .addComponent(userJButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userJButton)
+                    .addComponent(BtnStats))
                 .addGap(41, 41, 41)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -225,10 +297,16 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_BtnReviewActionPerformed
+
+    private void BtnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnStatsActionPerformed
+        // TODO add your handling code here:
+        //initUI();
+    }//GEN-LAST:event_BtnStatsActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReview;
+    private javax.swing.JButton BtnStats;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;

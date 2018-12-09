@@ -12,6 +12,7 @@ import java.util.Date;
  *
  * @author prabh
  */
+
 public class Customer extends VitalSigns {
 
     private String name;
@@ -20,14 +21,33 @@ public class Customer extends VitalSigns {
     private Integer phoneNbr;
     private static int custId;
     private int id;
+    private CustomerSurvey customerSurvey;
     private ArrayList<CustomerBooking> customerBookHistrory;
     private int done = 0;
 
     public Customer() {
         id = custId;
         custId++;
+        //this.customerSurveyList = new ArrayList<>();
+        this.customerSurvey = new CustomerSurvey();
     }
 
+//    public ArrayList<CustomerSurvey> getCustomerSurveyList() {
+//        return customerSurveyList;
+//    }
+//
+//    public void setCustomerSurveyList(ArrayList<CustomerSurvey> customerSurveyList) {
+//        this.customerSurveyList = customerSurveyList;
+//    }
+
+    public CustomerSurvey getCustomerSurvey() {
+        return customerSurvey;
+    }
+
+    public void setCustomerSurvey(CustomerSurvey customerSurvey) {
+        this.customerSurvey = customerSurvey;
+    }
+ 
     public String getName() {
         return name;
     }
