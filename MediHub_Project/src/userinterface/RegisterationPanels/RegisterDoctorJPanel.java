@@ -90,12 +90,6 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
         request.setSender(ua);
         request.setStatus("Pending");
 
-//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-//            if (u.getUsername().equals("sysadmin")) {
-//                u.getWorkQueue().getWorkRequestList().add(request);
-//            }
-//
-//        }
         for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
             if (u.getUsername().equalsIgnoreCase(ent.getName())) {
                 u.getWorkQueue().getWorkRequestList().add(request);
@@ -322,9 +316,8 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
 
                     }
 
-                }
-                else{
-                Organization.Type type = Organization.Type.Lab;
+                } else {
+                    Organization.Type type = Organization.Type.Lab;
                     Organization org = directory.createOrganization(type);
 
                     Employee empDoctor = org.getEmployeeDirectory().createEmployee(txtFiledFname.getText(), null, textFieldept.getText(), networkJComboBox.getSelectedItem().toString(), type.toString());
@@ -334,7 +327,6 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                         System.out.println(entAccount);
 
                     }
-
                     AccessApprovalRequest request = new AccessApprovalRequest();
                     request.setRole(roleSelect.toString());
                     request.setSender(ua);

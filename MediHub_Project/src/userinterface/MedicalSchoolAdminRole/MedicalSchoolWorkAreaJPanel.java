@@ -10,11 +10,19 @@ import Business.Employee.Employee;
 
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+
 import Business.WorkQueue.AccessApprovalRequest;
+import Business.WorkQueue.OrganRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -45,19 +53,28 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateComboBOXProvider() {
-        EnterpriseBox.removeAllItems();
+
+        enterpriseJComboBox.removeAllItems();
 
         for (Network n : system.getNetworkList()) {
             if (userAccount.getEmployee().getEnterpriseState().equals(n.toString())) {
-
+                System.out.print(n);
                 for (Enterprise enter : n.getEnterpriseDirectory().getEnterpriseList()) {
                     if (enter.getEnterpriseType().equals(Enterprise.EnterpriseType.HealthCareProvider)) {
-//                        EnterpriseBox.addItem(enter);
-                          EnterpriseBox.addItem(enter.toString());
+                        enterpriseJComboBox.addItem(enter);
                     }
                 }
             }
         }
+    }
+
+    public void populateQtyComboBox() {
+        QtyBox.removeAllItems();
+        int row = OrganTable.getSelectedRow();
+        OrganRequest req = (OrganRequest) OrganTable.getValueAt(row, 2);
+        //for(OrganRequest orgReq : userAccount.getWorkQueue().getOrganreqlist(){
+
+        //}
     }
 
     /**
@@ -70,12 +87,14 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         ReqButton = new javax.swing.JButton();
-        EnterpriseBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
+        enterpriseJComboBox = new javax.swing.JComboBox();
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         OrganTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        QtyBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -88,29 +107,24 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(ReqButton);
-        ReqButton.setBounds(110, 320, 219, 56);
-
-        EnterpriseBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        EnterpriseBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnterpriseBoxActionPerformed(evt);
-            }
-        });
-        add(EnterpriseBox);
-        EnterpriseBox.setBounds(220, 260, 112, 32);
+        ReqButton.setBounds(141, 299, 219, 56);
 
         jLabel1.setText("Select Provider: ");
         add(jLabel1);
-        jLabel1.setBounds(110, 260, 97, 32);
+        jLabel1.setBounds(109, 238, 97, 32);
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
         add(enterpriseLabel);
         enterpriseLabel.setBounds(109, 36, 120, 30);
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseJComboBox);
+        enterpriseJComboBox.setBounds(210, 239, 150, 30);
+
+        valueLabel.setText("jLabel2");
         add(valueLabel);
-        valueLabel.setBounds(235, 36, 130, 30);
+        valueLabel.setBounds(239, 39, 137, 30);
 
         OrganTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,28 +134,44 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Organ", "qty", "Status", "Sender", "Receiver", "Message"
+                "Organ", "qty", "Status", "Sender", "Reciever", "message"
             }
         ));
         jScrollPane1.setViewportView(OrganTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(44, 114, 432, 92);
+        jScrollPane1.setBounds(60, 80, 452, 100);
+
+        jLabel2.setText("Quantity:");
+        add(jLabel2);
+        jLabel2.setBounds(110, 200, 70, 20);
+
+        QtyBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(QtyBox);
+        QtyBox.setBounds(210, 190, 150, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqButtonActionPerformed
         // TODO add your handling code here:
-        Enterprise ent = (Enterprise) EnterpriseBox.getSelectedItem();
-        AccessApprovalRequest request = new AccessApprovalRequest();
-        request.setRole(role);
+//        int row = OrganTable.getSelectedRow();
+//        OrganRequest req = (OrganRequest) OrganTable.getValueAt(row, 1);
+        Enterprise ent = (Enterprise) enterpriseJComboBox.getSelectedItem();
+         int row = OrganTable.getSelectedRow();
+         
+        OrganRequest request = new OrganRequest();
+        //request.setOrgan(OrganTable.getValueAt(row, 2).toString());
+        //request.setQty(2);
         request.setSender(userAccount);
         request.setStatus("Pending");
+         
         for (UserAccount u : ent.getUserAccountDirectory().getUserAccountList()) {
+            System.out.println( "Finding user name ");
             if (u.getUsername().equalsIgnoreCase(ent.getName())) {
-                System.out.println(u.getUsername() + " " + u.getRole());
-                u.getWorkQueue().getWorkRequestList().add(request);
+                System.out.println(u.getUsername() + " ");
+                u.getWorkQueue().getOrganreqlist().add(request);
             }
         }
+        JOptionPane.showMessageDialog(null, "Request successfully sent to provider \n Your status is Pending");
     }//GEN-LAST:event_ReqButtonActionPerformed
 
     private void EnterpriseBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterpriseBoxActionPerformed
@@ -150,11 +180,13 @@ public class MedicalSchoolWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> EnterpriseBox;
     private javax.swing.JTable OrganTable;
+    private javax.swing.JComboBox<String> QtyBox;
     private javax.swing.JButton ReqButton;
+    private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
