@@ -27,22 +27,19 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 public class CustomerRole extends Role {
     
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
-        JPanel panel = null;
-        if (account.getCustomer().getDone() == 1) {
-            int i = JOptionPane.showConfirmDialog(null, "Do you want to give Survey for your Last Appointment?");
-            if (i == JOptionPane.YES_OPTION) {
-//                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//                userProcessContainer.add("BlankJPanel", new BlankJPanel());
-//                layout.next(userProcessContainer);
-                panel = new CustomerSurveyJPanel(userProcessContainer, account, business);
-            } else {
-                panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
-            }
-            
-        } else {
-            panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
-        }
-        return panel;
-    }
+   public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, UserAccountDirectory directory) {
+       JPanel panel = null;
+       if (account.getCustomer().getDone() == 1) {
+           int i = JOptionPane.showConfirmDialog(null, "Do you want to give Survey for your Last Appointment?");
+           if (i == JOptionPane.YES_OPTION) {
+              panel = new CustomerSurveyJPanel(userProcessContainer, account, business);
+           } else {
+               panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
+           }
+
+       } else {
+           panel = new CustomerWorkAreaJPanel(userProcessContainer, account, business);
+       }
+       return panel;
+   }
 }

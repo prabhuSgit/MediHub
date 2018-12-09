@@ -129,11 +129,11 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Doctor", "Provider", "Location", "Timing", "Book"
+                "Doctor", "Provider", "Timing", "Rating", "No of Reviews"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -144,7 +144,6 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
         if (doctorTbl.getColumnModel().getColumnCount() > 0) {
             doctorTbl.getColumnModel().getColumn(0).setResizable(false);
             doctorTbl.getColumnModel().getColumn(1).setResizable(false);
-            doctorTbl.getColumnModel().getColumn(2).setResizable(false);
             doctorTbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
@@ -181,23 +180,24 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
 
     public void populate() {
 
-        dtm = (DefaultTableModel) doctorTbl.getModel();
-        dtm.setRowCount(0);
+       dtm = (DefaultTableModel) doctorTbl.getModel();
+       dtm.setRowCount(0);
 
-        Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
-        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-                if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
-                    Object[] row = new Object[dtm.getColumnCount()];
-                    row[0] = acc;
-                    row[1] = enterpriseComboBox.getSelectedItem();
-                    row[2] = acc.getRole();
-                    row[3] = acc.getUsername();
-                    dtm.addRow(row);
-                }
-            }
-        }
-    }
+       Enterprise e = (Enterprise) enterpriseComboBox.getSelectedItem();
+       for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+           for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+               if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
+                   Object[] row = new Object[dtm.getColumnCount()];
+                   row[0] = acc;
+                   row[1] = enterpriseComboBox.getSelectedItem();
+                   row[2] = slotDropDown.getSelectedItem();
+                   row[3] = acc.getEmployee().getRating();
+                   row[4] = acc.getEmployee().getNoOfReviews();
+                   dtm.addRow(row);
+               }
+           }
+       }
+   }
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
@@ -210,7 +210,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             Date date = new Date();
 
             UserAccount docUser = (UserAccount) doctorTbl.getValueAt(selectRow, 0);
-            System.out.println(docUser.getUsername());
+            //System.out.println(docUser.getUsername());
             AppointmentRequest appointment = new AppointmentRequest();
             appointment.setDate(date);
             appointment.setCustomer(account);
@@ -223,7 +223,7 @@ public class CustomerBookingDoctorJPanel extends javax.swing.JPanel {
             for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                     if (acc.equals(docUser)) {
-                        System.out.println("Inside if");
+                        //System.out.println("Inside if");
                         acc.getAppointmentQueue().getAppointmentList().add(appointment);
                     }
                 }
