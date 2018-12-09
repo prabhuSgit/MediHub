@@ -4,22 +4,30 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/ProviderAdminRole/ManageUserAccountJPanel.java</file>
+>>>>>>> Prabhu_P
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterDoctor.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/DB4OUtil/DB4OUtil.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/ProviderRegistrationJPanel.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/AdministrativeRole/AdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Role/Role.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/ProviderAdminRole/ManageOrganizationJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/MedicalSchoolRegistrationJPanel.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Employee/EmployeeDirectory.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterLabAssistants.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/UserAccount/UserAccountDirectory.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/MainJFrame.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Role/DoctorRole.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterProviderJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/CustomerRole/CustomerWorkAreaJPanel.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Organization/Organization.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Employee/Employee.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Role/LabAssistantRole.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/CustomerRole/CustomerBookingDoctorJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/SystemAdminWorkArea/ReviewRegistrationJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
+            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Organization/OrganizationDirectory.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/userinterface/RegisterationPanels/RegisterationSelectionJPanel.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/EcoSystem.java</file>
-            <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/Role/CustomerRole.java</file>
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/UserAccount/UserAccount.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/prabh/MediHub_TheBusinessSquad/medihub_thebusinesssquad/MediHub_Project/src/Business/ConfigureASystem.java</file>
 =======
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/Network/Network.java</file>
@@ -31,6 +39,8 @@
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/EcoSystem.java</file>
             <file>file:/C:/Users/hp/Desktop/FinalAEDProject/medihub_thebusinesssquad/MediHub_Project/src/Business/Enterprise/Enterprise.java</file>
 >>>>>>> 632bcf141118da562d36bb58240cd57dba2f367a
+=======
+>>>>>>> Prabhu_P
         </group>
     </open-files>
 </project-private>
