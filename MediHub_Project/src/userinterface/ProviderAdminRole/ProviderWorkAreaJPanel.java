@@ -314,38 +314,41 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     public void pieChart() {
         DefaultPieDataset pieDataset = new DefaultPieDataset();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        int ntwrkNbr = 0;
-        int entNbr = 0;
-        int custNbr = ecosystem.getCustomerList().size();
-        int orgNbr = 0;
-        for (Network n : ecosystem.getNetworkList()) {
-            ntwrkNbr++;
-//            entNbr = n.getEnterpriseDirectory().getEnterpriseList().size();
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                entNbr++;
-                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                    orgNbr++;
-                }
-            }
-        }
-        pieDataset.setValue("Networks", ntwrkNbr);
-        pieDataset.setValue("Enterprises", entNbr);
-        pieDataset.setValue("Customer", custNbr);
-        pieDataset.setValue("Organisation", orgNbr);
-        System.out.println(ntwrkNbr+" "+entNbr + " " + orgNbr + " " + custNbr);
         
-        dataset.setValue(ntwrkNbr, "Number", "Networks");
-        dataset.setValue(entNbr, "Number", "Enterprises");
-        dataset.setValue(orgNbr, "Number", "Organizations");
-        dataset.setValue(custNbr, "Number", "Customers");
-
-        JFreeChart chart = ChartFactory.createPieChart("Pie Diagram", pieDataset);
-        PiePlot p = (PiePlot) chart.getPlot();
-
-        JFreeChart chartBar = ChartFactory.createBarChart("Number of Accounts", "Accounts", "Numbers", dataset, PlotOrientation.VERTICAL, false, true, false);
-        ChartFrame frame = new ChartFrame("Pie Frame", chartBar);
-        frame.setVisible(true);
-        frame.setSize(450, 500);
+        
+//        int ntwrkNbr = 0;
+//        int entNbr = 0;
+//        int custNbr = ecosystem.getCustomerList().size();
+//        int orgNbr = 0;
+//        for (Network n : ecosystem.getNetworkList()) {
+//            ntwrkNbr++;
+////            entNbr = n.getEnterpriseDirectory().getEnterpriseList().size();
+//            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//                entNbr++;
+//                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+//                    orgNbr++;
+//                }
+//            }
+//        }
+//        pieDataset.setValue("Networks", ntwrkNbr);
+//        pieDataset.setValue("Enterprises", entNbr);
+//        pieDataset.setValue("Customer", custNbr);
+//        pieDataset.setValue("Organisation", orgNbr);
+//        System.out.println(ntwrkNbr+" "+entNbr + " " + orgNbr + " " + custNbr);
+//        
+//        dataset.setValue(ntwrkNbr, "Number", "Networks");
+//        dataset.setValue(entNbr, "Number", "Enterprises");
+//        dataset.setValue(orgNbr, "Number", "Organizations");
+//        dataset.setValue(custNbr, "Number", "Customers");
+//
+//        JFreeChart chart = ChartFactory.createPieChart("Pie Diagram", pieDataset);
+//        PiePlot p = (PiePlot) chart.getPlot();
+//
+//        JFreeChart chartBar = ChartFactory.createBarChart("Number of Accounts", "Accounts", "Numbers", dataset, PlotOrientation.VERTICAL, false, true, false);
+//        ChartFrame frame = new ChartFrame("Pie Frame", chartBar);
+//        frame.setVisible(true);
+//        frame.setSize(450, 500);
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
