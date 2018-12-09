@@ -612,11 +612,13 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         //System.out.println("Inside organization's user account list");
                         if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
                             //System.out.println("Inside doctor organization ");
+                            AppointmentRequest toRemove = null;
                             for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()) {
                                 if (this.account.equals(ar.getCustomer())) {
-                                    acc.getAppointmentQueue().getAppointmentList().remove(ar);
+                                    toRemove = ar;
                                 }
                             }
+                            acc.getAppointmentQueue().getAppointmentList().remove(toRemove);
                         }
                     }
                 }
