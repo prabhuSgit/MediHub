@@ -27,12 +27,12 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount account;
     EcoSystem system;
-    float ques1;
-    float ques2;
-    float ques3;
-    float ques4;
-    float ques5;
-    float rating;
+    double ques1;
+    double ques2;
+    double ques3;
+    double ques4;
+    double ques5;
+    double rating;
 
     public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
@@ -473,7 +473,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         }
     }
 
-    public void rateDoctor(float rating) {
+    public void rateDoctor(double rating) {
         for (Network n : system.getNetworkList()) {
             //System.out.println("Inside network list");
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -604,6 +604,30 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         rating = (ques1 + ques2 + ques3 + ques4 + ques5) / 5;
         rateDoctor(rating);
         JOptionPane.showMessageDialog(null, "Submitted successfully");
+        account.getCustomer().setDone(0);
+        DoctorComboBox.getSelectedItem();
+        for (Network n : system.getNetworkList()) {
+            //System.out.println("Inside network list");
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                //System.out.println("Inside Enteprise list");
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    //System.out.println("Inside organization list");
+                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
+                        //System.out.println("Inside organization's user account list");
+                        if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
+                            //System.out.println("Inside doctor organization ");
+                            AppointmentRequest toRemove = null;
+                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()) {
+                                if (this.account.equals(ar.getCustomer())) {
+                                    toRemove = ar;
+                                }
+                            }
+                            acc.getAppointmentQueue().getAppointmentList().remove(toRemove);
+                        }
+                    }
+                }
+            }
+        }
 
     }//GEN-LAST:event_BtnSubmitActionPerformed
 

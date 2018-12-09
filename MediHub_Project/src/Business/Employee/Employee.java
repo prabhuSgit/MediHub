@@ -5,6 +5,7 @@
 package Business.Employee;
 
 import Business.Network.Network;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Employee {
     private String enterpriseCity;
     private String enterpriseState;
     private String type;
-    private float rating;
+    private double rating;
     private int noOfReviews;
     
     public Employee() {
@@ -35,14 +36,18 @@ public class Employee {
         noOfReviews = 0;
     }
     
-    public void calculateRating(float Qrating){
-        float sum;
+    public void calculateRating(double Qrating){
+        double sum;
         int round;
         sum = (rating*noOfReviews);
         noOfReviews++;
         rating = (sum + Qrating)/noOfReviews;
-//        round = (int) (rating*100);
-//        rating = (float)(round%100);
+//        round = (int) Math.round((rating*100)/100);
+//        rating = (double)round;
+        
+        DecimalFormat df = new DecimalFormat("#.#");
+        rating = Double.parseDouble(df.format(rating));
+        
     }
 
     public int getNoOfReviews() {
@@ -127,11 +132,11 @@ public class Employee {
         return name;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
     
