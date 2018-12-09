@@ -184,7 +184,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -298,11 +298,17 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void vitalSignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignBtnActionPerformed
         int row = workRequestJTable.getSelectedRow();
-        UserAccount custAcc = (UserAccount)workRequestJTable.getValueAt(row, 0);
-        
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new VitalSignJPanel(userProcessContainer, custAcc, enterprise));
-        layout.next(userProcessContainer);
+        UserAccount custAcc = (UserAccount) workRequestJTable.getValueAt(row, 0);
+        String statusRow = workRequestJTable.getValueAt(row, 2).toString();
+
+        if (statusRow.equals("Completed")) {
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("RequestLabTestJPanel", new VitalSignJPanel(userProcessContainer, custAcc, enterprise));
+            layout.next(userProcessContainer);
+        }else{
+            JOptionPane.showMessageDialog(null, "Kindly await for Lab updates. Status NOT COMPLETE!");
+        }
+
 
     }//GEN-LAST:event_vitalSignBtnActionPerformed
 
@@ -312,6 +318,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
+        
+        String mesg = JOptionPane.showInputDialog("Enter your message");
         int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
         if (dialogButton == JOptionPane.YES_OPTION) {
             int row = appointmentTbl.getSelectedRow();
@@ -325,7 +333,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             labRequest.setCustomer(request.getCustomer());
             labRequest.setStatus("Sent");
             labRequest.setSender(userAccount);
-            labRequest.setMessage("Kindly perform Lab Test");
+            labRequest.setMessage(mesg);
 
 //            userAccount.getWorkQueue().getWorkRequestList().add(labRequest);
             Organization org = null;
