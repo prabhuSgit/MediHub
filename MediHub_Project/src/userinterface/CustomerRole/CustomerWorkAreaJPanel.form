@@ -143,6 +143,9 @@
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vitalSignBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
@@ -180,7 +183,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BtnSurvey">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Patient Survey"/>
+        <Property name="text" type="java.lang.String" value="Doctor Survey"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSurveyActionPerformed"/>

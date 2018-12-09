@@ -57,11 +57,14 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(WorkRequest request : labOrganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
+            Object[] row = new Object[6];
             row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
+            row[1] = request.getCustomer();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
+            row[4] = request.getMessage();
+            String result = ((LabTestWorkRequest) request).getTestResult();
+            row[5] = result == null ? "Waiting" : result;
             
             model.addRow(row);
         }
@@ -93,20 +96,17 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "Sender", "Customer", "Receiver", "Status", "Message", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,6 +123,8 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         assignJButton.setText("Assign to me");
@@ -133,6 +135,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         processJButton.setText("Process");
+        processJButton.setEnabled(false);
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
@@ -231,13 +234,13 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(refreshJButton)
                     .addComponent(enterpriseLabel)
                     .addComponent(valueLabel))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignJButton)
                     .addComponent(processJButton))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,6 +256,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         request.setReceiver(userAccount);
         request.setStatus("Pending");
         populateTable();
+        processJButton.setEnabled(true);
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 

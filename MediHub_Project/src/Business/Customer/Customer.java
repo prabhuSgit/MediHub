@@ -12,9 +12,9 @@ import java.util.Date;
  *
  * @author prabh
  */
-public class Customer {
-    
-    private int done;
+
+public class Customer extends VitalSigns {
+
     private String name;
     private String dob;
     private String address;
@@ -22,13 +22,10 @@ public class Customer {
     private static int custId;
     private int id;
     private CustomerSurvey customerSurvey;
-    //private ArrayList<CustomerSurvey> customerSurveyList = new ArrayList<>();
-    private ArrayList<VitalSigns> customerVitalSigns;
     private ArrayList<CustomerBooking> customerBookHistrory;
+    private int done = 0;
 
-    
     public Customer() {
-        done = 1;
         id = custId;
         custId++;
         //this.customerSurveyList = new ArrayList<>();
@@ -50,7 +47,7 @@ public class Customer {
     public void setCustomerSurvey(CustomerSurvey customerSurvey) {
         this.customerSurvey = customerSurvey;
     }
-    
+ 
     public String getName() {
         return name;
     }
@@ -99,14 +96,6 @@ public class Customer {
         this.id = id;
     }
 
-    public ArrayList<VitalSigns> getCustomerVitalSigns() {
-        return customerVitalSigns;
-    }
-
-    public void setCustomerVitalSigns(ArrayList<VitalSigns> customerVitalSigns) {
-        this.customerVitalSigns = customerVitalSigns;
-    }
-
     public ArrayList<CustomerBooking> getCustomerBookHistrory() {
         return customerBookHistrory;
     }
@@ -115,10 +104,17 @@ public class Customer {
         this.customerBookHistrory = customerBookHistrory;
     }
 
-    
+    public int getDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
+    }
+
     @Override
     public String toString() {
         return name;
     }
-    
+
 }

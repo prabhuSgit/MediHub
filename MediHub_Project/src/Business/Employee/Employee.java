@@ -25,12 +25,28 @@ public class Employee {
     private String enterpriseState;
     private String type;
     private float rating;
+    private int noOfReviews;
     
     public Employee() {
         id = count;
         count++;
         registrationID = countP;
         countP++;
+        noOfReviews = 0;
+    }
+    
+    public void calculateRating(float Qrating){
+        float sum;
+        int round;
+        sum = (rating*noOfReviews);
+        noOfReviews++;
+        rating = (sum + Qrating)/noOfReviews;
+//        round = (int) (rating*100);
+//        rating = (float)(round%100);
+    }
+
+    public int getNoOfReviews() {
+        return noOfReviews;
     }
 
     public int getRegistrationID() {

@@ -249,7 +249,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -389,7 +389,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(626, 626, 626)
                             .addComponent(statsBtn))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,18 +487,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
-        if (dialogButton == JOptionPane.YES_OPTION) {
-            int row = accessRequestTbl.getSelectedRow();
-            if (row < 0) {
-                JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            WorkRequest wr = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
-            userAccount.getWorkQueue().getWorkRequestList().remove(wr);
 
-            populateAccessRequestTbl();
+        int row = accessRequestTbl.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
+            if (dialogButton == JOptionPane.YES_OPTION) {
+                WorkRequest wr = (WorkRequest) accessRequestTbl.getValueAt(row, 0);
+                userAccount.getWorkQueue().getWorkRequestList().remove(wr);
+
+                populateAccessRequestTbl();
+            }
         }
+
+
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void statsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statsBtnActionPerformed

@@ -15,8 +15,10 @@ import javax.swing.JPanel;
 //import userinterface.RegisterationPanels.ProviderRegistrationJPanel;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userinterface.DoctorRole.RequestLabTestJPanel;
+import userinterface.DoctorRole.VitalSignJPanel;
+import userinterface.RegisterationPanels.RegisterCustomerJPanel;
 
 /**
  *
@@ -42,16 +44,14 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");
         date.setText(sdf.format(cal.getTime()));
 
-        for (Network n : system.getNetworkList()) {
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
-                        System.out.println(acc.getUsername()+" "+acc.getRole());
-                    }
-                }
-            }
-        }
-
+//        if (account.getCustomer().getDone() == 1) {
+//            int i = JOptionPane.showConfirmDialog(null, "Do you want to give Survey for your Last Appointment?");
+//            if (i == JOptionPane.YES_OPTION) {
+//                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//                userProcessContainer.add("BlankJPanel", new BlankJPanel());
+//                layout.next(userProcessContainer);
+//            } 
+//        }
     }
 
     /**
@@ -106,6 +106,11 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         vitalSignBtn.setText("Vital Signs");
         vitalSignBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         vitalSignBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        vitalSignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vitalSignBtnActionPerformed(evt);
+            }
+        });
 
         userName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -117,7 +122,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Date & Time:");
 
-        BtnSurvey.setText("Patient Survey");
+        BtnSurvey.setText("Doctor Survey");
         BtnSurvey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSurveyActionPerformed(evt);
@@ -213,11 +218,21 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void myProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBtnActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("CustomerBookingDoctorJPanel", new CustomerProfileJPanel(userProcessContainer, account));
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_myProfileBtnActionPerformed
 
     private void apntmntHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apntmntHistoryBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_apntmntHistoryBtnActionPerformed
+
+    private void vitalSignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("RegisterCustomerJPanel", new CustomerVitalSignsJPanel(userProcessContainer, account));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_vitalSignBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -33,14 +33,14 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
     float ques4;
     float ques5;
     float rating;
-    public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem system) {
+
+    public CustomerSurveyJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.system = system;
         populateDoctor();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -447,21 +447,21 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void populateDoctor(){
+    public void populateDoctor() {
         DoctorComboBox.removeAllItems();
-        for (Network n : system.getNetworkList()){
+        for (Network n : system.getNetworkList()) {
             //System.out.println("Inside network list");
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
                 //System.out.println("Inside Enteprise list");
-                for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
                     //System.out.println("Inside organization list");
-                    for(UserAccount acc : o.getUserAccountDirectory().getUserAccountList()){
+                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                         //System.out.println("Inside organization's user account list");
-                        if(acc.getRole().toString().equals("Business.Role.DoctorRole")){
+                        if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
                             //System.out.println("Inside doctor organization ");
-                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
+                            for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()) {
                                 //System.out.println("Inside doctor's appointment list ");
-                                if(this.account.equals(ar.getCustomer())){
+                                if (this.account.equals(ar.getCustomer())) {
                                     //System.out.println("Found customer!!");
                                     DoctorComboBox.addItem(ar.getDoctor().getEmployee().getName());
                                 }
@@ -472,26 +472,26 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
-    public void rateDoctor(float rating){
-         for (Network n : system.getNetworkList()){
+
+    public void rateDoctor(float rating) {
+        for (Network n : system.getNetworkList()) {
             //System.out.println("Inside network list");
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()){
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
                 //System.out.println("Inside Enteprise list");
-                for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
                     //System.out.println("Inside organization list");
-                    for(UserAccount acc : o.getUserAccountDirectory().getUserAccountList()){
+                    for (UserAccount acc : o.getUserAccountDirectory().getUserAccountList()) {
                         //System.out.println("Inside organization's user account list");
-                        if(acc.getRole().toString().equals("Business.Role.DoctorRole")){
+                        if (acc.getRole().toString().equals("Business.Role.DoctorRole")) {
                             //System.out.println("Inside doctor organization ");
                             //for (AppointmentRequest ar : acc.getAppointmentQueue().getAppointmentList()){
-                                //System.out.println("Inside doctor's appointment list ");
-                                if(acc.getEmployee().getName().equals(DoctorComboBox.getSelectedItem())){
-                                    //System.out.println("Found doctor!!");
-                                    acc.getEmployee().setRating(rating);
-                                    //System.out.println("Doctor is rated!!");
-                                    //System.out.println("Rating:" + acc.getEmployee().getRating());
-                                }
+                            //System.out.println("Inside doctor's appointment list ");
+                            if (acc.getEmployee().getName().equals(DoctorComboBox.getSelectedItem())) {
+                                //System.out.println("Found doctor!!");
+                                acc.getEmployee().calculateRating(rating);
+                                //System.out.println("Doctor is rated!!");
+                                //System.out.println("Rating:" + acc.getEmployee().getRating());
+                            }
                             //}
                         }
                     }
@@ -503,80 +503,129 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_Q1R5ActionPerformed
 
-    public void RateQuestion1(){
-       
-        if (Question1.isSelected(Q1R5.getModel())){ ques1 = 5;}
-        else if (Question1.isSelected(Q1R4.getModel())){ques1 = 4;}
-        else if (Question1.isSelected(Q1R3.getModel())){ques1 = 3;}
-        else if (Question1.isSelected(Q1R2.getModel())){ques1 = 2;}
-        else if (Question1.isSelected(Q1R1.getModel())){ques1 = 1;}
-        else {System.out.println("Please make a selection");}
-        
+    public void RateQuestion1() {
+
+        if (Question1.isSelected(Q1R5.getModel())) {
+            ques1 = 5;
+        } else if (Question1.isSelected(Q1R4.getModel())) {
+            ques1 = 4;
+        } else if (Question1.isSelected(Q1R3.getModel())) {
+            ques1 = 3;
+        } else if (Question1.isSelected(Q1R2.getModel())) {
+            ques1 = 2;
+        } else if (Question1.isSelected(Q1R1.getModel())) {
+            ques1 = 1;
+        } else {
+            System.out.println("Please make a selection");
+        }
+
     }
-    
-    public void RateQuestion2(){
-        
-         if (Question2.isSelected(Q2R5.getModel())){ques2=5;}
-        else if (Question2.isSelected(Q2R4.getModel())){ques2=4;}
-        else if (Question2.isSelected(Q2R3.getModel())){ques2=3;}
-        else if (Question2.isSelected(Q2R2.getModel())){ques2=2;}
-        else if (Question2.isSelected(Q2R1.getModel())){ques2=1;}
-        else {System.out.println("Please make a selection");}
-        
+
+    public void RateQuestion2() {
+
+        if (Question2.isSelected(Q2R5.getModel())) {
+            ques2 = 5;
+        } else if (Question2.isSelected(Q2R4.getModel())) {
+            ques2 = 4;
+        } else if (Question2.isSelected(Q2R3.getModel())) {
+            ques2 = 3;
+        } else if (Question2.isSelected(Q2R2.getModel())) {
+            ques2 = 2;
+        } else if (Question2.isSelected(Q2R1.getModel())) {
+            ques2 = 1;
+        } else {
+            System.out.println("Please make a selection");
+        }
+
     }
-    
-    public void RateQuestion3(){ 
-        
-        if (Question3.isSelected(Q3R5.getModel())){ques3=5;}
-        else if (Question3.isSelected(Q3R4.getModel())){ques3=4;}
-        else if (Question3.isSelected(Q3R3.getModel())){ques3=3;}
-        else if (Question3.isSelected(Q3R2.getModel())){ques3=2;}
-        else if (Question3.isSelected(Q3R1.getModel())){ques3=1;}
-        else {System.out.println("Please make a selection");}
-        
+
+    public void RateQuestion3() {
+
+        if (Question3.isSelected(Q3R5.getModel())) {
+            ques3 = 5;
+        } else if (Question3.isSelected(Q3R4.getModel())) {
+            ques3 = 4;
+        } else if (Question3.isSelected(Q3R3.getModel())) {
+            ques3 = 3;
+        } else if (Question3.isSelected(Q3R2.getModel())) {
+            ques3 = 2;
+        } else if (Question3.isSelected(Q3R1.getModel())) {
+            ques3 = 1;
+        } else {
+            System.out.println("Please make a selection");
+        }
+
     }
-    
-    public void RateQuestion4(){
-         
-        if (Question4.isSelected(Q4R5.getModel())){ques4=5;}
-        else if (Question4.isSelected(Q4R4.getModel())){ques4=4;}
-        else if (Question4.isSelected(Q4R3.getModel())){ques4=3;}
-        else if (Question4.isSelected(Q4R2.getModel())){ques4=2;}
-        else if (Question4.isSelected(Q4R1.getModel())){ques4=1;}
-        else {System.out.println("Please make a selection");}
-        
+
+    public void RateQuestion4() {
+
+        if (Question4.isSelected(Q4R5.getModel())) {
+            ques4 = 5;
+        } else if (Question4.isSelected(Q4R4.getModel())) {
+            ques4 = 4;
+        } else if (Question4.isSelected(Q4R3.getModel())) {
+            ques4 = 3;
+        } else if (Question4.isSelected(Q4R2.getModel())) {
+            ques4 = 2;
+        } else if (Question4.isSelected(Q4R1.getModel())) {
+            ques4 = 1;
+        } else {
+            System.out.println("Please make a selection");
+        }
+
     }
-    
-    public void RateQuestion5(){
-        
-       if (Question5.isSelected(Q5R5.getModel())){ques5=5;}
-        else if (Question5.isSelected(Q5R4.getModel())){ques5=4;}
-        else if (Question5.isSelected(Q5R3.getModel())){ques5=3;}
-        else if (Question5.isSelected(Q5R2.getModel())){ques5=2;}
-        else if (Question5.isSelected(Q5R1.getModel())){ques5=1;}
-        else {System.out.println("Please make a selection");}
-       
+
+    public void RateQuestion5() {
+
+        if (Question5.isSelected(Q5R5.getModel())) {
+            ques5 = 5;
+        } else if (Question5.isSelected(Q5R4.getModel())) {
+            ques5 = 4;
+        } else if (Question5.isSelected(Q5R3.getModel())) {
+            ques5 = 3;
+        } else if (Question5.isSelected(Q5R2.getModel())) {
+            ques5 = 2;
+        } else if (Question5.isSelected(Q5R1.getModel())) {
+            ques5 = 1;
+        } else {
+            System.out.println("Please make a selection");
+        }
+
     }
     private void BtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSubmitActionPerformed
         // TODO add your handling code here:
-        
+
         RateQuestion1();
         RateQuestion2();
         RateQuestion3();
         RateQuestion4();
         RateQuestion5();
-        
-        rating = (ques1+ques2+ques3+ques4+ques5)/5;
+
+        rating = (ques1 + ques2 + ques3 + ques4 + ques5) / 5;
         rateDoctor(rating);
         JOptionPane.showMessageDialog(null, "Submitted successfully");
-        
+
     }//GEN-LAST:event_BtnSubmitActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         // TODO add your handling code here:
+
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        try{
+        if (userProcessContainer.getName().equals(null)) {
+            System.out.println("Inside If");
+            
+        } else {
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        }
+        }catch(Exception e){
+            CustomerWorkAreaJPanel cust = new CustomerWorkAreaJPanel(userProcessContainer, account, system);
+            userProcessContainer.add("CustomerWorkAreaJPanel", cust);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
     }//GEN-LAST:event_BtnBackActionPerformed
 
 
