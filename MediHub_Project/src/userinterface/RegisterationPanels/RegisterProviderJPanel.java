@@ -295,8 +295,10 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             String state = StateComboBox.getSelectedItem().toString();
 
             Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
-            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+            UserAccount account = enterprise.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
                     employee, new AdminRole());
+//            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+//                    employee, new AdminRole());
             AccessApprovalRequest request = new AccessApprovalRequest();
             request.setRole(entTypCombobox.getSelectedItem().toString());
             request.setSender(account);
@@ -324,7 +326,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             String state = StateComboBox.getSelectedItem().toString();
 
             Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, address, city, state, type.toString());
-            UserAccount account = system.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
+            UserAccount account = enterprise.getUserAccountDirectory().createEmployeeAccount(usernameTxt.getText(), pwdTxt.getText(),
                     employee, new MedicalSchoolRole());
             AccessApprovalRequest request = new AccessApprovalRequest();
             request.setRole(entTypCombobox.getSelectedItem().toString());
@@ -337,6 +339,7 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
                 }
             }
 
+            employee.setRegStatus(request.getStatus());
             ProviderNameJTxtField.setText("");
             ProviderAddrJTxtArea.setText("");
             ProviderCityJTxtField.setText("");
@@ -344,7 +347,6 @@ public class RegisterProviderJPanel extends javax.swing.JPanel {
             pwdTxt.setText("");
             rtypPwdTxt.setText("");
             JOptionPane.showMessageDialog(null, "Registered Successfully");
-//
         }
         
     }//GEN-LAST:event_RegisterJBtnActionPerformed
