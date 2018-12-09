@@ -292,6 +292,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                     }
 
                 }
+                empDoctor.setRegStatus(request.getStatus());
 
             } else {
 
@@ -317,6 +318,7 @@ public class RegisterDoctorJPanel extends javax.swing.JPanel {
                     }
 
                 }
+                empDoctor.setRegStatus(request.getStatus());
 
             }
 
