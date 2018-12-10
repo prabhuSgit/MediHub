@@ -114,27 +114,18 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         BtnReview = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         OrganTable = new javax.swing.JTable();
-<<<<<<< HEAD
         valueLabel = new javax.swing.JLabel();
         organRqstBtn = new javax.swing.JButton();
-        BtnStats = new javax.swing.JButton();
-=======
+        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         userName = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        welcomeTxt = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
->>>>>>> origin/Urja_U
+        jSeparator2 = new javax.swing.JSeparator();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
-        setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("My Work Area - Adminstrative Role");
-        add(jLabel1);
-        jLabel1.setBounds(60, 50, 418, 29);
 
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,26 +133,10 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton);
-<<<<<<< HEAD
-        manageOrganizationJButton.setBounds(390, 220, 181, 29);
-=======
-        manageOrganizationJButton.setBounds(320, 190, 135, 23);
->>>>>>> origin/Urja_U
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        enterpriseLabel.setForeground(new java.awt.Color(0, 102, 51));
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel);
-        enterpriseLabel.setBounds(60, 90, 120, 30);
 
-<<<<<<< HEAD
-=======
-        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        add(valueLabel);
-        valueLabel.setBounds(180, 100, 130, 30);
-
->>>>>>> origin/Urja_U
         accessRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -185,19 +160,7 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
             accessRequestTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        add(jScrollPane3);
-        jScrollPane3.setBounds(60, 450, 418, 148);
-
-        jLabel2.setForeground(new java.awt.Color(0, 102, 51));
         jLabel2.setText("Pending request for Access :");
-        add(jLabel2);
-<<<<<<< HEAD
-        jLabel2.setBounds(164, 445, 202, 20);
-=======
-        jLabel2.setBounds(60, 420, 250, 20);
->>>>>>> origin/Urja_U
-        add(jSeparator1);
-        jSeparator1.setBounds(60, 390, 418, 10);
 
         BtnReview.setText("Review");
         BtnReview.addActionListener(new java.awt.event.ActionListener() {
@@ -205,8 +168,6 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
                 BtnReviewActionPerformed(evt);
             }
         });
-        add(BtnReview);
-        BtnReview.setBounds(390, 610, 84, 30);
 
         OrganTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,59 +182,127 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(OrganTable);
 
-        add(jScrollPane1);
-<<<<<<< HEAD
-        jScrollPane1.setBounds(160, 280, 420, 103);
-        add(valueLabel);
-        valueLabel.setBounds(320, 180, 120, 30);
-
         organRqstBtn.setText("Organ Requests");
         organRqstBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organRqstBtnActionPerformed(evt);
             }
         });
-        add(organRqstBtn);
-        organRqstBtn.setBounds(393, 180, 180, 29);
 
-        BtnStats.setText("Stats");
-        BtnStats.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnStatsActionPerformed(evt);
-            }
-        });
-        add(BtnStats);
-        BtnStats.setBounds(620, 130, 67, 29);
-=======
-        jScrollPane1.setBounds(60, 260, 410, 90);
+        jLabel6.setBackground(new java.awt.Color(0, 102, 0));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel6.setText("Logged as: ");
 
+        jLabel3.setBackground(new java.awt.Color(0, 102, 0));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel3.setText("Organ Requests from Health care Providers:");
-        add(jLabel3);
-        jLabel3.setBounds(60, 230, 340, 20);
-
-        jLabel4.setBackground(new java.awt.Color(0, 102, 0));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel4.setText("Logged as: ");
-        add(jLabel4);
-        jLabel4.setBounds(470, 30, 100, 30);
-
-        jLabel5.setBackground(new java.awt.Color(0, 102, 0));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 102, 51));
-        jLabel5.setText("Date & Time:");
-        add(jLabel5);
-        jLabel5.setBounds(470, 70, 100, 30);
+        jLabel3.setText("Date & Time:");
 
         userName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(userName);
-        userName.setBounds(580, 30, 190, 30);
+
+        jLabel7.setBackground(new java.awt.Color(0, 102, 0));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel7.setText("Welcome Customer :");
+
+        welcomeTxt.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        welcomeTxt.setForeground(new java.awt.Color(0, 204, 0));
 
         date.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(date);
-        date.setBounds(580, 70, 160, 20);
->>>>>>> origin/Urja_U
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(organRqstBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(manageOrganizationJButton))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jLabel2))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(498, 498, 498)
+                .addComponent(BtnReview, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(organRqstBtn)
+                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(10, 10, 10)
+                .addComponent(manageOrganizationJButton)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(BtnReview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -411,7 +440,6 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReview;
-    private javax.swing.JButton BtnStats;
     private javax.swing.JTable OrganTable;
     private javax.swing.JTable accessRequestTbl;
     private javax.swing.JLabel date;
@@ -419,18 +447,17 @@ public class ProviderWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton manageOrganizationJButton;
-<<<<<<< HEAD
     private javax.swing.JButton organRqstBtn;
-=======
     private javax.swing.JLabel userName;
->>>>>>> origin/Urja_U
     private javax.swing.JLabel valueLabel;
+    private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
 
 }

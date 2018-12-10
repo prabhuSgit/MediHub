@@ -28,12 +28,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jSeparator1" max="32767" attributes="0"/>
-=======
           <Group type="102" attributes="0">
               <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="892" max="-2" attributes="0"/>
@@ -41,18 +35,12 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
->>>>>>> origin/Urja_U
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="welcomeTxt" min="-2" pref="170" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-=======
                       <Component id="welcomeTxt" min="-2" pref="207" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
->>>>>>> origin/Urja_U
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="89" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -81,26 +69,7 @@
                       </Group>
                   </Group>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace min="0" pref="158" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
-                      <Component id="doctorBookingBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="apntmntHistoryBtn" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="391" max="-2" attributes="0"/>
-                      <Component id="BtnSurvey" min="-2" pref="170" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-=======
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
->>>>>>> origin/Urja_U
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,9 +81,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="userName" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -142,13 +111,7 @@
                       <Component id="doctorBookingBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace pref="7" max="32767" attributes="0"/>
-              <Component id="BtnSurvey" min="-2" pref="61" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-=======
               <EmptySpace min="-2" pref="308" max="-2" attributes="0"/>
->>>>>>> origin/Urja_U
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,6 +129,16 @@
           <Color blue="33" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Welcome Customer :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="welcomeTxt">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="20" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="doctorBookingBtn">
@@ -248,16 +221,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Date &amp; Time:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="welcomeTxt">
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnSurvey">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Doctor Survey"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSurveyActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

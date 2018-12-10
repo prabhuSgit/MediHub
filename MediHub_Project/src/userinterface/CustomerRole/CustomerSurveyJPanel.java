@@ -57,6 +57,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         Question4 = new javax.swing.ButtonGroup();
         Question5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -97,8 +98,6 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         BtnSubmit = new javax.swing.JButton();
         DoctorComboBox = new javax.swing.JComboBox();
-        BtnBack = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 204));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -107,16 +106,12 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Patient Satisfaction Survey");
 
-<<<<<<< HEAD
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-=======
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 51));
         jLabel3.setText("Doctor:");
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 51));
->>>>>>> origin/Urja_U
         jLabel4.setText("We are interested in recieving your feedback about the care provided to you at your selected healthcare provider.");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -285,16 +280,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
             }
         });
 
-        DoctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<none>" }));
-
-        BtnBack.setText("<<Back");
-        BtnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBackActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Doctor:");
+        DoctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -333,30 +319,14 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Q1R1)
                                 .addGap(29, 29, 29))
-<<<<<<< HEAD
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel6)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(51, 51, 51)
-                                .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12))))
-=======
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel4)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
->>>>>>> origin/Urja_U
+                                .addComponent(jLabel3)
+                                .addGap(42, 42, 42)
+                                .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator4))
@@ -422,9 +392,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                             .addComponent(jSeparator3))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(BtnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(BtnSubmit)
                 .addGap(58, 58, 58))
         );
@@ -433,15 +401,10 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
-<<<<<<< HEAD
-                    .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(45, 45, 45)
-=======
                     .addComponent(DoctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87)
->>>>>>> origin/Urja_U
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -510,13 +473,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         .addComponent(Q5R2)
                         .addComponent(Q5R1)))
                 .addGap(18, 18, 18)
-<<<<<<< HEAD
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnSubmit)
-                    .addComponent(BtnBack))
-=======
                 .addComponent(BtnSubmit)
->>>>>>> origin/Urja_U
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -757,7 +714,6 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnSubmit;
     private javax.swing.JComboBox DoctorComboBox;
     private javax.swing.JRadioButton Q1R1;
@@ -795,7 +751,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
