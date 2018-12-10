@@ -30,7 +30,7 @@ public class EmployeeDirectory {
         employee.setEnterpriseState(state);
         employee.setType(type);
 //        employee.setLastname(lname);
-//        employee.setDepartment(Department);
+        employee.setDepartment(address);
         employeeList.add(employee);
         return employee;
     }

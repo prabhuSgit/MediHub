@@ -64,7 +64,7 @@ public class CustomerVitalSignsJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 255), 5));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 5));
         setForeground(new java.awt.Color(0, 102, 51));
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
