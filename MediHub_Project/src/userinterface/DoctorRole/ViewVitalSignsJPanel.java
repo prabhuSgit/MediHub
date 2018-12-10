@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.CustomerRole;
+package userinterface.DoctorRole;
 
+import userinterface.CustomerRole.*;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
@@ -15,19 +16,21 @@ import javax.swing.JPanel;
  *
  * @author prabh
  */
-public class CustomerVitalSignsJPanel extends javax.swing.JPanel {
+public class ViewVitalSignsJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CustomerVitalSignsJPanel
      */
     private JPanel userProcessContainer;
     private UserAccount account;
+    private UserAccount userAccount;
     
-    public CustomerVitalSignsJPanel(JPanel userProcessContainer, UserAccount account) {
+    public ViewVitalSignsJPanel(JPanel userProcessContainer, UserAccount account, UserAccount userAccount) {
         this.userProcessContainer=userProcessContainer;
         this.account=account;
+        this.userAccount=userAccount;
         initComponents();
-        valueLabel.setText(account.getCustomer().getName());
+        valueLabel.setText(userAccount.getEmployee().getName());
         userName.setText(account.getUsername());
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy, HH:mm:ss");

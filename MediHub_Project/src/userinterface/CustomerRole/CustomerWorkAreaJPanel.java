@@ -74,6 +74,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         date = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        BtnSurvey = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -94,6 +95,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        myProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/CustomerRole/929372-200.png"))); // NOI18N
         myProfileBtn.setText("My Profile");
         myProfileBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         myProfileBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -110,6 +112,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        vitalSignBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/CustomerRole/vitalsignbtn.jpg"))); // NOI18N
         vitalSignBtn.setText("Vital Signs");
         vitalSignBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         vitalSignBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -133,14 +136,17 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(0, 102, 51));
         jLabel3.setText("Date & Time:");
 
+        BtnSurvey.setText("Surveys");
+        BtnSurvey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSurveyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -148,7 +154,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(welcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
+                        .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -157,18 +163,24 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(myProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(399, 399, 399)
-                                .addComponent(apntmntHistoryBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(260, 260, 260)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(vitalSignBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(doctorBookingBtn))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(220, 220, 220)
+                        .addComponent(doctorBookingBtn)
+                        .addGap(147, 147, 147)
+                        .addComponent(apntmntHistoryBtn)))
+                .addGap(0, 60, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(myProfileBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(vitalSignBtn))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(411, 411, 411)
+                .addComponent(BtnSurvey)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,29 +201,27 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(apntmntHistoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorBookingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apntmntHistoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(myProfileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(vitalSignBtn)
-                        .addGap(36, 36, 36)
-                        .addComponent(doctorBookingBtn)))
-                .addGap(308, 308, 308))
+                    .addComponent(myProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vitalSignBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnSurvey)
+                .addGap(205, 205, 205))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSurveyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSurveyActionPerformed
         // TODO add your handling code here:
         CustomerSurveyJPanel cust = new CustomerSurveyJPanel(userProcessContainer, account, system);
-            userProcessContainer.add("CustomersurveyJPanel", cust);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+        userProcessContainer.add("CustomersurveyJPanel", cust);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_BtnSurveyActionPerformed
 
-                      
 
     private void doctorBookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBookingBtnActionPerformed
         // TODO add your handling code here:
@@ -240,6 +250,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnSurvey;
     private javax.swing.JButton apntmntHistoryBtn;
     private javax.swing.JLabel date;
     private javax.swing.JButton doctorBookingBtn;

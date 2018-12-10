@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.MedicalSchoolAdminRole;
 
+import userinterface.ProviderAdminRole.*;
+import userinterface.SystemAdminWorkArea.*;
 import userinterface.RegisterationPanels.*;
 import Business.Customer.Customer;
 import Business.EcoSystem;
@@ -68,16 +70,18 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         ProviderNameJTxtField = new javax.swing.JTextField();
         ProviderCityJTxtField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProviderAddrJTxtArea = new javax.swing.JTextArea();
         BtnUpdate = new javax.swing.JButton();
+        FilePathTxtField = new javax.swing.JTextField();
         BtnBack = new javax.swing.JButton();
+        BtnBrowse = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         entTypTxt = new javax.swing.JTextField();
@@ -85,21 +89,18 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         StatusTxt = new javax.swing.JTextField();
         NetworkTxt = new javax.swing.JTextField();
         SaveBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Review Registration Request");
-
-        jLabel2.setText("Name:");
 
         jLabel3.setText("Address:");
 
         jLabel4.setText("City:");
 
         jLabel5.setText("Network:");
+
+        jLabel6.setText("License Document:");
 
         ProviderNameJTxtField.setEditable(false);
 
@@ -110,19 +111,23 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         ProviderAddrJTxtArea.setRows(5);
         jScrollPane1.setViewportView(ProviderAddrJTxtArea);
 
-        BtnUpdate.setText("Edit Status");
+        BtnUpdate.setText("Update Status");
         BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUpdateActionPerformed(evt);
             }
         });
 
-        BtnBack.setText("<< Back");
+        FilePathTxtField.setEditable(false);
+
+        BtnBack.setText("<<Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
             }
         });
+
+        BtnBrowse.setText("Browse Computer");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -143,61 +148,69 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText("jLabel8");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(BtnBack))
-                        .addGap(31, 31, 31)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(StatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(entTypTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(BtnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SaveBtn)))))
-                .addGap(226, 235, Short.MAX_VALUE))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)))
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8)
+                        .addGap(62, 62, 62)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnBrowse)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(NetworkTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                            .addComponent(ProviderCityJTxtField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(BtnBack))
+                .addGap(65, 65, 65)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(StatusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addComponent(entTypTxt))
+                    .addComponent(BtnUpdate)
+                    .addComponent(SaveBtn))
+                .addGap(196, 196, 196))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(181, 181, 181))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(29, 29, 29)
                         .addComponent(jLabel1)
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ProviderNameJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel8))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -210,27 +223,31 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(NetworkTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(136, 136, 136)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(FilePathTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnBrowse)
+                        .addGap(32, 32, 32)
                         .addComponent(BtnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
                                     .addComponent(entTypTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
                                     .addComponent(StatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(BtnUpdate)
-                                    .addComponent(SaveBtn))
-                                .addGap(8, 8, 8))
+                                .addGap(31, 31, 31)
+                                .addComponent(BtnUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(SaveBtn))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,13 +259,10 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         entTypTxt.setText(userAccount.getEmployee().getType());
         StatusTxt.setText(userAccount.getEmployee().getRegStatus());
     }
-    
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         // TODO add your handling code here:
-        StatusTxt.setText("");
         StatusTxt.setEditable(true);
         StatusTxt.setBackground(Color.green);
-
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
@@ -258,21 +272,32 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
 
 //        if (component.getName().equals("doctor")) {
-//            ProviderWorkAreaJPanel providerWorkAreJPanel = (ProviderWorkAreaJPanel) component;
-//            providerWorkAreJPanel.populateAccessRequestTbl();
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.previous(userProcessContainer);
-//        } else {
-            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
-            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+            MedicalSchoolWorkAreaJPanel medicalSchoolJPanel = (MedicalSchoolWorkAreaJPanel) component;
+            medicalSchoolJPanel.populateAccessRequestTbl();
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.previous(userProcessContainer);
+////        } else {
+//            SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) component;
+//            systemAdminWorkAreaJPanel.populateAccessRequestTbl();
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.previous(userProcessContainer);
 //        }
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         // TODO add your handling code here:
         userAccount.getEmployee().setRegStatus("Active");
+//        for (UserAccount u : system.getUserAccountDirectory().getUserAccountList()){
+//            if(u.getUsername().equals("sysadmin")){
+//                System.out.println(u.getPassword());
+//                for (WorkRequest wr : u.getWorkQueue().getWorkRequestList()){
+//                    if(wr.getSender().equals(userAccount)){
+//                        wr.setStatus(StatusTxt.getText());
+//                        userAccount.setStatus(StatusTxt.getText());
+//                    }
+//                }
+//            }
+//        }
         for (WorkRequest wr : reviewer.getWorkQueue().getWorkRequestList()) {
             if (wr.getSender().equals(userAccount)) {
                 wr.setStatus(StatusTxt.getText());
@@ -280,14 +305,20 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
             }
         }
 
-        JOptionPane.showMessageDialog(null, "User account ACTIVATED!");
+        JOptionPane.showMessageDialog(null, "Registered Successfully");
         StatusTxt.setEditable(false);
     }//GEN-LAST:event_SaveBtnActionPerformed
+
+    private void BtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBrowseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnBrowseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBack;
+    private javax.swing.JButton BtnBrowse;
     private javax.swing.JButton BtnUpdate;
+    private javax.swing.JTextField FilePathTxtField;
     private javax.swing.JTextField NetworkTxt;
     private javax.swing.JTextArea ProviderAddrJTxtArea;
     private javax.swing.JTextField ProviderCityJTxtField;
@@ -297,11 +328,12 @@ public class ReviewRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField entTypTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

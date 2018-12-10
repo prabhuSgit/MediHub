@@ -111,6 +111,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         userName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        viewVitalSigns = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -151,7 +152,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         vitalSignBtn.setBackground(new java.awt.Color(204, 255, 204));
-        vitalSignBtn.setText("VitalSigns");
+        vitalSignBtn.setText("Update Vital Signs");
         vitalSignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vitalSignBtnActionPerformed(evt);
@@ -229,6 +230,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 102, 51));
         jLabel5.setText("Appointments for You :");
 
+        viewVitalSigns.setText("View Vital Signs");
+        viewVitalSigns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewVitalSignsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,6 +271,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewVitalSigns)
+                            .addGap(18, 18, 18)
                             .addComponent(addBtn))))
                 .addGap(58, 58, 58))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -300,7 +310,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewVitalSigns))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +331,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add("RequestLabTestJPanel", new VitalSignJPanel(userProcessContainer, custAcc, enterprise));
             layout.next(userProcessContainer);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Kindly await for Lab updates. Status NOT COMPLETE!");
         }
 
@@ -332,7 +344,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        
+
         String mesg = JOptionPane.showInputDialog("Enter your message");
         int dialogButton = JOptionPane.showConfirmDialog(null, "Do you want to Add a Lab request?");
         if (dialogButton == JOptionPane.YES_OPTION) {
@@ -367,6 +379,20 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void viewVitalSignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewVitalSignsActionPerformed
+        // TODO add your handling code here:
+        int row = appointmentTbl.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        AppointmentRequest request = (AppointmentRequest) appointmentTbl.getValueAt(row, 0);
+        UserAccount customerAccount = request.getCustomer();
+        userProcessContainer.add("CustomersurveyJPanel", new ViewVitalSignsJPanel(userProcessContainer, customerAccount, userAccount));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewVitalSignsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JTable appointmentTbl;
@@ -383,6 +409,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JLabel userName;
     private javax.swing.JLabel valueLabel;
+    private javax.swing.JButton viewVitalSigns;
     private javax.swing.JButton vitalSignBtn;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

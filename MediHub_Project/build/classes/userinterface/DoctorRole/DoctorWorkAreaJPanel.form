@@ -70,6 +70,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel4" min="-2" pref="197" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="viewVitalSigns" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="addBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -119,7 +121,10 @@
               <Component id="jScrollPane1" min="-2" pref="176" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="addBtn" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="addBtn" alignment="3" max="32767" attributes="0"/>
+                      <Component id="viewVitalSigns" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="jLabel4" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -191,7 +196,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="ff" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="VitalSigns"/>
+        <Property name="text" type="java.lang.String" value="Update Vital Signs"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vitalSignBtnActionPerformed"/>
@@ -365,6 +370,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Appointments for You :"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="viewVitalSigns">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Vital Signs"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewVitalSignsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

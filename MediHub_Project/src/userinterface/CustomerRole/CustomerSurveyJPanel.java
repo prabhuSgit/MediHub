@@ -98,6 +98,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         BtnSubmit = new javax.swing.JButton();
         DoctorComboBox = new javax.swing.JComboBox();
+        BtnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 204));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204), 5));
@@ -282,6 +283,13 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
 
         DoctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        BtnBack.setText("<<Back");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -392,7 +400,9 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                             .addComponent(jSeparator3))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(BtnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnSubmit)
                 .addGap(58, 58, 58))
         );
@@ -473,7 +483,9 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
                         .addComponent(Q5R2)
                         .addComponent(Q5R1)))
                 .addGap(18, 18, 18)
-                .addComponent(BtnSubmit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnSubmit)
+                    .addComponent(BtnBack))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -714,6 +726,7 @@ public class CustomerSurveyJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBack;
     private javax.swing.JButton BtnSubmit;
     private javax.swing.JComboBox DoctorComboBox;
     private javax.swing.JRadioButton Q1R1;
